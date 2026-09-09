@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="assets/partner_hero_bg_nobooks-opt.jpg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=seo-nav-20260813-v1-mobile-perf-20260831-v2">
+    <link rel="stylesheet" href="style.css?v=partner-revenue-20260814-v4">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <script>
         // 一時的な通信失敗やキャッシュ不整合で画像が空白になるのを防ぐ。
@@ -85,7 +85,7 @@
             </nav>
 
             <div class="header-ctas">
-                <a class='header-cta' href='contact.html'>AI開発について無料で相談する<span class="arrow">→</span></a>
+                <a class='header-cta' href='index.html#contact'>AI開発について無料で相談する<span class="arrow">→</span></a>
             </div>
         </div>
     </header>
@@ -168,7 +168,7 @@
 
                     <!-- CTA Row (Instantly opens contact page) -->
                     <div class="partner-hero-cta-row reveal">
-                        <a href="contact.html?from=partner&amp;cta=hero" class="partner-hero-cta-btn">
+                        <a href="contact.html" class="partner-hero-cta-btn">
                             パートナー制度について相談する <span class="arrow">→</span>
                         </a>
                         <span class="partner-cta-note">無理な営業は一切ありません。お気軽にご相談ください。</span>
@@ -182,7 +182,6 @@
             <div class="container partner-painpoints-container">
                 <div class="partner-section-header reveal">
                     <p class="section-eyebrow-line">PAIN POINTS</p>
-                    <div class="section-accent-line"></div>
                     <h2 class="partner-section-heading">
                         Web制作会社・広告代理店様の<br class="pc-only">
                         このようなお悩みはありませんか？
@@ -208,7 +207,6 @@
                             顧客からAI活用の相談を<br>
                             受けるが、自社に専門家がいない
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
                             「業務を自動化したい」「AIチャットボットを作りたい」といった相談に、提案・開発ができず機会損失が発生している。
                         </p>
@@ -230,7 +228,6 @@
                             提案段階や要件定義の<br>
                             フォローが得られない
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
                             一般的なSESや受託会社は「仕様が決まってから見積もる」スタンスが多く、企画・提案段階で伴走してくれない。
                         </p>
@@ -252,7 +249,6 @@
                             開発クオリティや納期遅延で<br>
                             自社の評判を落とすのが怖い
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
                             実績の不透明なフリーランスや他社に丸投げすると、納品物の品質低下やクライアントからの信頼を損なうリスクがある。
                         </p>
@@ -273,7 +269,6 @@
                             自社クライアントへの<br>
                             直接営業（抜き取り・直取引）が心配
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
                             外部パートナーに紹介した結果、自社を飛ばして直接営業・囲い込みをされないかという不安がある。
                         </p>
@@ -290,13 +285,11 @@
                             </div>
                         </div>
                         <h3 class="pain-card-title">
-                            自社ブランドでの受託<br>
-                            （ホワイトラベル・共同提案）<br>
-                            を行いたい
+                            自社ブランドでの受託・<br>
+                            共同提案を行いたい
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
-                            顧客との主担当窓口は自社で維持し、技術的バックエンドのみを信頼できる専門チームに委託したい。
+                            ホワイトラベル（SPACEGLEAMの社名を出さず、貴社ブランドで開発・納品）にも対応。顧客窓口を維持したまま、技術面を専門チームへ委託できます。
                         </p>
                     </div>
 
@@ -315,7 +308,6 @@
                             AI開発のリソースや<br>
                             ノウハウが社内に不足している
                         </h3>
-                        <div class="title-underline"></div>
                         <p class="pain-card-desc">
                             最新技術へのキャッチアップやエンジニアの採用・教育に時間とコストがかかり、本来業務を圧迫している。
                         </p>
@@ -325,11 +317,10 @@
         </section>
 
         <!-- Section 3: Why Space Gleam Section (5 Alternating Rows Matching Reference Image) -->
-        <section class="section partner-reasons-v3">
+        <section id="why-spacegleam" class="section partner-reasons-v3">
             <div class="container partner-reasons-container">
                 <div class="partner-section-header reveal">
                     <p class="section-eyebrow-line text-blue">WHY SPACE GLEAM</p>
-                    <div class="section-accent-line blue"></div>
                     <h2 class="partner-section-heading text-white">
                         SPACE GLEAMが<br>
                         パートナーに選ばれる5つの理由
@@ -362,14 +353,14 @@
                             </p>
                         </div>
                         <div class="reason-row-img-wrap">
-                            <img src="assets/reason_img_01-opt.jpg" data-fallback-src="assets/reason_img_01.png" alt="AIプログラミング開発画面の実写" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
+                            <img src="assets/reason_img_01-opt.jpg" data-fallback-src="assets/reason_img_01.png" alt="エンジニア採用リスク0円と外部AIチーム連携の対比図" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
                         </div>
                     </div>
 
                     <!-- Row 02 (Image Left, Text Right - Reverse) -->
                     <div class="reason-row-v3 reason-row-reverse reveal">
                         <div class="reason-row-img-wrap">
-                            <img src="assets/reason_img_02-opt.jpg" data-fallback-src="assets/reason_img_02.png" alt="要件定義・仕様検討ノートとペンの実写" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
+                            <img src="assets/reason_img_02-opt.jpg" data-fallback-src="assets/reason_img_02.png" alt="初期商談から要件定義・概算見積までの3ステップ無料伴走フロー図" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
                         </div>
                         <div class="reason-row-text">
                             <div class="reason-row-top">
@@ -416,14 +407,14 @@
                             </p>
                         </div>
                         <div class="reason-row-img-wrap">
-                            <img src="assets/reason_img_03-opt.jpg" data-fallback-src="assets/reason_img_03.png" alt="ノートPCワークスペースの実写" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
+                            <img src="assets/reason_img_03-opt.jpg" data-fallback-src="assets/reason_img_03.png" alt="ホワイトラベル納品と共同提案の2つの連携モデル体制図" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
                         </div>
                     </div>
 
                     <!-- Row 04 (Image Left, Text Right - Reverse) -->
                     <div class="reason-row-v3 reason-row-reverse reveal">
                         <div class="reason-row-img-wrap">
-                            <img src="assets/reason_img_04-opt.jpg" data-fallback-src="assets/reason_img_04.png" alt="契約書締結・NDA署名の筆記実写" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
+                            <img src="assets/reason_img_04-opt.jpg" data-fallback-src="assets/reason_img_04.png" alt="顧客への直接営業禁止と事前NDA締結の安心保護原則図" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
                         </div>
                         <div class="reason-row-text">
                             <div class="reason-row-top">
@@ -460,7 +451,7 @@
                                 </div>
                             </div>
                             <h3 class="reason-row-title">
-                                自社SaaS・200社以上の支援実績に<br>
+                                自社プロダクトの開発・運用経験に<br>
                                 基づくスピード開発
                             </h3>
                             <p class="reason-row-desc">
@@ -468,7 +459,7 @@
                             </p>
                         </div>
                         <div class="reason-row-img-wrap">
-                            <img src="assets/reason_img_05-opt.jpg" data-fallback-src="assets/reason_img_05.png" alt="エンジニア開発チーム作業風景の実写" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
+                            <img src="assets/reason_img_05-opt.jpg" data-fallback-src="assets/reason_img_05.png" alt="一般的な開発期間とSPACE GLEAMの最短2〜4週間MVP開発のタイムライン比較図" class="reason-row-img" width="1024" height="1024" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -482,7 +473,6 @@
             <div class="container partner-workflow-container">
                 <div class="partner-section-header reveal">
                     <p class="section-eyebrow-line">WORKFLOW & TECH STACK</p>
-                    <div class="section-accent-line"></div>
                     <h2 class="partner-section-heading">
                         連携イメージと対応技術範囲
                     </h2>
@@ -496,7 +486,6 @@
                     <div class="collab-diagram-head">
                         <p class="collab-diagram-head__eyebrow">PARTNERSHIP STRUCTURE</p>
                         <h3 class="collab-diagram-head__title">3者の強みをつなぎ、アイデアを成果へ</h3>
-                        <div class="collab-diagram-head__rule"></div>
                     </div>
 
                     <div class="collab-layout">
@@ -524,7 +513,6 @@
                                 <img class="collab-core__logo" src="assets/spacegleam-logo-white.png" alt="" aria-hidden="true" width="601" height="1061" loading="lazy" decoding="async">
                                 <span class="collab-core__name">SPACE GLEAM</span>
                                 <span class="collab-core__role">貴社の外部AIチーム</span>
-                                <span class="collab-core__divider"></span>
                                 <strong class="collab-core__message">認識をひとつに</strong>
                                 <span class="collab-core__note">ゴール・要件・進捗を共有</span>
                             </div>
@@ -685,7 +673,7 @@
         </section>
 
         <!-- Section 5: Dev Team Photo & Trust Section -->
-        <section class="section partner-section-dark partner-process-section">
+        <section id="expert-team" class="section partner-section-dark partner-process-section">
             <div class="container">
                 <div class="partner-team-grid">
                     <div class="partner-team-img-wrap reveal">
@@ -859,7 +847,7 @@
                         <strong>似たご相談はありませんか？</strong>
                         <p>案件名や仕様が決まっていない段階でも、対応可否と進め方を一緒に整理します。</p>
                     </div>
-                    <a href="contact.html?from=partner&amp;cta=case-studies" class="case-consult-link">相談内容を整理する <span aria-hidden="true">→</span></a>
+                    <a href="contact.html" class="case-consult-link">相談内容を整理する <span aria-hidden="true">→</span></a>
                 </div>
             </div>
         </section>
@@ -950,7 +938,7 @@
                 </div>
 
                 <div class="process-cta-row reveal">
-                    <a href="contact.html?from=partner&amp;cta=process" class="process-cta-link">
+                    <a href="contact.html" class="process-cta-link">
                         まずは30分相談する <span class="arrow" aria-hidden="true">→</span>
                     </a>
                     <p>具体案件なしでも相談可能 <span aria-hidden="true">／</span> 加盟金・月額費用なし</p>
@@ -1047,6 +1035,38 @@
                             <div class="faq-answer">はい。「何を改善したいか」が分かれば進められます。必要な機能、優先順位、概算費用を一緒に整理します。</div>
                         </div>
                     </div>
+
+                    <div class="faq-item">
+                        <button type="button" class="faq-trigger" aria-expanded="false">
+                            <span class="faq-q-box">
+                                <span class="faq-num">Q6.</span>
+                                <span class="faq-divider"></span>
+                                <span class="faq-question">開発パートナーはどのように収益を得られますか？</span>
+                            </span>
+                            <span class="faq-icon-wrapper" aria-hidden="true">
+                                <span class="faq-icon-line h"></span><span class="faq-icon-line v"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-answer">SPACEGLEAMから貴社へ案件ごとの開発費をご提示します。顧客への販売価格は貴社で設定いただけるため、販売価格と弊社開発費との差額を貴社の収益として確保いただけます。提案内容や見積方法についても事前にご相談いただけます。</div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button type="button" class="faq-trigger" aria-expanded="false">
+                            <span class="faq-q-box">
+                                <span class="faq-num">Q7.</span>
+                                <span class="faq-divider"></span>
+                                <span class="faq-question">紹介パートナーと開発パートナーの違いは何ですか？</span>
+                            </span>
+                            <span class="faq-icon-wrapper" aria-hidden="true">
+                                <span class="faq-icon-line h"></span><span class="faq-icon-line v"></span>
+                            </span>
+                        </button>
+                        <div class="faq-content">
+                            <div class="faq-answer">紹介パートナーは、案件をご紹介いただいた後の提案・契約・開発をSPACEGLEAMが担当し、成約時に紹介手数料をお支払いする形です。開発パートナーは、貴社が顧客窓口となり、自社サービスとしてAI開発を販売し、SPACEGLEAMが実装を担当する形です。</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1059,8 +1079,8 @@
                     <p class="partner-final-cta__lead">提案前の壁打ちから商談同席、開発・納品まで。貴社の進め方に合わせてご一緒します。</p>
                 </div>
                 <div class="partner-final-cta__action">
-                    <a href="contact.html?from=partner&amp;cta=final" class="partner-final-cta__button">
-                        パートナー制度について相談する <span aria-hidden="true">→</span>
+                    <a href="contact.html" class="partner-final-cta__button">
+                        自社顧客へのAI提案について相談する <span aria-hidden="true">→</span>
                     </a>
                     <p class="partner-final-cta__note">加盟金・月額費用はかかりません。NDAにも対応します。</p>
                 </div>
@@ -1069,7 +1089,7 @@
     </main>
 
     <!-- Mobile Fixed CTA Bar -->
-    <a href="contact.html?from=partner&amp;cta=mobile-fixed" class="mobile-fixed-cta">パートナー制度について相談する →</a>
+    <a href="contact.html" class="mobile-fixed-cta">自社顧客へのAI提案について相談する →</a>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1116,7 +1136,7 @@
             <div class="footer-vertical-line"></div>
 
             <div class="footer-cta-col">
-                <a href="contact.html?from=partner&amp;cta=footer" class="works-cta-btn-v2">
+                <a href="contact.html" class="works-cta-btn-v2">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
                     </svg>
