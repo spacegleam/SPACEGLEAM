@@ -1,5 +1,17 @@
 window.SPACEGLEAM_BLOG_POSTS = [
     {
+        slug: 'ai-agent-development-cost',
+        title: 'AIエージェント開発の費用相場｜導入手順と失敗しない進め方【2026年版】',
+        date: '2026-10-01',
+        publishAt: '2026-10-01T00:00:00+09:00',
+        status: 'published',
+        category: 'Business',
+        description: 'AIエージェント開発の費用相場を規模・機能別に解説。生成AIやRPAとの違い、導入手順、セキュリティ対策、費用を抑える方法を、実運用の知見から紹介します。',
+        excerpt: 'AIエージェント開発は、何を実行させ、どこで人が承認するかによって費用が変わります。規模別の相場と、本番運用まで見据えた導入手順を整理しました。',
+        url: 'https://spacegleam.co.jp/blog/ai-agent-development-cost/',
+        thumbnail: '/blog/ai-agent-development-cost/ogp.png?v=20261001-v4'
+    },
+    {
         slug: 'ai-agent-production-gap',
         title: '「AIエージェント」パイロットは85%、本番稼働はわずか5%。中小企業がこの溝を越える方法',
         date: '2026-09-07',
