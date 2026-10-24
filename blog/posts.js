@@ -9,7 +9,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。',
         excerpt: '国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧だけでなく、AIで脆弱性情報と自社資産を照合し、次の初動を早める方法を解説します。',
         url: 'https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/',
-        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1'
+        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v2'
     },
     {
         slug: 'ai-agent-development-cost',
