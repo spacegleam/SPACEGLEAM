@@ -1,5 +1,17 @@
 window.SPACEGLEAM_BLOG_POSTS = [
     {
+        slug: 'php2shell-emergency-response-2026',
+        title: 'PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止――企業が今すぐ確認すべきこと',
+        date: '2026-10-26',
+        publishAt: '2026-10-26T09:00:00+09:00',
+        status: 'scheduled',
+        category: 'Development',
+        description: 'PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。',
+        excerpt: '国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧だけでなく、AIで脆弱性情報と自社資産を照合し、次の初動を早める方法を解説します。',
+        url: 'https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/',
+        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1'
+    },
+    {
         slug: 'ai-agent-development-cost',
         title: 'AIエージェント開発の費用相場｜導入手順と失敗しない進め方【2026年版】',
         date: '2026-10-01',

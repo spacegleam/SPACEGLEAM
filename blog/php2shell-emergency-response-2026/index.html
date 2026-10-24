@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T9HP3BLMP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1T9HP3BLMP');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3800861012394451" crossorigin="anonymous"></script>
+    <title>PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止 | SPACE GLEAM</title>
+    <meta name="description" content="PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。">
+    <link rel="canonical" href="https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止">
+    <meta property="og:description" content="国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧と、AIで次の初動を早める仕組みを解説します。">
+    <meta property="og:url" content="https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/">
+    <meta property="og:site_name" content="SPACE GLEAM">
+    <meta property="og:image" content="https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1">
+    <meta property="og:image:secure_url" content="https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="脆弱性が出た瞬間、安全に止めて、戻せますか。システム監視画面を表示したモニターの写真とSPACE GLEAM株式会社のロゴ。">
+    <meta property="article:published_time" content="2026-10-26T09:00:00+09:00">
+    <meta property="article:modified_time" content="2026-10-26T09:00:00+09:00">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止">
+    <meta name="twitter:description" content="国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧と、AIで次の初動を早める仕組みを解説します。">
+    <meta name="twitter:image" content="https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1">
+    <meta name="twitter:image:alt" content="脆弱性が出た瞬間、安全に止めて、戻せますか。システム監視画面を表示したモニターの写真とSPACE GLEAM株式会社のロゴ。">
+    <link rel="icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../style.css?v=mobile-header-fix-20260709-v1">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止",
+            "description": "PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。",
+            "datePublished": "2026-10-26T09:00:00+09:00",
+            "dateModified": "2026-10-26T09:00:00+09:00",
+            "image": "https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v1",
+            "author": {
+                "@type": "Organization",
+                "name": "SPACE GLEAM"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "SPACE GLEAM",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://spacegleam.co.jp/favicon.png"
+                }
+            },
+            "mainEntityOfPage": "https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/",
+            "articleSection": "Development"
+        }
+    </script>
+    <style>
+        .php2shell-article {
+            --ink: #080808;
+            --muted: #666;
+            --rule: #d7d7d7;
+            --paper: #fff;
+        }
+
+        .php2shell-article .article-content > p strong {
+            color: var(--ink);
+        }
+
+        .php2shell-article .key-statement {
+            margin: 34px 0 42px;
+            padding: 22px 24px;
+            background: var(--ink);
+            color: #fff;
+            font-size: clamp(1.03rem, 2vw, 1.18rem);
+            font-weight: 700;
+            line-height: 1.9;
+        }
+
+        .php2shell-article .table-scroll {
+            margin: 30px 0 38px;
+            overflow-x: auto;
+            border: 1px solid var(--ink);
+            background: var(--paper);
+        }
+
+        .php2shell-article table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            color: var(--ink);
+        }
+
+        .php2shell-article th,
+        .php2shell-article td {
+            padding: 16px 18px;
+            border: 0;
+            border-bottom: 1px solid var(--rule);
+            text-align: left;
+            vertical-align: top;
+            line-height: 1.75;
+        }
+
+        .php2shell-article th {
+            background: var(--ink);
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .php2shell-article th:first-child,
+        .php2shell-article td:first-child {
+            width: 34%;
+        }
+
+        .php2shell-article tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .php2shell-article .source-note {
+            margin-top: -14px;
+            color: var(--muted);
+            font-size: .88rem;
+            line-height: 1.9;
+        }
+
+        .php2shell-article .source-note a {
+            color: var(--ink);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .php2shell-article .response-flow {
+            margin: 30px 0 42px;
+            border-top: 2px solid var(--ink);
+        }
+
+        .php2shell-article .response-step {
+            display: grid;
+            grid-template-columns: 54px minmax(0, 1fr);
+            gap: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .php2shell-article .response-step-num {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            background: var(--ink);
+            color: #fff;
+            font-size: .74rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .php2shell-article .response-step strong {
+            display: block;
+            margin: 1px 0 5px;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+
+        .php2shell-article .response-step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .93rem;
+            line-height: 1.85;
+        }
+
+        .php2shell-article .monitoring-figure {
+            margin: 36px 0 46px;
+            padding: 34px;
+            overflow: hidden;
+            background: #080808;
+            color: #fff;
+        }
+
+        .php2shell-article .monitoring-kicker {
+            margin-bottom: 10px;
+            color: #8d8d8d;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .php2shell-article .monitoring-figure figcaption {
+            margin: 0 0 30px;
+            max-width: 690px;
+            color: #fff;
+            font-size: clamp(1.18rem, 2.5vw, 1.48rem);
+            font-weight: 700;
+            line-height: 1.55;
+        }
+
+        .php2shell-article .monitoring-flow {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 30px minmax(210px, .95fr) 30px minmax(0, 1fr);
+            align-items: center;
+            gap: 14px;
+        }
+
+        .php2shell-article .monitoring-column > strong,
+        .php2shell-article .monitoring-core-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #949494;
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        .php2shell-article .monitoring-item {
+            padding: 12px 0;
+            border-top: 1px solid #3a3a3a;
+            color: #f2f2f2;
+            font-size: .86rem;
+            line-height: 1.65;
+        }
+
+        .php2shell-article .monitoring-core {
+            padding: 22px;
+            background: #fff;
+            color: var(--ink);
+        }
+
+        .php2shell-article .monitoring-core-label {
+            color: #666;
+        }
+
+        .php2shell-article .monitoring-core strong {
+            display: block;
+            color: var(--ink);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .php2shell-article .monitoring-arrow {
+            color: #777;
+            font-size: 1.35rem;
+            text-align: center;
+        }
+
+        .php2shell-article .monitoring-note {
+            margin: 27px 0 0;
+            padding-top: 18px;
+            border-top: 1px solid #343434;
+            color: #aaa;
+            font-size: .79rem;
+            line-height: 1.85;
+        }
+
+        .php2shell-article .boundary-list {
+            margin: 28px 0 42px;
+            border-top: 2px solid var(--ink);
+        }
+
+        .php2shell-article .boundary-row {
+            display: grid;
+            grid-template-columns: minmax(130px, .42fr) minmax(0, 1fr);
+            gap: 24px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .php2shell-article .boundary-row strong {
+            color: var(--ink);
+        }
+
+        .php2shell-article .boundary-row span {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .php2shell-article .article-photo {
+            margin: 38px 0 48px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+        }
+
+        .php2shell-article .article-photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.08);
+        }
+
+        .php2shell-article .article-photo--monitor img {
+            object-position: center 58%;
+        }
+
+        .php2shell-article .article-photo figcaption {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 22px;
+            align-items: end;
+            margin: 0;
+            padding: 15px 17px 17px;
+            background: var(--ink);
+            color: #f5f5f5;
+            font-size: .8rem;
+            line-height: 1.75;
+        }
+
+        .php2shell-article .article-photo figcaption small {
+            color: #a7a7a7;
+            font-size: .68rem;
+            letter-spacing: .02em;
+            white-space: nowrap;
+        }
+
+        .php2shell-article .article-photo figcaption a {
+            color: #d8d8d8;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+        }
+
+        .php2shell-article .ops-mock {
+            margin: 36px 0 48px;
+            border: 1px solid #080808;
+            background: #080808;
+            color: #f5f5f5;
+        }
+
+        .php2shell-article .ops-mock__head {
+            display: flex;
+            justify-content: space-between;
+            gap: 28px;
+            padding: 26px 28px;
+            border-bottom: 1px solid #383838;
+        }
+
+        .php2shell-article .ops-mock__eyebrow,
+        .php2shell-article .ops-mock__stats small {
+            display: block;
+            color: #929292;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: .13em;
+            line-height: 1.5;
+        }
+
+        .php2shell-article .ops-mock__head h3 {
+            margin: 7px 0 0;
+            color: #fff;
+            font-size: clamp(1.18rem, 2.5vw, 1.42rem);
+            line-height: 1.35;
+        }
+
+        .php2shell-article .ops-mock__head p {
+            max-width: 340px;
+            margin: 0;
+            color: #aaa;
+            font-size: .74rem;
+            line-height: 1.75;
+        }
+
+        .php2shell-article .ops-mock__body {
+            display: grid;
+            grid-template-columns: 180px minmax(0, 1fr);
+        }
+
+        .php2shell-article .ops-mock__stats {
+            padding: 0 24px;
+            border-right: 1px solid #383838;
+        }
+
+        .php2shell-article .ops-mock__stats div {
+            padding: 20px 0;
+            border-bottom: 1px solid #383838;
+        }
+
+        .php2shell-article .ops-mock__stats div:last-child {
+            border-bottom: 0;
+        }
+
+        .php2shell-article .ops-mock__stats strong {
+            display: block;
+            margin-top: 5px;
+            color: #fff;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 1.9rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .php2shell-article .ops-mock__queue {
+            padding: 8px 26px 18px;
+        }
+
+        .php2shell-article .ops-mock__queue-head,
+        .php2shell-article .ops-mock__row {
+            display: grid;
+            grid-template-columns: 106px minmax(0, 1fr) 72px;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .php2shell-article .ops-mock__queue-head {
+            padding: 12px 0;
+            color: #777;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+
+        .php2shell-article .ops-mock__row {
+            padding: 17px 0;
+            border-top: 1px solid #383838;
+        }
+
+        .php2shell-article .ops-mock__row b {
+            color: #fff;
+            font-size: .8rem;
+            line-height: 1.55;
+        }
+
+        .php2shell-article .ops-mock__row span {
+            color: #d1d1d1;
+            font-size: .81rem;
+            line-height: 1.65;
+        }
+
+        .php2shell-article .ops-mock__row em {
+            color: #aaa;
+            font-size: .72rem;
+            font-style: normal;
+            line-height: 1.5;
+            text-align: right;
+        }
+
+        .php2shell-article .ops-mock__roles {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 28px;
+            border-top: 1px solid #383838;
+            color: #aaa;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: .64rem;
+            font-weight: 700;
+            letter-spacing: .07em;
+            line-height: 1.6;
+        }
+
+        .php2shell-article .ops-mock figcaption {
+            margin: 0;
+            padding: 13px 28px 15px;
+            border-top: 1px solid #383838;
+            color: #8f8f8f;
+            font-size: .7rem;
+            line-height: 1.7;
+        }
+
+        .php2shell-article .article-disclaimer {
+            margin: 42px 0 8px;
+            padding-top: 20px;
+            border-top: 1px solid var(--ink);
+            color: var(--muted);
+            font-size: .82rem;
+            line-height: 1.9;
+        }
+
+        @media (max-width: 760px) {
+            .php2shell-article .monitoring-figure {
+                margin-inline: -2px;
+                padding: 24px 19px;
+            }
+
+            .php2shell-article .monitoring-flow {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .php2shell-article .monitoring-arrow {
+                transform: rotate(90deg);
+            }
+
+            .php2shell-article .monitoring-core {
+                padding: 20px;
+            }
+
+            .php2shell-article .boundary-row {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .php2shell-article .response-step {
+                grid-template-columns: 42px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .php2shell-article .article-photo {
+                margin: 32px 0 42px;
+            }
+
+            .php2shell-article .article-photo img {
+                aspect-ratio: 4 / 3;
+            }
+
+            .php2shell-article .article-photo figcaption {
+                grid-template-columns: 1fr;
+                gap: 7px;
+                padding: 13px 14px 15px;
+            }
+
+            .php2shell-article .article-photo figcaption small {
+                white-space: normal;
+            }
+
+            .php2shell-article .ops-mock {
+                margin: 32px 0 42px;
+            }
+
+            .php2shell-article .ops-mock__head {
+                display: block;
+                padding: 22px 18px;
+            }
+
+            .php2shell-article .ops-mock__head p {
+                margin-top: 14px;
+            }
+
+            .php2shell-article .ops-mock__body {
+                grid-template-columns: 1fr;
+            }
+
+            .php2shell-article .ops-mock__stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                padding: 0 12px;
+                border-right: 0;
+                border-bottom: 1px solid #383838;
+            }
+
+            .php2shell-article .ops-mock__stats div {
+                padding: 16px 6px;
+                border-right: 1px solid #383838;
+                border-bottom: 0;
+            }
+
+            .php2shell-article .ops-mock__stats div:last-child {
+                border-right: 0;
+            }
+
+            .php2shell-article .ops-mock__stats small {
+                font-size: .54rem;
+                letter-spacing: .07em;
+            }
+
+            .php2shell-article .ops-mock__stats strong {
+                font-size: 1.42rem;
+            }
+
+            .php2shell-article .ops-mock__queue {
+                padding: 8px 18px 16px;
+            }
+
+            .php2shell-article .ops-mock__queue-head {
+                display: none;
+            }
+
+            .php2shell-article .ops-mock__row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .php2shell-article .ops-mock__row em {
+                text-align: left;
+            }
+
+            .php2shell-article .ops-mock__roles {
+                display: block;
+                padding: 14px 18px;
+            }
+
+            .php2shell-article .ops-mock__roles span {
+                display: block;
+            }
+
+            .php2shell-article .ops-mock__roles span + span {
+                margin-top: 6px;
+            }
+
+            .php2shell-article .ops-mock figcaption {
+                padding: 12px 18px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body class="blog-page-body php2shell-article" data-article-slug="php2shell-emergency-response-2026">
+    <div class="site-bg" aria-hidden="true"></div>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="../../index.html" class="brand" aria-label="SPACE GLEAM ホーム">
+                <span class="brand-name">SPACE GLEAM</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-controls="global-nav" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="global-nav" class="nav" aria-label="グローバルナビゲーション">
+                <ul class="nav-list">
+                    <li><a href="../../services.html">AI業務システム開発</a></li>
+                    <li><a href="../../pricing.html">料金</a></li>
+                    <li><a href="../../works.html">実績</a></li>
+                    <li><a href="../../faq.html">FAQ</a></li>
+                    <li><a href="../../partner.html">パートナー制度</a></li>
+                    <li><a href="../index.html" aria-current="page">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="header-ctas">
+                <a href="../../index.html#contact" class="header-cta">
+                    AI開発について無料で相談する<span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="blog-main">
+        <div class="container">
+            <article>
+                <header class="article-header">
+                    <div class="article-meta">
+                        <time datetime="2026-10-26">2026年10月26日</time>
+                        <span class="article-category">Development</span>
+                    </div>
+                    <h1>PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止</h1>
+                    <p class="article-lead">
+                        2026年10月21日、日本国内のWebサイトやオンラインサービスが、
+                        次々とメンテナンス画面へ切り替わりました。
+                        原因は、PHPで発見された2件の重大な脆弱性
+                        「CVE-2026-109618」「CVE-2026-109619」、通称「PHP2Shell」です。
+                    </p>
+                </header>
+
+                <div class="article-content">
+                    <p>
+                        PHPは、企業サイト、WordPress、ECサイト、予約システム、
+                        会員サイト、業務システムなど、Webサービスの裏側で広く使われています。
+                    </p>
+                    <p>
+                        今回、各社の対応を分けたのは、修正版の有無だけではありません。
+                        対象を特定できるか。止める前に戻し方を確保できるか。
+                        更新後にログイン、予約、決済、管理画面まで確認できるか。
+                        平時の運用体制が、そのまま停止時間の差として現れました。
+                    </p>
+                    <p class="key-statement">
+                        重大な脆弱性が公表されたとき、自社への影響を判断し、
+                        安全に止め、直し、利用者へ戻せるか。
+                    </p>
+
+                    <h2>国内で相次いだのは「被害」ではなく予防的な停止</h2>
+                    <p>
+                        国内で公表された主な影響は、不正アクセスや情報漏えいの発生ではなく、
+                        被害を防ぐためのサービス停止や緊急メンテナンスです。
+                    </p>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">組織・サービス</th>
+                                    <th scope="col">公表された対応</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>コドモン</td>
+                                    <td>
+                                        保護者向けアプリや職員用管理画面などを停止。
+                                        脆弱性把握から主要機能再開まで約18時間、
+                                        夜間作業には13名が参加
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pixiv</td>
+                                    <td>
+                                        影響を受ける可能性があるサービスを事前停止。
+                                        修正版公開後、ビルド・テスト・デプロイを行い約30分で解除
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>名古屋市</td>
+                                    <td>
+                                        10月22日15時時点で、粗大ごみ受付や図書館関連など
+                                        44のサイト・システムを全面停止
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>さくらインターネット</td>
+                                    <td>
+                                        会員関連機能や一部サービスを予防的に停止し、
+                                        修正版を順次適用
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ソフトバンク</td>
+                                    <td>
+                                        法人向けの一部Webサイト・サービスを
+                                        緊急メンテナンスで一時停止
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>TKC</td>
+                                    <td>
+                                        会計事務所、関与先企業、地方公共団体向けの
+                                        一部サービスを一時休止
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="source-note">
+                        出典：
+                        <a href="https://tech.codmon.com/entry/2026/10/23/173909" target="_blank" rel="noopener noreferrer">コドモン</a>、
+                        <a href="https://inside.pixiv.blog/2026/10/22/193321" target="_blank" rel="noopener noreferrer">pixiv</a>、
+                        <a href="https://www.city.nagoya.jp/houdou/3003942/3003949/3006159.html" target="_blank" rel="noopener noreferrer">名古屋市</a>、
+                        <a href="https://www.sakura.ad.jp/corporate/information/announcements/2026/10/22/1968226117/" target="_blank" rel="noopener noreferrer">さくらインターネット</a>、
+                        <a href="https://www.softbank.jp/business/news/2026/1023-01" target="_blank" rel="noopener noreferrer">ソフトバンク</a>、
+                        <a href="https://www.tkc.jp/company/topics/2026/20261022/" target="_blank" rel="noopener noreferrer">TKC</a>
+                    </p>
+                    <p>
+                        これらは「各社で攻撃被害が発生した」という意味ではありません。
+                        ただし、攻撃される前の安全確保だけでも、サイトや業務サービスを
+                        止めざるを得なかった点は重要です。
+                        脆弱性対応はWeb担当者だけの問題ではなく、
+                        売上、顧客対応、行政サービス、社内業務に直結する経営課題です。
+                    </p>
+
+                    <h2>なぜ今回の脆弱性は深刻なのか</h2>
+                    <p>
+                        PHP2Shellの2件は、いずれも深刻度が「Critical」に分類され、
+                        CVSS v4.0で9.2と評価されています。
+                        悪用された場合、ログインしていない外部の第三者に、
+                        PHPを実行しているサーバー上で任意のコードを実行される可能性があります。
+                    </p>
+                    <p>
+                        PHP公式は、PHP-FPM、Apacheのmod_php、php-cgi、FrankenPHP、
+                        LiteSpeedなど、Webリクエストを処理するPHP環境を広く対象として、
+                        直ちに更新するよう求めています。
+                        <a href="https://www.php.net/?p=6419" target="_blank" rel="noopener noreferrer">PHP公式アドバイザリ</a>
+                    </p>
+                    <p>修正済みの最低バージョンは次のとおりです。</p>
+                    <div class="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">PHP系統</th>
+                                    <th scope="col">修正済みバージョン</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>PHP 8.5</td><td>8.5.12</td></tr>
+                                <tr><td>PHP 8.4</td><td>8.4.27</td></tr>
+                                <tr><td>PHP 8.3</td><td>8.3.36</td></tr>
+                                <tr><td>PHP 8.2</td><td>8.2.35</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        PHP 8.1以前はすでに公式サポートが終了しています。
+                        今回、一部の旧バージョンには緊急の最小バックポートが提供されていますが、
+                        長期的な保守が再開されたわけではありません。
+                    </p>
+                    <p>
+                        IPAも、更新が難しい場合には、外部からのアクセス遮断や
+                        サービスの一時停止まで含めて判断するよう求めています。
+                        <a href="https://www.ipa.go.jp/security/security-alert/2026/alert20261022.html" target="_blank" rel="noopener noreferrer">IPAの注意喚起</a>
+                    </p>
+
+                    <figure class="article-photo">
+                        <img src="./server-rack-pexels.jpg" alt="配線されたサーバーラックとネットワーク機器" width="1600" height="1067" loading="lazy" decoding="async">
+                        <figcaption>
+                            <span>対象はPHPの表示バージョンだけでは決まりません。Webリクエストを処理する実行環境まで、構成をたどって確認します。</span>
+                            <small>Photo: <a href="https://www.pexels.com/photo/network-servers-on-an-enclosure-6466141/" target="_blank" rel="noopener noreferrer">Sergei Starostin / Pexels</a></small>
+                        </figcaption>
+                    </figure>
+
+                    <h2>本当に難しいのは「アップデート」ではない</h2>
+                    <p>
+                        「修正版へ更新すれば終わり」と考えるのは危険です。
+                        実際の企業環境では、次のような問題が同時に発生します。
+                    </p>
+                    <ul>
+                        <li>自社のどのサイトやシステムでPHPを使っているか分からない</li>
+                        <li>サーバー上の表示バージョンと、実際に動いているPHPが異なる</li>
+                        <li>PHPを更新するとCMSや独自機能が動かなくなる</li>
+                        <li>制作会社や以前の担当者と連絡が取れない</li>
+                        <li>PHP本体を更新しても、古いワーカープロセスが動き続けている</li>
+                        <li>コンテナの再構築や再デプロイが必要になる</li>
+                        <li>修正前に攻撃されていなかったかを確認できていない</li>
+                        <li>自社は対応済みでも、委託先や外部サービスが停止している</li>
+                    </ul>
+                    <p>
+                        JPCERT/CCは、更新だけでなく、異常なPHPSESSID、不審なリクエスト、
+                        HTTP 500エラー、PHPプロセスの異常終了、不審なファイルや
+                        外部通信などを確認するよう案内しています。
+                        また、「不審な痕跡が見つからない」だけでは、
+                        侵害がなかったと断定できません。
+                    </p>
+                    <p class="source-note">
+                        出典：<a href="https://www.jpcert.or.jp/at/2026/at260033.html" target="_blank" rel="noopener noreferrer">JPCERT/CC「PHPの脆弱性に関する注意喚起」</a>
+                    </p>
+
+                    <figure class="article-photo article-photo--monitor">
+                        <img src="./process-monitor-unsplash.jpg" alt="コードとプロセス監視画面が表示されたコンピューター" width="1600" height="2400" loading="lazy" decoding="async">
+                        <figcaption>
+                            <span>更新だけで終わらせず、ログ、プロセス、外部通信の確認までを初動へ含めます。</span>
+                            <small>Photo: <a href="https://unsplash.com/photos/a-close-up-of-a-computer-screen-with-a-program-on-it-xIk9zUKjekQ" target="_blank" rel="noopener noreferrer">Lukas / Unsplash</a></small>
+                        </figcaption>
+                    </figure>
+
+                    <h2>現在の状態によって、最初の一手は変わる</h2>
+                    <p>
+                        <strong>まだ公開を続けている場合</strong>は、
+                        まず対象バージョンと実行方式、外部公開範囲を確認します。
+                        判断材料が揃わないまま公開を続けるより、
+                        管理画面や一部経路だけでも制限できるかを先に検討します。
+                    </p>
+                    <p>
+                        <strong>すでに停止している場合</strong>は、
+                        復旧を急ぐ前にバックアップと切り戻し手順を確保します。
+                        更新できても、ログインや決済など主要機能が壊れれば
+                        別の事業停止が生じるためです。
+                    </p>
+                    <p>
+                        <strong>更新済みの場合</strong>も、再起動・再構築が済んでいるか、
+                        実際のWebリクエストが修正版のプロセスへ到達しているか、
+                        修正前の時間帯に不審な挙動がなかったかを確認します。
+                    </p>
+
+                    <h2>安全に止め、直し、戻すための順序</h2>
+                    <p>
+                        緊急時ほど、作業を増やすのではなく、
+                        判断の順序を固定することが重要です。
+                    </p>
+                    <div class="response-flow" aria-label="緊急対応の5段階">
+                        <div class="response-step">
+                            <span class="response-step-num">01</span>
+                            <div>
+                                <strong>対象を特定する</strong>
+                                <p>URL、サーバー、PHPの実行方式、バージョン、担当者をひも付けます。</p>
+                            </div>
+                        </div>
+                        <div class="response-step">
+                            <span class="response-step-num">02</span>
+                            <div>
+                                <strong>公開継続・制限・停止を判断する</strong>
+                                <p>重要度と外部公開範囲を見て、必要な範囲だけを安全側へ倒します。</p>
+                            </div>
+                        </div>
+                        <div class="response-step">
+                            <span class="response-step-num">03</span>
+                            <div>
+                                <strong>戻せる状態をつくる</strong>
+                                <p>バックアップ、設定差分、切り戻し方法、ログの保全を先に行います。</p>
+                            </div>
+                        </div>
+                        <div class="response-step">
+                            <span class="response-step-num">04</span>
+                            <div>
+                                <strong>更新し、業務機能まで確認する</strong>
+                                <p>再起動や再デプロイ後、認証、予約、購入、通知、管理画面を確認します。</p>
+                            </div>
+                        </div>
+                        <div class="response-step">
+                            <span class="response-step-num">05</span>
+                            <div>
+                                <strong>段階的に戻して監視する</strong>
+                                <p>一度に全面公開せず、エラーや外部通信を見ながら復旧範囲を広げます。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <figure class="article-photo">
+                        <img src="./server-maintenance-pexels.jpg" alt="サーバー機器の接続部を点検する技術者の手元" width="1600" height="1065" loading="lazy" decoding="async">
+                        <figcaption>
+                            <span>復旧を急ぐほど、変更前の状態、切り戻し手順、確認項目を残してから手を動かすことが重要です。</span>
+                            <small>Photo: <a href="https://www.pexels.com/photo/engineer-fixing-core-swith-in-data-center-room-19226353/" target="_blank" rel="noopener noreferrer">panumas nikhomkhai / Pexels</a></small>
+                        </figcaption>
+                    </figure>
+
+                    <h2>対応速度を決めるのは、平時の準備</h2>
+                    <p>
+                        pixivでは、修正版の公開前から複数のビルド経路を準備し、
+                        公開後約30分でメンテナンスを解除しました。
+                        一方、自治体や企業では、影響範囲の把握、保守会社との調整、
+                        互換性確認などに時間がかかり、
+                        複数サービスを長時間停止する例もありました。
+                    </p>
+                    <p>
+                        どちらが正しいという話ではありません。
+                        同じ脆弱性でも、資産管理、バックアップ、検証環境、自動テスト、
+                        デプロイ手順、緊急時の責任者が整備されているかによって、
+                        事業への影響が大きく変わります。
+                    </p>
+
+                    <h2>今回だけ直すのではなく、次を早く見つける</h2>
+                    <p>
+                        脆弱性情報は、PHP公式、IPA、JPCERT/CC、クラウド事業者、
+                        CMSやライブラリの配布元など、
+                        複数の場所から異なる形式で公開されます。
+                        担当者が毎日すべてを読み、
+                        自社に関係する情報だけを選ぶ運用には限界があります。
+                    </p>
+                    <p>
+                        そこでSPACE GLEAMが提案するのが、外部の注意喚起と、
+                        自社が使っているサーバー、PHP、CMS、ライブラリの情報を
+                        AIで照合する仕組みです。
+                        AIが対象製品、バージョン、成立条件、推奨対応を読み取り、
+                        自社の構成と突き合わせます。
+                    </p>
+                    <p>
+                        担当者には、単なるニュースの要約ではなく、
+                        「確認が必要なサイト候補」「外部公開の有無」
+                        「判断根拠となる公式情報」「最初に確認する担当者と手順」を届けます。
+                        読む情報を増やすのではなく、
+                        判断までの距離を短くする設計です。
+                    </p>
+
+                    <figure id="ai-vulnerability-flow" class="monitoring-figure">
+                        <div class="monitoring-kicker">VULNERABILITY INTELLIGENCE / 01—03</div>
+                        <figcaption>脆弱性情報を、自社が動ける判断材料へ変える</figcaption>
+                        <div class="monitoring-flow">
+                            <div class="monitoring-column">
+                                <strong>01 / COLLECT</strong>
+                                <div class="monitoring-item">PHP・IPA・JPCERT/CCなどの公式情報</div>
+                                <div class="monitoring-item">サーバー・CMS・ライブラリの資産情報</div>
+                                <div class="monitoring-item">エラー・プロセス・通信の監視情報</div>
+                            </div>
+                            <div class="monitoring-arrow" aria-hidden="true">→</div>
+                            <div class="monitoring-core">
+                                <span class="monitoring-core-label">02 / AI MATCHING</span>
+                                <strong>
+                                    対象製品とバージョンを読み取り、
+                                    自社の構成・公開範囲・業務上の重要度と照合する
+                                </strong>
+                            </div>
+                            <div class="monitoring-arrow" aria-hidden="true">→</div>
+                            <div class="monitoring-column">
+                                <strong>03 / DECIDE</strong>
+                                <div class="monitoring-item">確認が必要なサイトと影響候補</div>
+                                <div class="monitoring-item">判定理由と公式情報へのリンク</div>
+                                <div class="monitoring-item">初動確認と切り戻し手順の下書き</div>
+                            </div>
+                        </div>
+                        <p class="monitoring-note">
+                            AIがサーバーを勝手に停止・更新する設計ではありません。
+                            情報収集と照合を早め、
+                            停止や変更は根拠を確認した担当者が承認します。
+                        </p>
+                    </figure>
+
+                    <h2>「事前検知」でできること、できないこと</h2>
+                    <p>
+                        未知のゼロデイ脆弱性をAIが事前に予言することはできません。
+                        一方で、被害や長時間停止につながりやすい
+                        「公表に気づくのが遅い」「対象資産が分からない」
+                        「担当者しか手順を知らない」という遅れは減らせます。
+                    </p>
+                    <div class="boundary-list">
+                        <div class="boundary-row">
+                            <strong>平時に見つける</strong>
+                            <span>
+                                EOLのPHP、古いCMS、
+                                管理者が不明な公開サイトを継続的に洗い出す。
+                            </span>
+                        </div>
+                        <div class="boundary-row">
+                            <strong>公表直後に絞る</strong>
+                            <span>
+                                CVEや公式注意喚起を資産情報と照合し、
+                                確認対象の候補を先に示す。
+                            </span>
+                        </div>
+                        <div class="boundary-row">
+                            <strong>異常の兆候を拾う</strong>
+                            <span>
+                                急な500エラー、プロセス終了、
+                                想定外のファイル変更や外部通信を監視する。
+                            </span>
+                        </div>
+                        <div class="boundary-row">
+                            <strong>人の判断を残す</strong>
+                            <span>
+                                停止、更新、切り戻し、再公開は、
+                                根拠と影響を確認した担当者が承認する。
+                            </span>
+                        </div>
+                    </div>
+
+                    <h2>AIプロダクト会社だから、運用そのものを作り直せる</h2>
+                    <p>
+                        一般的な保守対応では、注意喚起を人が見つけ、
+                        保守会社へ連絡し、
+                        対象サーバーを確認してもらう流れになりがちです。
+                        この流れは一度の事故には対応できても、
+                        次の脆弱性でも同じ確認作業を繰り返します。
+                    </p>
+
+                    <figure class="ops-mock" aria-labelledby="ops-mock-title">
+                        <header class="ops-mock__head">
+                            <div>
+                                <span class="ops-mock__eyebrow">CONCEPT VIEW / SAMPLE DATA</span>
+                                <h3 id="ops-mock-title">Vulnerability Operations</h3>
+                            </div>
+                            <p>導入後の情報整理を示す参考モックです。実在する監視画面ではありません。</p>
+                        </header>
+                        <div class="ops-mock__body">
+                            <aside class="ops-mock__stats" aria-label="確認状況の表示例">
+                                <div><small>PUBLIC ASSETS</small><strong>18</strong></div>
+                                <div><small>REVIEW REQUIRED</small><strong>03</strong></div>
+                                <div><small>OWNER UNKNOWN</small><strong>02</strong></div>
+                            </aside>
+                            <section class="ops-mock__queue" aria-label="確認対象の表示例">
+                                <div class="ops-mock__queue-head" aria-hidden="true">
+                                    <span>確認対象</span><span>照合結果</span><span>次の判断</span>
+                                </div>
+                                <div class="ops-mock__row">
+                                    <b>公式注意喚起</b>
+                                    <span>PHP 8.2系を利用する公開環境 3件</span>
+                                    <em>担当確認</em>
+                                </div>
+                                <div class="ops-mock__row">
+                                    <b>資産情報</b>
+                                    <span>実行方式を確認できない環境 2件</span>
+                                    <em>棚卸し</em>
+                                </div>
+                                <div class="ops-mock__row">
+                                    <b>監視シグナル</b>
+                                    <span>500エラー増加／外部通信の変化なし</span>
+                                    <em>経過観察</em>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="ops-mock__roles">
+                            <span>AI — 収集・分類・照合・下書き</span>
+                            <span>HUMAN — 停止・更新・再公開を承認</span>
+                        </div>
+                        <figcaption>
+                            ※画面と数値は構想イメージです。実際の仕様・提供機能とは異なる場合があります。
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                        SPACE GLEAMは、自社SaaSやWebシステムを
+                        開発・運用している知見を生かし、
+                        緊急対応だけでなく、情報収集、資産との照合、
+                        担当者への通知、対応履歴の保存までを
+                        一つの運用として設計します。
+                        専用の大きな管理画面を最初から作る必要はなく、
+                        メール、Slack、Teamsなど現在の業務導線へ組み込むことも可能です。
+                    </p>
+                    <p>
+                        導入は、一つの外部公開サービスを対象にした
+                        読み取り専用の検証から始められます。
+                        資産情報の精度、不要な通知の数、
+                        対象特定までの時間を測り、
+                        実務で役立つと確認できた段階で対象を広げます。
+                        いきなり自動停止や自動更新を行う設計にはしません。
+                    </p>
+
+                    <h2>緊急対応と、再発を防ぐ仕組み化を分けて進める</h2>
+                    <p>
+                        目の前に危険がある場合は、まず公開範囲の制限、
+                        バックアップ、修正版の適用、動作確認、ログ確認を優先します。
+                        緊急時に新しい仕組みを同時導入すると、
+                        変更点が増えて復旧判断が難しくなるためです。
+                    </p>
+                    <p>
+                        復旧後は、その対応で判明したサーバー構成、実行方式、
+                        依存関係、確認項目、連絡先を資産情報と手順書へ残します。
+                        そのうえで、公式情報の自動収集、
+                        AIによる対象候補の抽出、担当者への通知、
+                        対応履歴の保存を段階的に加えます。
+                        一度の緊急対応を、
+                        次回の初動を早める基盤へ変える考え方です。
+                    </p>
+
+                    <figure class="article-photo">
+                        <img src="./code-review-unsplash.jpg" alt="複数人でモニターを見ながらコードを確認する開発チーム" width="1600" height="1067" loading="lazy" decoding="async">
+                        <figcaption>
+                            <span>変更は、適用前後のレビューと確認項目まで残して、次の対応へつなげます。</span>
+                            <small>Photo: <a href="https://unsplash.com/photos/woman-and-man-sitting-in-front-of-monitor-IgUR1iX0mqM" target="_blank" rel="noopener noreferrer">Desola Lanre-Ologun / Unsplash</a></small>
+                        </figcaption>
+                    </figure>
+
+                    <h2>SPACE GLEAMへ相談した後の進み方</h2>
+                    <p>
+                        最初の確認では、分かる範囲のURL、現在の公開状況、
+                        利用中のサーバーやCMSを伺います。
+                        その情報から、調査対象、停止が必要な範囲、
+                        バックアップと切り戻し、
+                        更新後に確認すべき業務機能を整理します。
+                    </p>
+                    <p>
+                        対応後は、実際に確認したバージョンや設定、
+                        実施した変更、動作確認の結果、
+                        今後解消すべき課題をまとめます。
+                        「更新した」という一文だけでなく、
+                        次の担当者が状況を追える形で残すことを重視します。
+                    </p>
+                    <p>
+                        なお、即時復旧を一律に約束するものではありません。
+                        必要な時間と費用は、対象サイト数、管理権限の有無、
+                        検証環境、旧バージョンとの互換性、
+                        侵害調査の必要性によって変わります。
+                        初期確認後に、優先順位と進め方を明確にします。
+                    </p>
+
+                    <h2>どこまで支援し、どこから専門機関と連携するか</h2>
+                    <p>
+                        SPACE GLEAMでは、構成確認、公開範囲の制限、
+                        バックアップ、PHP更新、再起動、再構築、
+                        再デプロイ、主要機能の確認、
+                        復旧後の監視までを一貫して支援します。
+                        ホスティング会社や現在の制作・保守会社との役割整理も行います。
+                    </p>
+                    <p>
+                        侵害が疑われ、個人情報や機密情報へのアクセス、
+                        法令に基づく報告、高度なフォレンジック調査が必要な場合は、
+                        むやみにサーバーを変更せず証拠を保全します。
+                        そのうえで、必要に応じて
+                        セキュリティ専門機関や法務と連携し、
+                        対応方針を整理します。
+                    </p>
+
+                    <h2>ご相談前に分かると、確認が早くなる情報</h2>
+                    <ul>
+                        <li>対象サイトやサービスのURL</li>
+                        <li>利用中のサーバー、クラウド、ホスティング会社の名称</li>
+                        <li>WordPressなどのCMS、または独自システムかどうか</li>
+                        <li>現在も公開中か、停止中か、更新済みか</li>
+                        <li>制作会社、保守会社、社内管理者へ連絡できるか</li>
+                        <li>バックアップ、ログ、ソースコードがどこにあるか</li>
+                    </ul>
+                    <p>
+                        すべて揃っていなくても、
+                        URLと現在の状況が分かれば確認を始められます。
+                        パスワード、秘密鍵、APIキーなどの認証情報は、
+                        問い合わせフォームへ記載しないでください。
+                    </p>
+
+                    <h2>今回の対応を、次に慌てない仕組みへ</h2>
+                    <p>
+                        脆弱性への備えは、修正版を早く適用することだけではありません。
+                        どのシステムが影響を受けるのかを把握し、止める判断と安全に戻す手順を持っていることが、
+                        事業への影響を小さくします。
+                    </p>
+                    <p>
+                        今回確認したPHPのバージョン、構成、依存関係、判断の経緯を残し、
+                        外部の脆弱性情報とAIで照合できる状態にすれば、
+                        次回は「何が対象なのか」を探すところから始めずに済みます。
+                        AIに判断を任せるのではなく、担当者が根拠を確認し、早く動ける仕組みにすることが重要です。
+                    </p>
+                    <p>
+                        SPACE GLEAMは、目の前の復旧と、その先の検知・通知・運用設計を一続きで考えます。
+                        今回の緊急対応を一度きりで終わらせず、次の備えに変えるところまで支援します。
+                    </p>
+
+                    <p class="article-disclaimer">
+                        ※本記事は2026年10月24日時点の公式発表に基づいています。
+                        国内でサービス停止や緊急メンテナンスが公表されていますが、
+                        それらを不正アクセスや情報漏えいの発生事例として扱うものではありません。
+                        個別の影響は、PHPのバージョン、実行方式、
+                        サーバー構成、アプリケーションによって異なります。
+                    </p>
+                </div>
+            </article>
+
+            <div class="article-cta" aria-label="無料AI開発診断"></div>
+
+            <p class="article-back-link"><a href="../index.html">ブログ一覧へ戻る</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-top">
+            <div class="footer-brand-col">
+                <a href="../../index.html" class="footer-logo">SPACE GLEAM</a>
+                <div class="footer-logo-line"></div>
+                <p class="footer-tagline">
+                    アイデアを、<br class="pc-only">最短距離で事業にする。
+                </p>
+            </div>
+            <div class="footer-nav-grid">
+                <div class="footer-nav-col">
+                    <h4><a href="../../services.html">SERVICE</a></h4>
+                    <ul>
+                        <li><a href="../../services.html">AI MVP開発</a></li>
+                        <li><a href="../../services.html">業務システム開発</a></li>
+                        <li><a href="../../services.html">AI導入支援</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-col">
+                    <h4><a href="../../works.html">WORKS</a></h4>
+                    <ul>
+                        <li><a href="../../works.html">開発事例</a></li>
+                        <li><a href="../../pricing.html">料金</a></li>
+                        <li><a href="../../faq.html">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-col">
+                    <h4><a href="../">BLOG</a></h4>
+                    <ul>
+                        <li><a href="../">ブログ記事一覧</a></li>
+                        <li><a href="../free-ai-development-diagnosis/">AI開発無料診断</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav-col">
+                    <h4><a href="../../company.html">COMPANY</a></h4>
+                    <ul>
+                        <li><a href="../../company.html">会社概要</a></li>
+                        <li><a href="../../contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-vertical-line"></div>
+            <div class="footer-cta-col">
+                <a href="../../contact.html" class="works-cta-btn-v2">
+                    AI開発について無料で相談する <span>→</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-horizontal-line"></div>
+        <div class="container footer-bottom">
+            <p class="copyright">&copy; 2026 SPACE GLEAM. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../script.js?v=diag-pause-background-20260612-v3"></script>
+    <script src="../posts.js?v=20261026-php2shell-ogp-v1"></script>
+    <script src="../blog.js?v=local-routing-20260613-v2"></script>
+</body>
+
+</html>
