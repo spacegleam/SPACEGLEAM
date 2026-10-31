@@ -988,22 +988,6 @@ html.diag-enabled .hero-interactive-wrapper {
             ]
         }
     </script>
-    <script>
-        // Auto ads remain enabled, but no ad request competes with the critical render path.
-        var loadAds = function () {
-            if (document.querySelector('script[data-spacegleam-adsense]')) return;
-            var script = document.createElement('script');
-            script.async = true;
-            script.crossOrigin = 'anonymous';
-            script.dataset.spacegleamAdsense = 'true';
-            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3800861012394451';
-            document.head.appendChild(script);
-        };
-        ['scroll', 'pointerdown', 'keydown'].forEach(function (eventName) {
-            window.addEventListener(eventName, loadAds, { once: true, passive: true });
-        });
-        setTimeout(loadAds, 10000);
-    </script>
 </head>
 
 <body>
@@ -1084,7 +1068,6 @@ html.diag-enabled .hero-interactive-wrapper {
                         <p class="hero-lead">Excel管理・問い合わせ対応・書類確認・社内ナレッジ検索など、属人化した業務をAIシステム化。<br><br><span style="font-size: 0.9em; opacity: 0.9; display: inline-block; margin-top: 10px;">要件整理から設計・開発・運用改善まで一貫対応。<br>現場で使えるAI業務システムを、2〜8週間で小さく始められます。</span></p>
                         <div class="hero-actions">
                             <a href="contact.html" class="btn btn-primary">AI活用案を無料で聞く<span class="arrow">→</span></a>
-                            <a href="contact.html" class="btn btn-secondary">概算費用を聞く</a>
                         </div>
                     </div>
 
@@ -1230,7 +1213,7 @@ html.diag-enabled .hero-interactive-wrapper {
                     <p class="eyebrow-accent">PROBLEM</p>
                     <h2 class="problem-title">その開発、<br class="pc-only">本当に必要な機能から<br class="pc-only">作れていますか？</h2>
                     <p class="problem-lead">
-                        多くの企業が、アイデアの停滞や非効率な開発プロセスにより、<br class="pc-only">事業成長 of ボトルネックに直面しています。
+                        多くの企業が、アイデアの停滞や非効率な開発プロセスにより、<br class="pc-only">事業成長のボトルネックに直面しています。
                     </p>
                     
                     <div class="problem-checklist-area">
@@ -1251,7 +1234,7 @@ html.diag-enabled .hero-interactive-wrapper {
                             3つ以上当てはまるなら、<br class="pc-only">作る前の設計が不足しています。
                         </div>
                         <div class="problem-footer-right">
-                            SpaceGleamは、<br>開発会社ではなく、<br>事業設計から支援します。
+                            SPACE GLEAMは、<br>作る前の設計から、<br>手作業をAIで減らす仕組みまで支援します。
                         </div>
                     </div>
                 </div>
@@ -1893,7 +1876,7 @@ html.diag-enabled .hero-interactive-wrapper {
                 <div class="faq-left reveal">
                     <p class="eyebrow">FAQ</p>
                     <h2>よくあるご質問</h2>
-                    <p class="faq-left-desc">SpaceGleamに多く寄せられるご質問をまとめました。<br class="pc-only">その他のご不明点は、お気軽にお問い合わせください。</p>
+                    <p class="faq-left-desc">SPACE GLEAMに多く寄せられるご質問をまとめました。<br class="pc-only">その他のご不明点は、お気軽にお問い合わせください。</p>
                     
                     <!-- Decorative Background Watermark -->
                     <div class="faq-watermark" aria-hidden="true">
@@ -1942,7 +1925,7 @@ html.diag-enabled .hero-interactive-wrapper {
                         </button>
                         <div class="faq-content">
                             <div class="faq-answer">
-                                プロダクトの規模や要件によって異なりますが、AI業務システム開発であれば平均約2週間でリリースしています。要件定義や設計が明確な場合、より短期間でのリリースも可能です。
+                                プロダクトの規模や要件によって異なりますが、AI業務システム開発であれば最短2〜4週間、規模によっては2〜8週間でリリースしています。要件定義や設計が明確な場合、より短期間でのリリースも可能です。
                             </div>
                         </div>
                     </div>
