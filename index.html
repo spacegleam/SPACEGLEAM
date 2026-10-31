@@ -1369,25 +1369,70 @@ html.diag-enabled .hero-interactive-wrapper {
                     <div class="brush-deco brush-right" aria-hidden="true"></div>
                 </div>
 
-                <!-- Technical Capability Banner: MCP & AI Agent Ready -->
-                <div class="mcp-feature-banner reveal">
-                    <div class="mcp-feature-main">
-                        <div class="mcp-feature-eyebrow">
-                            <span>Remote MCP Server</span>
-                            <span class="mcp-eyebrow-divider">/</span>
-                            <span>OpenAPI 3.1</span>
-                            <span class="mcp-eyebrow-divider">/</span>
-                            <span>llms.txt</span>
-                        </div>
-                        <h4 class="mcp-feature-title">AIエージェント時代のWeb開発・MCP連携開発</h4>
-                        <p class="mcp-feature-text">自社サービスやWebサイトを、ChatGPTやClaude等のAIエージェントから呼び出せる構造化サイトへ。Remote MCP Server構築からAPI仕様策定まで一貫して支援します。</p>
-                        <div class="mcp-feature-action">
-                            <a href="mcp/" class="mcp-feature-btn">MCP開発・連携ガイドを見る <span>→</span></a>
-                        </div>
-                    </div>
-                    <div class="mcp-feature-diagram">
-                        <img src="images/mcp-architecture-diagram.webp" alt="SPACE GLEAM Remote MCP 連携構成図" loading="lazy">
-                    </div>
+            </div>
+        </section>
+
+        <!-- Remote MCP / AI Agent Ready -->
+        <section id="mcp" class="section mcp-section">
+            <div class="container mcp-container reveal">
+                <div class="mcp-header">
+                    <p class="eyebrow-accent">AI AGENT READY</p>
+                    <h2 class="mcp-title"><span>ChatGPTに話しかけるだけで、</span><br class="pc-only"><span>自社のサービスが動き出す。</span></h2>
+                    <p class="mcp-lead">
+                        これまでAIは、Webサイトの情報を「読む」ことしかできませんでした。<strong>MCP（Model Context Protocol）</strong>に対応すると、ChatGPTやClaudeなどのAIエージェントが、サービス検索・診断・要件整理といった自社の機能そのものを<strong>直接実行</strong>できるようになります。お客様は画面を探して操作する必要がなく、AIに頼むだけで済みます。
+                    </p>
+                </div>
+
+                <div class="mcp-body">
+                    <figure class="mcp-diagram">
+                        <img src="images/mcp-architecture-diagram.webp" alt="SPACE GLEAM Remote MCP 連携構成図。ChatGPTなどのAIエージェントがRemote MCP Serverを通じて、サービス検索・AI開発無料診断・案件要件整理を呼び出す" width="1200" height="630" loading="lazy" decoding="async">
+                        <figcaption>SPACE GLEAM自社サイトの実際の構成。ChatGPTなどのAIエージェントが、Remote MCP Server経由で3つの機能を呼び出します。</figcaption>
+                    </figure>
+
+                    <ol class="mcp-points">
+                        <li class="mcp-point">
+                            <span class="mcp-point-num">01</span>
+                            <div>
+                                <h3>「読む」から「実行する」へ</h3>
+                                <p>AIが情報を案内するだけでなく、診断や要件整理まで会話の中で完結。サイトを開いて探す手間をなくします。</p>
+                            </div>
+                        </li>
+                        <li class="mcp-point">
+                            <span class="mcp-point-num">02</span>
+                            <div>
+                                <h3>自社サイトで本番稼働・実機検証済み</h3>
+                                <p>デモではなく、SPACE GLEAMのコーポレートサイト自体をRemote MCP対応。ChatGPTから実際に動作することを確認し、運用しています。</p>
+                            </div>
+                        </li>
+                        <li class="mcp-point">
+                            <span class="mcp-point-num">03</span>
+                            <div>
+                                <h3>同意なしには送信しない設計</h3>
+                                <p>お問い合わせの送信は、ユーザーの同意を得た後にのみ実行。AIに任せる範囲と、人が確認する範囲を分けて設計します。</p>
+                            </div>
+                        </li>
+                        <li class="mcp-point">
+                            <span class="mcp-point-num">04</span>
+                            <div>
+                                <h3>構築から仕様策定まで一貫対応</h3>
+                                <p>Remote MCP Serverの構築、OpenAPI 3.1によるAPI仕様の策定、AIが読み取りやすいllms.txtの整備まで、まとめて支援します。</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="mcp-flow">
+                    <p class="mcp-flow-title">こう使えます</p>
+                    <ol class="mcp-flow-steps">
+                        <li><span>1</span><div><strong>ChatGPTに頼む</strong><small>例：「AI開発の費用感を知りたい」</small></div></li>
+                        <li><span>2</span><div><strong>AIが機能を呼び出す</strong><small>Remote MCP経由で診断・サービス検索を実行</small></div></li>
+                        <li><span>3</span><div><strong>結果が会話で届く</strong><small>画面を探す・フォームを埋める手間なし</small></div></li>
+                    </ol>
+                </div>
+
+                <div class="mcp-actions">
+                    <a href="mcp/" class="mcp-btn mcp-btn--primary">MCP開発・連携ガイドを見る <span>→</span></a>
+                    <a href="contact.html" class="mcp-btn mcp-btn--ghost">MCP対応について相談する</a>
                 </div>
             </div>
         </section>
@@ -2058,15 +2103,15 @@ html.diag-enabled .hero-interactive-wrapper {
                             <label>入力しないでください <input name="website" tabindex="-1" autocomplete="off"></label>
                         </p>
                         <label>
-                            <span>会社名</span>
+                            <span>会社名<em>任意</em></span>
                             <input type="text" name="company" autocomplete="organization" placeholder="例）株式会社SPACE GLEAM">
                         </label>
                         <label>
-                            <span>お名前</span>
+                            <span>お名前<em class="req">必須</em></span>
                             <input type="text" name="name" autocomplete="name" placeholder="例）山田 太郎" required>
                         </label>
                         <label>
-                            <span>メールアドレス</span>
+                            <span>メールアドレス<em class="req">必須</em></span>
                             <input type="email" name="email" autocomplete="email" placeholder="例）your@email.com" required>
                         </label>
                         <label>
@@ -2101,7 +2146,7 @@ html.diag-enabled .hero-interactive-wrapper {
                             </select>
                         </label>
                         <label>
-                            <span>相談内容</span>
+                            <span>相談内容<em class="req">必須</em></span>
                             <textarea name="message" rows="5" placeholder="どのようなことを検討していますか？&#10;できるだけ具体的にご記入ください。" required></textarea>
                         </label>
                         <label class="privacy-check">
