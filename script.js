@@ -5,6 +5,7 @@ const initializeSpaceGleamSite = () => {
     const contactForm = document.querySelector('.contact-form');
     const formSuccess = document.querySelector('.form-success');
     const formStatus = document.querySelector('.contact-form-status');
+    const mobileFixedCta = document.querySelector('.mobile-fixed-cta');
     const recaptchaSiteKey = window.SPACEGLEAM_RECAPTCHA_SITE_KEY;
 
     // --- GA4 conversion funnel tracking ---
@@ -115,10 +116,21 @@ const initializeSpaceGleamSite = () => {
         header.classList.toggle('is-scrolled', window.scrollY > 12);
     };
 
+    const setMobileFixedCtaState = () => {
+        if (!mobileFixedCta) return;
+        const visible = window.scrollY > Math.min(520, window.innerHeight * .72);
+        mobileFixedCta.classList.toggle('is-visible', visible);
+        mobileFixedCta.setAttribute('aria-hidden', String(!visible));
+        mobileFixedCta.tabIndex = visible ? 0 : -1;
+    };
+
     if (!window.__spaceGleamCriticalReady) {
         setHeaderState();
         window.addEventListener('scroll', setHeaderState, { passive: true });
     }
+    setMobileFixedCtaState();
+    window.addEventListener('scroll', setMobileFixedCtaState, { passive: true });
+    window.addEventListener('resize', setMobileFixedCtaState, { passive: true });
 
     if (navToggle && nav && !window.__spaceGleamCriticalReady) {
         navToggle.addEventListener('click', () => {

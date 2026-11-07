@@ -14,8 +14,8 @@ function initWorksPage() {
                 { src: 'blog/chatgpt-remote-mcp-web-agent/card.png', alt: 'ChatGPTからWebサイトの機能を直接使う。SPACE GLEAMがRemote MCPを実装・実機検証' },
                 { src: 'blog/website-mcp-chatgpt-integration/card.png', alt: '自社WebサイトをChatGPTから使えるようにするには？MCP対応でできること・導入方法・費用を解説' }
             ],
-            background: '生成AIの利用が「質問に回答する」段階から、外部サービスやWebサイトの機能をAIエージェントが直接利用する段階へ移行していることを踏まえ、SPACE GLEAMのコーポレートサイト自体をRemote MCP対応しました。<br><br>単なる技術デモではなく、実際に運用しているサービス情報・AI開発診断・案件整理機能などをMCP Toolとして公開。<br><br>ChatGPTなどの対応クライアントからWebサイトを経由せず機能を利用できる構成を自社環境で設計・開発・本番運用しています。',
-            features: ['サービス検索', 'AI開発無料診断', '案件要件の自動整理', '会社情報取得', 'ユーザー同意後の問い合わせ連携', 'Resources対応', 'Prompts対応', 'OpenAPI 3.1', 'llms.txt', 'AIエージェント連携'],
+            background: '自社サイトのサービス検索・AI開発診断・案件整理を、ChatGPTなどから直接実行できるRemote MCPとして設計・開発し、本番運用しています。',
+            features: ['サービス検索', 'AI開発無料診断', '案件要件の自動整理', '会社情報取得', '同意後の問い合わせ連携'],
             mcpTools: [
                 { name: 'search_services', desc: 'サービス・開発領域の検索' },
                 { name: 'run_diagnosis', desc: 'AI開発無料診断' },
@@ -27,8 +27,8 @@ function initWorksPage() {
                 resources: ['spacegleam://company', 'spacegleam://services', 'spacegleam://case-studies'],
                 prompts: ['ai-development-diagnosis', 'ai-project-brief']
             },
-            safety: 'READ系ToolとWRITE系Toolを分離。サービス検索・診断・案件整理などは外部への副作用が発生しないREAD系として提供。問い合わせ送信はWRITE系として分離し、consentConfirmedによるユーザーの明示的同意を必須としています。また、入力バリデーション、サニタイズ、IPレート制限、ペイロード上限、dryRunなどを実装しています。',
-            verification: '実際のChatGPT環境へSPACE GLEAM Remote MCPを登録して実機検証済み。ChatGPTから「サービス検索 ➔ AI開発無料診断 ➔ 案件要件整理」まで実際にTool Callできることを確認しています。単なるMCP ServerのHTTP疎通確認ではなく、実際のAIクライアントから利用できるところまで検証した実績です。',
+            safety: '検索・診断などのREAD系と、問い合わせ送信のWRITE系を分離。送信時はユーザーの明示的同意を必須にしています。',
+            verification: 'ChatGPTからサービス検索、AI開発診断、案件要件整理まで実際に呼び出せることを確認済みです。',
             stack: 'Remote MCP Server<br>Streamable HTTP<br>JSON-RPC 2.0<br>OpenAPI 3.1<br>llms.txt<br>Netlify Functions<br>REST API',
             period: '<strong>実運用サイトへのRemote MCP実装・本番稼働</strong><br>Tools: 5 / Resources: 3 / Prompts: 2 を構築<br>既存Webサービスからの機能切り出し・Tool化まで完全対応',
             status: '本番Remote MCP Serverが正常稼働中<br>ChatGPT実機接続・Tool Call確認済み',
@@ -60,8 +60,8 @@ function initWorksPage() {
                 { src: 'images/omiotsuke-native-03-builder.png', alt: '味噌汁ビルダーの具材選択画面（実機・ストア掲載画像）' },
                 { src: 'images/omiotsuke-native-04-ranking.png', alt: '人気ランキング画面（実機・ストア掲載画像）' }
             ],
-            background: '「冷蔵庫にある食材を使い切りたい」「今日の栄養バランスを考えたい」という日常の課題を解決するために開発。<br><br>スマホで写真を1枚撮るだけで食材を自動認識し、最適な味噌汁のレシピからカロリーや塩分などの栄養情報までを瞬時に提案する仕組みです。<br><br>気分や体調に合わせた「診断」機能や、好きな具材を自由に組み合わせる「ビルダー」機能も搭載しています。',
-            features: ['写真から食材自動認識', '味噌汁レシピ自動生成', '栄養バランス・カロリー計算', '気分や体調に合わせた診断', 'お気に入り保存機能'],
+            background: '冷蔵庫の食材を撮影すると、AIが具材を認識し、味噌汁レシピと栄養情報を提案するアプリです。',
+            features: ['写真から食材認識', '味噌汁レシピ生成', '栄養情報表示', '具材ビルダー'],
             stack: 'Next.js / TypeScript<br>画像認識AI (Vision API / Gemini API)<br>栄養データベース設計<br>レスポンシブWebデザイン (TailwindCSS)',
             period: '<strong>具材自動認識とレシピ生成を実装</strong><br>LP、診断、ビルダー、お気に入り、および画像解析API連携まで対応',
             status: 'Web版・PWA、Android版アプリをリリース済み<br>iOS版は準備中',
@@ -85,8 +85,8 @@ function initWorksPage() {
                 { src: 'images/diffsense-ui-alert-latest.webp?v=20260612-ui', alt: '期限アラート管理画面' },
                 { src: 'images/diffsense-ui-signature-latest.webp?v=20260612-ui', alt: '署名管理画面' }
             ],
-            background: '契約書をアップロードするだけ。<br><br>DIFFsenseは、AIによる要約、リスク分析、修正案の提案、契約期限の管理、電子署名、契約台帳への自動登録までを一括で実行します。<br><br>従来は複数のツールや担当者をまたいで行われていた契約業務を、ひとつの画面で完結できるよう設計されています。',
-            features: ['契約書差分比較', 'AI要約・リスク判定', '修正案の生成', '電子署名', '期限・履歴管理', 'MCP連携'],
+            background: '契約書の要約、リスク分析、修正案、期限管理、電子署名を一つの画面で扱えるよう設計した契約業務SaaSです。',
+            features: ['契約書差分比較', 'AI要約・リスク判定', '修正案の生成', '電子署名', '期限・履歴管理'],
             stack: '静的フロントエンド<br>Firebase認証<br>バックエンドAPI連携<br>PDF / Word(.docx) / テキスト解析<br>決済連携',
             period: '<strong>LP・ダッシュボード・契約取込を実装</strong><br>差分比較、AI解析、電子署名UI、課金導線まで対応',
             status: '公開サイト・ダッシュボード・署名フローを実装済み<br>解析・比較・電子署名まわりを継続改善中',

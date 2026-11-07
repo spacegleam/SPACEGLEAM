@@ -158,8 +158,8 @@ html, body { overflow-x: hidden !important; }
 @media (max-width: 880px){.header .nav { left: 16px !important; right: 16px !important; grid-template-columns: minmax(0px, 1fr) !important; transform: translateY(-12px) !important; }}
 
     </style>
-    <link rel="stylesheet" href="style.css?v=seo-nav-20260813-v1-mobile-perf-20260831-v2-mcp0906" media="(min-width: 901px)">
-    <link rel="preload" as="style" href="style.css?v=seo-nav-20260813-v1-mobile-perf-20260831-v2-mcp0906" media="(max-width: 900px)" fetchpriority="low" data-mobile-deferred-style>
+    <link rel="stylesheet" href="style.css?v=pricing-compare-20261108-v2" media="(min-width: 901px)">
+    <link rel="preload" as="style" href="style.css?v=pricing-compare-20261108-v2" media="(max-width: 900px)" fetchpriority="low" data-mobile-deferred-style>
     <style data-home-diagnosis>
 /* ============================================================
    Home AI diagnosis showcase — reference-led redesign (local)
@@ -876,7 +876,7 @@ html.diag-enabled .hero-interactive-wrapper {
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" media="print" fetchpriority="low" data-mobile-deferred-fonts onload="this.onload=null;if(!matchMedia('(max-width: 900px)').matches)this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=seo-nav-20260813-v1-mobile-perf-20260831-v2-mcp0906"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+    <noscript><link rel="stylesheet" href="style.css?v=pricing-compare-20261108-v2"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=logo13-20260702">
     <link rel="canonical" href="https://spacegleam.co.jp/">
 
@@ -1193,7 +1193,7 @@ html body #hero .hero-copy>h1{animation:none!important}
             </nav>
 
             <div class="header-ctas">
-                <a class='header-cta' href='contact.html'>AI開発について無料で相談する<span class="arrow">→</span></a>
+                <a class='header-cta' href='contact.html'>担当者に相談する<span class="arrow">→</span></a>
             </div>
         </div>
     </header>
@@ -1235,15 +1235,15 @@ html body #hero .hero-copy>h1{animation:none!important}
                         <h1><span class="nowrap">現場の手作業を、</span><br class="pc-only"><span class="nowrap"><span class="p-mark">AIで減らす。</span></span></h1>
                         <p class="hero-sub-keywords" style="font-size: 1.05rem; font-weight: 800; color: #ffffff; margin-top: 18px; margin-bottom: -10px; letter-spacing: 0.04em;">AI開発 ｜ 業務自動化 ｜ 社内システム開発</p>
                         <p class="hero-lead">Excel管理・問い合わせ対応・書類確認・社内ナレッジ検索など、属人化した業務をAIシステム化。<br><br><span style="font-size: 0.9em; opacity: 0.9; display: inline-block; margin-top: 10px;">要件整理から設計・開発・運用改善まで一貫対応。<br>現場で使えるAI業務システムを、2〜8週間で小さく始められます。</span></p>
-                        <div class="hero-actions"><a href="contact.html" class="btn btn-primary">AI活用案を無料で聞く<span class="arrow">→</span></a><span class="p-note">入力不要・30秒の無料診断もあります</span></div>
+                        <div class="hero-actions"><a href="#diagnosis" class="btn btn-primary">30秒で無料診断<span class="arrow">→</span></a><a href="contact.html" class="btn btn-secondary">担当者に相談する</a></div>
                         <div class="p-stats">
-                          <div><b><span data-to="8" data-pre="2〜">2〜8</span>週間</b><span>小さく始める初期リリース</span></div>
-                          <div><b><span data-to="25">25</span>万円〜</b><span>AI業務システム開発</span></div>
+                          <div><b><span>2〜8</span>週間</b><span>小さく始める初期リリース</span></div>
+                          <div><b><span>25</span>万円〜</b><span>AI業務システム開発</span></div>
                           <div><b>自社SaaS運用</b><span>DIFFsense・御御御付ほか</span></div>
                         </div>
                     </div>
                     <!-- 右カラム: 初期HTMLに含めて後挿入によるLCP/CLS悪化を防ぐ -->
-                    <div class="hero-interactive-wrapper" id="heroInteractiveWrapper">
+                    <div class="hero-interactive-wrapper" id="diagnosis">
                         <section class="home-diag-showcase" aria-labelledby="homeDiagTitle">
                             <button type="button" class="diag-card__dismiss" id="diagDismiss" aria-label="診断カードを閉じる">×</button>
                             <header class="home-diag-showcase__head">
@@ -1322,16 +1322,42 @@ html body #hero .hero-copy>h1{animation:none!important}
             </div>
         </section>
 
+        <section class="proof-strip" aria-labelledby="proof-strip-title">
+            <div class="container proof-strip__inner">
+                <div class="proof-strip__intro reveal">
+                    <h2 id="proof-strip-title"><span>自社で開発し、</span><span>実運用まで続けています。</span></h2>
+                    <p>構想だけでなく、公開後の改善まで経験しているプロダクトの一部です。</p>
+                    <a href="#works" class="proof-strip__link">実績を詳しく見る <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="proof-strip__cards reveal" aria-label="自社開発・運用実績">
+                    <a class="proof-card" href="mcp/" aria-label="Remote MCPのページを見る">
+                        <div class="proof-card__top"><span class="proof-card__index">01</span><span class="proof-card__status">本番運用中</span></div>
+                        <div class="proof-card__brand"><img src="chatgpt.svg" alt="" width="28" height="28"><h3>Remote MCP</h3></div>
+                        <p>AIから診断・サービス検索を呼び出せる連携基盤</p><span class="proof-card__visit">ページを見る <span aria-hidden="true">→</span></span>
+                    </a>
+                    <a class="proof-card" href="https://diffsense.spacegleam.co.jp/" target="_blank" rel="noopener noreferrer" aria-label="DIFFsenseのサービスLPを見る（新しいタブ）">
+                        <div class="proof-card__top"><span class="proof-card__index">02</span><span class="proof-card__status">継続改善中</span></div>
+                        <div class="proof-card__brand"><img src="assets/diffsense-logo-128.png" alt="" width="28" height="28"><h3>DIFFsense</h3></div>
+                        <p>契約書の差分・リスク・修正案をAIで整理</p><span class="proof-card__visit">サービスLPを見る <span aria-hidden="true">↗</span></span>
+                    </a>
+                    <a class="proof-card" href="https://omiotsuke.spacegleam.co.jp/" target="_blank" rel="noopener noreferrer" aria-label="御御御付のサービスLPを見る（新しいタブ）">
+                        <div class="proof-card__top"><span class="proof-card__index">03</span><span class="proof-card__status">一般公開中</span></div>
+                        <div class="proof-card__brand"><img src="assets/omiotsuke-logo-128.png" alt="" width="28" height="28"><h3>御御御付</h3></div>
+                        <p>写真の食材から味噌汁レシピと栄養を提案</p><span class="proof-card__visit">サービスLPを見る <span aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section class="quick-consult-section" aria-labelledby="quick-consult-title">
             <div class="container quick-consult-container">
                 <div class="quick-consult-heading reveal">
-                    <p class="quick-consult-eyebrow">FIRST CONSULTATION</p>
-                    <h2 id="quick-consult-title">よくある相談から、実現方法と費用感まで整理します。</h2>
+                    <h2 id="quick-consult-title">相談内容から、進め方と費用感を整理します。</h2>
                     
                     <div class="quick-consult-headrow">
-                        <p class="quick-consult-lead">要件が固まっていなくても大丈夫です。<br class="pc-only">いまの業務や作りたいものを伺い、AIで効果が出やすい進め方を一緒に見つけます。</p>
+                        <p class="quick-consult-lead">要件が固まっていなくても大丈夫です。課題を伺い、最初に作る範囲を一緒に整理します。</p>
                         <div class="quick-consult-actions">
-                            <a href="contact.html" class="qc-btn qc-btn--primary">AI活用案を無料で聞く<span class="arrow">→</span></a>
+                            <a href="contact.html" class="qc-btn qc-btn--primary">担当者に相談する<span class="arrow">→</span></a>
                         </div>
                     </div>
                 </div>
@@ -1342,12 +1368,9 @@ html body #hero .hero-copy>h1{animation:none!important}
                         <div class="qc-panel__body">
                             <h3>よくある相談例</h3>
                             <ul class="qc-list">
-                                <li>Excel・スプレッドシート管理をAIで自動化したい</li>
-                                <li>問い合わせ対応や社内FAQを効率化したい</li>
-                                <li>契約書・請求書・報告書の確認を自動化したい</li>
-                                <li>社内ナレッジ検索やチャットボットを作りたい</li>
-                                <li>既存システムにAI機能を追加したい</li>
-                                <li>新規事業のAIプロダクトを小さく検証したい</li>
+                                <li>Excel管理や定型業務を自動化したい</li>
+                                <li>問い合わせ・書類確認を効率化したい</li>
+                                <li>AIプロダクトを小さく検証したい</li>
                             </ul>
                         </div>
                     </article>
@@ -1357,11 +1380,9 @@ html body #hero .hero-copy>h1{animation:none!important}
                         <div class="qc-panel__body">
                             <h3>初回相談でわかること</h3>
                             <ul class="qc-list">
-                                <li>どの業務からAI化すると効果が出やすいか</li>
-                                <li>必要な機能と、最初は作らなくてよい機能</li>
+                                <li>AI化する業務の優先順位</li>
+                                <li>初期リリースに必要な機能</li>
                                 <li>開発期間と概算費用の目安</li>
-                                <li>社内データ・既存システム連携の進め方</li>
-                                <li>2〜8週間で小さく始める初期リリース案</li>
                             </ul>
                         </div>
                     </article>
@@ -1381,7 +1402,6 @@ html body #hero .hero-copy>h1{animation:none!important}
 
             <div class="container problem-container reveal">
                 <div class="problem-left">
-                    <p class="eyebrow-accent">PROBLEM</p>
                     <h2 class="problem-title">その開発、<br class="pc-only">本当に必要な機能から<br class="pc-only">作れていますか？</h2>
                     <p class="problem-lead">
                         多くの企業が、アイデアの停滞や非効率な開発プロセスにより、<br class="pc-only">事業成長のボトルネックに直面しています。
@@ -1415,7 +1435,6 @@ html body #hero .hero-copy>h1{animation:none!important}
         <section id="services" class="section services-section">
             <div class="container services-container reveal">
                 <div class="services-header">
-                    <p class="eyebrow-accent">SERVICES</p>
                     <h2 class="services-title">実運用できるAIシステムを短期間で構築</h2>
                     <p class="services-lead">
                         企画・設計から開発・運用まで一貫して対応。<br><br>
@@ -1547,7 +1566,6 @@ html body #hero .hero-copy>h1{animation:none!important}
         <section id="mcp" class="section mcp-section">
             <div class="container mcp-container reveal">
                 <div class="mcp-header">
-                    <p class="eyebrow-accent">AI AGENT READY</p>
                     <h2 class="mcp-title"><span>ChatGPTに話しかけるだけで、</span><br class="pc-only"><span>自社のサービスが動き出す。</span></h2>
                     <p class="mcp-lead">
                         これまでAIは、Webサイトの情報を「読む」ことしかできませんでした。<strong>MCP（Model Context Protocol）</strong>に対応すると、ChatGPTやClaudeなどのAIエージェントが、サービス検索・診断・要件整理といった自社の機能そのものを<strong>直接実行</strong>できるようになります。お客様は画面を探して操作する必要がなく、AIに頼むだけで済みます。
@@ -1612,7 +1630,6 @@ html body #hero .hero-copy>h1{animation:none!important}
             <div class="container">
                 <div class="works-hero-v2 reveal">
                     <div class="works-left-v2">
-                        <p class="works-eyebrow-v2">PRODUCTS</p>
                         <h2 class="works-title-v2">AI開発事例・AIシステム開発実績</h2>
                         <p class="works-desc-v2">DIFFsense、MERKI、XDraftなど、自社サービスをAI活用開発で短期間にリリース。平均約2週間でリリースし、実運用から得た知見をお客様の開発にも反映しています。</p>
                         <div class="works-stat-box-v2">
@@ -1722,7 +1739,6 @@ html body #hero .hero-copy>h1{animation:none!important}
             <div class="pricing-header-wrap">
                 <div class="container pricing-header-container">
                     <div class="pricing-header-left">
-                        <p class="pricing-eyebrow">PRICING</p>
                         <h2 class="pricing-title font-serif">
                             従来の開発と比べて、<br class="pc-only">
                             圧倒的に早く、低コストで。
@@ -1799,7 +1815,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                                         <circle cx="12" cy="12" r="9"/>
                                         <path d="M12 7V12L15 15"/>
                                     </svg>
-                                    <span>最短 2〜4 週間</span>
+                                    <span>2〜8週間</span>
                                 </div>
                             </div>
                         </div>
@@ -1840,11 +1856,11 @@ html body #hero .hero-copy>h1{animation:none!important}
                                 <div class="benefit-col-stat-v4">
                                     <span class="stat-eyebrow-v4">最短</span>
                                     <div class="stat-value-wrap-v4">
-                                        <span class="stat-num-v4">2〜4</span><span class="stat-unit-text-v4-large">週間</span>
+                                        <span class="stat-num-v4">2〜8</span><span class="stat-unit-text-v4-large">週間</span>
                                     </div>
                                 </div>
                                 <p class="benefit-col-desc-v4">
-                                    (6ヶ月〜1年 → 最短2〜4週間)
+                                    (6ヶ月〜1年 → 2〜8週間)
                                 </p>
                             </div>
 
@@ -1861,7 +1877,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                                 <div class="benefit-col-stat-v4">
                                     <span class="stat-eyebrow-v4">最短</span>
                                     <div class="stat-value-wrap-v4">
-                                        <span class="stat-num-v4">2〜4</span><span class="stat-unit-text-v4-large">週間で</span>
+                                        <span class="stat-num-v4">2〜8</span><span class="stat-unit-text-v4-large">週間で</span>
                                     </div>
                                 </div>
                                 <p class="benefit-col-desc-v4">
@@ -1932,7 +1948,6 @@ html body #hero .hero-copy>h1{animation:none!important}
                 <!-- Header: Left title + Right stats -->
                 <div class="strength-header-v2 reveal">
                     <div class="strength-header-left-v2">
-                        <p class="strength-eyebrow-v2">OUR STRENGTH</p>
                         <h2 class="strength-title-v2">事業視点で考える<br class="pc-only">開発パートナー</h2>
                         <div class="strength-title-underline-v2"></div>
                         <p class="strength-desc-v2">単なる開発会社ではなく、事業の成功にコミットする<br class="pc-only">パートナーとして、価値あるプロダクトを最速で届けます。</p>
@@ -1965,7 +1980,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                                 </svg>
                             </div>
                             <p class="strength-stat-label-v2">最短リリース実績</p>
-                            <div class="strength-stat-num-v2">2〜4<span class="strength-stat-weeks-v2">週間</span></div>
+                            <div class="strength-stat-num-v2">2〜8<span class="strength-stat-weeks-v2">週間</span></div>
                             <p class="strength-stat-sub-v2">市場機会を逃さない<br class="pc-only">スピード開発</p>
                         </div>
                     </div>
@@ -1999,7 +2014,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                         <ul class="strength-card-list-v2">
                             <li>AIによる開発効率化</li>
                             <li>高品質をスピーディに</li>
-                            <li>最短2〜4週間でリリース</li>
+                            <li>2〜8週間で初期リリース</li>
                         </ul>
                     </article>
                     <article class="strength-card-v2 reveal">
@@ -2090,7 +2105,6 @@ html body #hero .hero-copy>h1{animation:none!important}
             <div class="container faq-container">
                 <!-- Left Column -->
                 <div class="faq-left reveal">
-                    <p class="eyebrow">FAQ</p>
                     <h2>よくあるご質問</h2>
                     <p class="faq-left-desc">SPACE GLEAMに多く寄せられるご質問をまとめました。<br class="pc-only">その他のご不明点は、お気軽にお問い合わせください。</p>
                     
@@ -2141,7 +2155,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                         </button>
                         <div class="faq-content">
                             <div class="faq-answer">
-                                プロダクトの規模や要件によって異なりますが、AI業務システム開発であれば最短2〜4週間、規模によっては2〜8週間でリリースしています。要件定義や設計が明確な場合、より短期間でのリリースも可能です。
+                                プロダクトの規模や要件によって異なりますが、AI業務システム開発は通常2〜8週間でリリースしています。要件定義や設計が明確な場合、より短期間でのリリースも可能です。
                             </div>
                         </div>
                     </div>
@@ -2338,7 +2352,7 @@ html body #hero .hero-copy>h1{animation:none!important}
         <!-- AI開発診断モーダル: ローカルのみ diagnosis.js が動的に挿入します -->
     </main>
 
-    <a href="contact.html" class="mobile-fixed-cta">AI活用案を無料で聞く</a>
+    <a href="#diagnosis" class="mobile-fixed-cta" aria-hidden="true">30秒で無料診断</a>
 
     <footer class="footer">
         <div class="container footer-top">
