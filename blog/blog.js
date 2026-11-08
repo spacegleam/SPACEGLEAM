@@ -22,9 +22,22 @@
     let query = '';
     let activeCategory = 'All';
 
-    const setHeaderState = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
-    setHeaderState();
-    window.addEventListener('scroll', setHeaderState, { passive: true });
+    let headerFrame = 0;
+    let lastHeaderScrolled = null;
+    const updateHeaderState = () => {
+        headerFrame = 0;
+        const headerScrolled = window.scrollY > 12;
+        if (header && headerScrolled !== lastHeaderScrolled) {
+            header.classList.toggle('is-scrolled', headerScrolled);
+            lastHeaderScrolled = headerScrolled;
+        }
+    };
+    const requestHeaderState = () => {
+        if (headerFrame) return;
+        headerFrame = window.requestAnimationFrame(updateHeaderState);
+    };
+    updateHeaderState();
+    window.addEventListener('scroll', requestHeaderState, { passive: true });
 
     if (navToggle && nav) {
         navToggle.addEventListener('click', () => {
@@ -142,7 +155,36 @@
 
     const compactDate = (value) => formatDate(value).replace(/年|月/g, '.').replace('日', '');
 
-    const createThumbnail = (post, className) => {
+    const transparentPixel = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+    let deferredImageObserver = null;
+    const observeDeferredImages = (root = document) => {
+        const images = root.querySelectorAll('img[data-deferred-src]');
+        if (!images.length) return;
+        if (!('IntersectionObserver' in window)) {
+            images.forEach((image) => {
+                image.src = image.dataset.deferredSrc;
+                image.removeAttribute('data-deferred-src');
+            });
+            return;
+        }
+        if (!deferredImageObserver) {
+            deferredImageObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const image = entry.target;
+                    image.src = image.dataset.deferredSrc;
+                    image.removeAttribute('data-deferred-src');
+                    deferredImageObserver.unobserve(image);
+                });
+            }, { rootMargin: '120px 0px', threshold: 0.01 });
+        }
+        images.forEach((image) => deferredImageObserver.observe(image));
+    };
+    const imageSourceAttributes = (src, eager) => eager
+        ? `src="${src}" loading="eager" fetchpriority="high"`
+        : `src="${transparentPixel}" data-deferred-src="${src}" loading="lazy"`;
+
+    const createThumbnail = (post, className, eager = false) => {
         if (!post.thumbnail) {
             return `<div class="${className} is-fallback-thumb" aria-hidden="true"></div>`;
         }
@@ -151,7 +193,7 @@
         const alt = escapeHtml(post.title || '');
         return `
             <div class="${className}">
-                <img src="${src}" alt="${alt}" width="600" height="315" loading="lazy" decoding="async" onerror="if(!this.dataset.retry){this.dataset.retry='1';if(/\.webp/i.test(this.src)){this.src=this.src.replace(/\.webp/i,'.png');}else if(/\.png/i.test(this.src)){this.src=this.src.replace(/\.png/i,'.webp');}else{this.parentElement.classList.add('is-fallback-thumb');this.style.display='none';}}else{this.parentElement.classList.add('is-fallback-thumb');this.style.display='none';}">
+                <img ${imageSourceAttributes(src, eager)} alt="${alt}" width="600" height="315" decoding="async" onerror="if(!this.dataset.retry){this.dataset.retry='1';if(/\.webp/i.test(this.src)){this.src=this.src.replace(/\.webp/i,'.png');}else if(/\.png/i.test(this.src)){this.src=this.src.replace(/\.png/i,'.webp');}else{this.parentElement.classList.add('is-fallback-thumb');this.style.display='none';}}else{this.parentElement.classList.add('is-fallback-thumb');this.style.display='none';}">
             </div>
         `;
     };
@@ -159,7 +201,7 @@
     const createFeaturedCard = (post, index) => `
         <article class="blog-featured-card ${index === 0 ? 'is-primary' : ''}">
             <a href="${postHref(post)}" aria-label="${escapeHtml(post.title)}を読む">
-                ${createThumbnail(post, 'blog-card-art')}
+                ${createThumbnail(post, 'blog-card-art', index === 0)}
                 <div class="blog-featured-body">
                     <div class="blog-card-meta">
                         <time datetime="${escapeHtml(post.date)}">${compactDate(post.date)}</time>
@@ -173,10 +215,10 @@
         </article>
     `;
 
-    const createLatestRow = (post) => `
+    const createLatestRow = (post, index) => `
         <article class="blog-latest-row">
             <a href="${postHref(post)}" aria-label="${escapeHtml(post.title)}を読む">
-                ${createThumbnail(post, 'blog-latest-thumb')}
+                ${createThumbnail(post, 'blog-latest-thumb', index < 3)}
                 <time datetime="${escapeHtml(post.date)}">${compactDate(post.date)}</time>
                 <span>${escapeHtml(post.category)}</span>
                 <h2>${escapeHtml(post.title)}</h2>
@@ -199,7 +241,7 @@
         <article class="blog-card">
             <a class="blog-card-link" href="${postHref(post)}" aria-label="${escapeHtml(post.title)}を読む">
                 <div class="blog-card-image">
-                    ${post.thumbnail ? `<img src="${escapeHtml(blogPath(post.thumbnail))}" alt="" width="600" height="315" loading="lazy" decoding="async">` : '<div class="blog-card-image-placeholder" aria-hidden="true"></div>'}
+                    ${post.thumbnail ? `<img ${imageSourceAttributes(escapeHtml(blogPath(post.thumbnail)), index < 3)} alt="" width="600" height="315" decoding="async">` : '<div class="blog-card-image-placeholder" aria-hidden="true"></div>'}
                     <time class="blog-card-date" datetime="${escapeHtml(post.date)}">${compactDate(post.date)}</time>
                 </div>
                 <div class="blog-card-body">
@@ -238,6 +280,8 @@
                 ? visible.map(renderer).join('')
                 : '<p class="blog-empty">該当する記事はありません。</p>';
         }
+
+        observeDeferredImages(document);
 
         if (countRoot) {
             countRoot.textContent = `${filtered.length}件の記事`;

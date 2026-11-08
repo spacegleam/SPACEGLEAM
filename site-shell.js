@@ -18,9 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let headerFrame = 0;
+    let lastHeaderScrolled = null;
     const updateHeader = () => {
         headerFrame = 0;
-        header?.classList.toggle('is-scrolled', window.scrollY > 12);
+        const headerScrolled = window.scrollY > 12;
+        if (header && headerScrolled !== lastHeaderScrolled) {
+            header.classList.toggle('is-scrolled', headerScrolled);
+            lastHeaderScrolled = headerScrolled;
+        }
     };
     const requestHeaderUpdate = () => {
         if (headerFrame) return;
@@ -38,6 +43,33 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.toggle('nav-open', isOpen);
         });
     }
+
+    const prefetchedMenuPages = new Set();
+    const warmMenuDestination = (target) => {
+        const link = target?.closest?.('.nav a[href]');
+        if (!link || link.target === '_blank') return;
+        let url;
+        try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+        if (url.origin !== window.location.origin || url.href === window.location.href || prefetchedMenuPages.has(url.href)) return;
+        prefetchedMenuPages.add(url.href);
+        fetch(url.href, { credentials: 'same-origin', cache: 'force-cache', priority: 'low' }).catch(() => {});
+    };
+    nav?.addEventListener('pointerover', (event) => warmMenuDestination(event.target), { passive: true });
+    nav?.addEventListener('focusin', (event) => warmMenuDestination(event.target), { passive: true });
+    nav?.addEventListener('touchstart', (event) => warmMenuDestination(event.target), { passive: true });
+    nav?.addEventListener('pointerdown', (event) => {
+        const link = event.target.closest('.nav a[href]');
+        if (link) link.classList.add('is-activating');
+    }, { passive: true });
+    window.addEventListener('load', () => {
+        const warmAllMenuPages = () => {
+            nav?.querySelectorAll('a[href]').forEach((link, index) => {
+                setTimeout(() => warmMenuDestination(link), index * 120);
+            });
+        };
+        if ('requestIdleCallback' in window) requestIdleCallback(warmAllMenuPages, { timeout: 2200 });
+        else setTimeout(warmAllMenuPages, 800);
+    }, { once: true });
 
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (event) => {

@@ -9,7 +9,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。',
         excerpt: '国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧だけでなく、AIで脆弱性情報と自社資産を照合し、次の初動を早める方法を解説します。',
         url: 'https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/',
-        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v2'
+        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.webp?v=20261108-card-opt'
     },
     {
         slug: 'ai-agent-development-cost',
@@ -21,7 +21,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIエージェント開発の費用相場を規模・機能別に解説。生成AIやRPAとの違い、導入手順、セキュリティ対策、費用を抑える方法を、実運用の知見から紹介します。',
         excerpt: 'AIエージェント開発は、何を実行させ、どこで人が承認するかによって費用が変わります。規模別の相場と、本番運用まで見据えた導入手順を整理しました。',
         url: 'https://spacegleam.co.jp/blog/ai-agent-development-cost/',
-        thumbnail: '/blog/ai-agent-development-cost/ogp.png?v=20261001-v4'
+        thumbnail: '/blog/ai-agent-development-cost/ogp.webp?v=20261108-card-opt'
     },
     {
         slug: 'ai-agent-production-gap',
@@ -33,7 +33,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIエージェントのパイロット導入は広がっても、本番運用まで進む企業はまだ多くありません。DIFFsenseと御御御付（おみおつけ）を自社運営するSPACE GLEAMが、モデル固定・多段階パース・承認設計といった実装レベルの工夫から、パイロットで止まる理由と越え方を解説します。',
         excerpt: 'パイロットは8割を超えても、本番運用まで進んだのは1割未満という報告も。自社SaaSの実装知見をもとに、パイロットで止まる5つの壁と、越えるために最初に決めるべきたった1つの問いを整理しました。',
         url: 'https://spacegleam.co.jp/blog/ai-agent-production-gap/',
-        thumbnail: '/blog/ai-agent-production-gap/ogp.png'
+        thumbnail: '/blog/ai-agent-production-gap/ogp.webp?v=20261108-card-opt'
     },
     {
         slug: 'omiotsuke-android-app-release',
@@ -45,7 +45,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '冷蔵庫の食材から今日の味噌汁を提案するAIレシピアプリ「御御御付（おみおつけ）」のAndroidネイティブアプリを、Google Playにて公開しました。主な機能とダウンロード方法を紹介します。',
         excerpt: 'Web版で提供してきた「御御御付」が、Androidのネイティブアプリとして登場。作る予定のローカル通知や、Web版と共通のアカウント・ランキングに対応しています。',
         url: 'https://spacegleam.co.jp/blog/omiotsuke-android-app-release/',
-        thumbnail: '/blog/omiotsuke-android-app-release/ogp.png'
+        thumbnail: '/blog/omiotsuke-android-app-release/ogp.webp?v=20261108-card-opt'
     },
     {
         slug: 'omiotsuke-for-brands',
@@ -57,7 +57,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '食品ECの商品を、家にある食材に合うレシピとして提案。食品メーカー向けAIレシピ接客「御御御付 for Brands」の仕組み、活用方法、料金を紹介します。',
         excerpt: '商品を知ってもらうだけでなく、「今日使ってみたい」まで届ける。家にある食材から商品を使う理由をつくるAIレシピ接客を紹介します。',
         url: 'https://spacegleam.co.jp/blog/omiotsuke-for-brands/',
-        thumbnail: '/blog/omiotsuke-for-brands/ogp.png'
+        thumbnail: '/blog/omiotsuke-for-brands/ogp.webp?v=20261108-card-opt'
     },
     {
         slug: 'website-mcp-chatgpt-integration',
@@ -69,7 +69,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '自社WebサイトやWebサービスをChatGPTなどのAIエージェントから利用できるようにするMCP対応について解説。できること、APIとの違い、導入方法、開発費用、向いている企業を、Remote MCPを本番運用するSPACE GLEAMが紹介します。',
         excerpt: '自社WebサイトやWebサービスをChatGPTなどのAIエージェントから利用できるようにするMCP対応について解説。できること、APIとの違い、導入方法、開発費用を詳しく紹介します。',
         url: 'https://spacegleam.co.jp/blog/website-mcp-chatgpt-integration/',
-        thumbnail: '/blog/website-mcp-chatgpt-integration/card.png?v=20260809-v3'
+        thumbnail: '/blog/website-mcp-chatgpt-integration/card.webp?v=20261108-card-opt'
     },
     {
         slug: 'chatgpt-remote-mcp-web-agent',
@@ -81,7 +81,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'SPACE GLEAMはコーポレートサイトにRemote MCP Serverを実装。ChatGPTからサービス検索、AI開発診断、案件要件の整理まで直接実行できることを実機検証しました。MCPの仕組み、ChatGPTへの登録方法、実際の使い方まで解説します。',
         excerpt: 'SPACE GLEAMはコーポレートサイトにRemote MCP Serverを実装。ChatGPTからサービス検索、AI開発診断、案件要件の整理まで直接実行できることを実機検証しました。',
         url: 'https://spacegleam.co.jp/blog/chatgpt-remote-mcp-web-agent/',
-        thumbnail: '/blog/chatgpt-remote-mcp-web-agent/card.png'
+        thumbnail: '/blog/chatgpt-remote-mcp-web-agent/card.webp?v=20261108-card-opt'
     },
     {
         slug: 'ai-model-update-resilience',
@@ -101,7 +101,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIシステム開発の費用相場を、開発規模・機能・期間別に解説します。業務自動化、社内システム、生成AIの組み込みなど、予算別に実現できる内容や費用を抑える方法も紹介します。',
         excerpt: 'AIシステム開発の費用相場を、開発規模・機能・期間別に解説します。業務自動化、社内システム、生成AIの組み込みなど、予算別に実現できる内容や費用を抑える方法も紹介します。',
         url: 'https://spacegleam.co.jp/blog/ai-system-development-cost/',
-        thumbnail: '/blog/assets/diagnosis-covers/p3.png'
+        thumbnail: '/blog/assets/diagnosis-covers/p3.webp?v=20261108-card-opt'
     },
     {
         slug: 'omiotsuke-development-insights',
@@ -109,7 +109,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         date: '2026-07-22', publishAt: '2026-07-22T00:00:00+09:00', status: 'published', category: 'Development',
         description: '冷蔵庫の残り物写真をGemini APIで解析し、400種の具材から最適な味噌汁を提案する「御御御付（おみおつけ）」。実用に耐えうる画像認識、400種を1つの鍋で仕上げる時間差レシピ構築、そして遊び心あふれる命名アルゴリズムの裏側の実践知を公開します。',
         excerpt: '冷蔵庫の残り物写真をGemini APIで解析し、最適な味噌汁を提案する「御御御付（おみおつけ）」。画像認識のゆらぎ吸収、400種を1鍋で煮る時間差レシピ、遊び心あふれる命名アルゴリズムの設計といった、実運用から得た開発の裏側を解説します。',
-        url: 'https://spacegleam.co.jp/blog/omiotsuke-development-insights/', thumbnail: '/blog/omiotsuke-development-insights/card.png'
+        url: 'https://spacegleam.co.jp/blog/omiotsuke-development-insights/', thumbnail: '/blog/omiotsuke-development-insights/card.webp?v=20261108-card-opt'
     },
     {
         slug: 'human-review-ai-workflow',

@@ -11,8 +11,8 @@ function initWorksPage() {
             lead: 'ChatGPTなどのAIエージェントから、Webサイトのサービス検索・AI開発診断・案件要件整理まで直接実行できるRemote MCP Serverを自社開発・本番運用。',
             images: [
                 { src: 'images/mcp-architecture-diagram.png', alt: 'SPACE GLEAM Remote MCP 構成図' },
-                { src: 'blog/chatgpt-remote-mcp-web-agent/card.png', alt: 'ChatGPTからWebサイトの機能を直接使う。SPACE GLEAMがRemote MCPを実装・実機検証' },
-                { src: 'blog/website-mcp-chatgpt-integration/card.png', alt: '自社WebサイトをChatGPTから使えるようにするには？MCP対応でできること・導入方法・費用を解説' }
+                { src: 'blog/chatgpt-remote-mcp-web-agent/card.webp?v=20261108-card-opt', alt: 'ChatGPTからWebサイトの機能を直接使う。SPACE GLEAMがRemote MCPを実装・実機検証' },
+                { src: 'blog/website-mcp-chatgpt-integration/card.webp?v=20261108-card-opt', alt: '自社WebサイトをChatGPTから使えるようにするには？MCP対応でできること・導入方法・費用を解説' }
             ],
             background: '自社サイトのサービス検索・AI開発診断・案件整理を、ChatGPTなどから直接実行できるRemote MCPとして設計・開発し、本番運用しています。',
             features: ['サービス検索', 'AI開発無料診断', '案件要件の自動整理', '会社情報取得', '同意後の問い合わせ連携'],
@@ -40,13 +40,13 @@ function initWorksPage() {
                     title: 'ChatGPTからWebサイトの機能を直接使う。SPACE GLEAMがRemote MCPを実装・実機検証',
                     url: '/blog/chatgpt-remote-mcp-web-agent/',
                     date: '2026.08.10',
-                    img: '/blog/chatgpt-remote-mcp-web-agent/card.png'
+                    img: '/blog/chatgpt-remote-mcp-web-agent/card.webp?v=20261108-card-opt'
                 },
                 {
                     title: '自社WebサイトをChatGPTから使えるようにするには？MCP対応でできること・導入方法・費用を解説',
                     url: '/blog/website-mcp-chatgpt-integration/',
                     date: '2026.08.13',
-                    img: '/blog/website-mcp-chatgpt-integration/card.png'
+                    img: '/blog/website-mcp-chatgpt-integration/card.webp?v=20261108-card-opt'
                 }
             ]
         },
@@ -55,10 +55,10 @@ function initWorksPage() {
             tag: '具材認識AI味噌汁診断',
             lead: '冷蔵庫の具材をスマホで撮るだけで、食材を認識し、今日作れる味噌汁のレシピと栄養情報を自動提案するサービス。',
             images: [
-                { src: 'images/omiotsuke-native-01-home.png', alt: '御御御付アプリのホーム画面（実機・ストア掲載画像）' },
+                { src: 'images/omiotsuke-native-01-home.webp?v=20261108-card-opt', alt: '御御御付アプリのホーム画面（実機・ストア掲載画像）' },
                 { src: 'images/omiotsuke-native-02-diagnosis.png', alt: '味噌汁診断の結果画面（実機・ストア掲載画像）' },
-                { src: 'images/omiotsuke-native-03-builder.png', alt: '味噌汁ビルダーの具材選択画面（実機・ストア掲載画像）' },
-                { src: 'images/omiotsuke-native-04-ranking.png', alt: '人気ランキング画面（実機・ストア掲載画像）' }
+                { src: 'images/omiotsuke-native-03-builder.webp?v=20261108-card-opt', alt: '味噌汁ビルダーの具材選択画面（実機・ストア掲載画像）' },
+                { src: 'images/omiotsuke-native-04-ranking.webp?v=20261108-card-opt', alt: '人気ランキング画面（実機・ストア掲載画像）' }
             ],
             background: '冷蔵庫の食材を撮影すると、AIが具材を認識し、味噌汁レシピと栄養情報を提案するアプリです。',
             features: ['写真から食材認識', '味噌汁レシピ生成', '栄養情報表示', '具材ビルダー'],

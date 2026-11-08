@@ -4,12 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T9HP3BLMP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-1T9HP3BLMP');
+        (function () {
+            let loaded = false;
+            const loadAnalytics = function () {
+                if (loaded) return;
+                loaded = true;
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1T9HP3BLMP';
+                document.head.appendChild(script);
+            };
+            ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
+                window.addEventListener(type, loadAnalytics, { once: true, passive: true });
+            });
+            window.addEventListener('load', function () {
+                if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
+                else setTimeout(loadAnalytics, 2500);
+            }, { once: true });
+        })();
     </script>
     <title>AI開発・SaaS開発・業務自動化システム開発ならSPACE GLEAM株式会社</title>
     <meta name="description" content="AI開発、生成AI開発、SaaS開発、業務自動化システム開発を企画・設計・開発・運用まで一貫支援。初期リリースから商用サービス開発まで対応するSPACE GLEAM株式会社。">
@@ -34,8 +51,9 @@ button, input, textarea, select { font: inherit; }
 .nav-list > li { margin: 0px; padding: 0px; }
 @media (max-width: 880px){.nav { grid-template-columns: minmax(0px, 1fr); transform: translateY(-12px) !important; }
 .nav-list { width: 100%; flex-direction: column; align-items: stretch; gap: inherit; }}
-.nav a { color: rgb(15, 23, 42); font-size: 0.92rem; font-weight: 700; transition: color 0.2s, opacity 0.2s; }
+.nav a { color: rgb(15, 23, 42); font-size: 0.92rem; font-weight: 700; transition: color 0.08s linear, opacity 0.08s linear; }
 .nav a:hover { color: rgb(37, 99, 235); opacity: 0.85; }
+.nav a:active, .nav a.is-activating { color: rgb(37, 99, 235); opacity: 0.72; }
 .header-cta, .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0px 22px; border-radius: 4px; border: 1px solid transparent; font-size: 0.95rem; font-weight: 800; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s, border-color 0.25s, color 0.25s, opacity 0.25s; }
 .header-cta, .btn-primary { background: rgb(255, 255, 255); color: rgb(5, 5, 9); box-shadow: rgba(255, 255, 255, 0.12) 0px 14px 40px; }
 .header-cta:hover, .btn-primary:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.9); }
@@ -1042,11 +1060,12 @@ html body #hero .tech-icon{filter:none!important;opacity:.6}
 html body header.header.header-concept-a{background:rgba(244,244,241,.84)!important;border-bottom:1px solid rgba(0,0,0,.07)!important;box-shadow:none!important}
 
 html body #hero .hero-tech-stack.p-marq{display:block!important;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-html body #hero .p-track{display:flex;align-items:center;gap:44px;width:max-content;animation:p-marq 230s linear infinite}
+html body #hero .p-track{display:flex;align-items:center;gap:0;width:max-content;animation:p-marq 42s linear infinite;transform:translate3d(0,0,0);will-change:transform;backface-visibility:hidden;contain:layout paint}
+html body #hero .p-track-group{display:flex;align-items:center;gap:44px;flex:none;padding-right:44px}
 html body #hero .p-track .tech-item{flex:none;display:flex;align-items:center;gap:10px}
 html body #hero .p-track .tech-mono{width:22px;height:22px;display:grid;place-items:center;border:1.5px solid currentColor;border-radius:3px;font:800 11px ui-monospace,Menlo,Consolas,monospace;opacity:.7}
 html body #hero .p-track .tech-more .tech-label{letter-spacing:.14em}
-@keyframes p-marq{to{transform:translateX(-50%)}}
+@keyframes p-marq{to{transform:translate3d(-50%,0,0)}}
 
 html body #hero .p-mark::after{animation:p-barloop 7s .9s var(--p-ease) infinite}
 @keyframes p-barloop{0%{transform:scaleX(0);opacity:.5}14%,78%{transform:scaleX(1);opacity:.5}92%,100%{transform:scaleX(1);opacity:0}}
@@ -1098,6 +1117,7 @@ html body #hero .p-space .planet{animation:p-float2 9s ease-in-out infinite}
 
 html body #hero{background:#f4f6fa!important}
 html body header.header.header-concept-a{background:rgba(255,255,255,.58)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6)!important;backdrop-filter:blur(20px) saturate(1.6)!important;border-bottom:1px solid rgba(255,255,255,.75)!important;box-shadow:0 1px 0 rgba(17,17,17,.06),0 12px 30px rgba(15,23,42,.05)!important}
+html body header.header.header-concept-a.is-scrolled{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 @media(min-width:901px){html body header.header nav{background:transparent!important;border:0!important;box-shadow:none!important}}
 html body #hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(17,17,17,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.05) 1px,transparent 1px)!important;background-size:80px 80px!important;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important}
 html body #hero .p-space{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
@@ -1171,6 +1191,17 @@ html body #hero .p-stats>div>span{margin-top:0!important}
 }
 
 html body #hero .hero-copy>h1{animation:none!important}
+/* Performance: keep the technical hero artwork, but stop continuous SVG/3D repainting. */
+html body #hero .p-space .k-st,
+html body #hero .p-space .k-sx,
+html body #hero .p-space .k-sp,
+html body #hero .p-space .k-con,
+html body #hero .p-space .k-cn,
+html body #hero .p-space .k-planet,
+html body #hero .p-space .k-shoot{animation:none!important}
+html body #hero .p-space .satg{display:none!important}
+html body #hero .p-cube .cb{animation:none!important}
+html body #hero .p-mark::after{animation:p-bar 1s .35s var(--p-ease) both!important}
 @media(min-width:1600px){
 html body #hero .hero-container{width:min(1680px,calc(100% - 96px))!important}
 html body #hero .hero-grid{grid-template-columns:minmax(620px,1fr) minmax(560px,620px)!important;gap:clamp(56px,4vw,88px)!important}
@@ -2458,11 +2489,34 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
                 const header = document.querySelector('.header');
                 const navToggle = document.querySelector('.nav-toggle');
                 const nav = document.querySelector('.nav');
-                const setHeaderState = function () {
-                    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+                const mobileFixedCta = document.querySelector('.mobile-fixed-cta');
+                let viewportFrame = 0;
+                let lastHeaderScrolled = null;
+                let lastMobileCtaVisible = null;
+                const updateViewportState = function () {
+                    viewportFrame = 0;
+                    const headerScrolled = window.scrollY > 12;
+                    if (header && headerScrolled !== lastHeaderScrolled) {
+                        header.classList.toggle('is-scrolled', headerScrolled);
+                        lastHeaderScrolled = headerScrolled;
+                    }
+                    if (mobileFixedCta) {
+                        const mobileCtaVisible = window.scrollY > Math.min(520, window.innerHeight * .72);
+                        if (mobileCtaVisible !== lastMobileCtaVisible) {
+                            mobileFixedCta.classList.toggle('is-visible', mobileCtaVisible);
+                            mobileFixedCta.setAttribute('aria-hidden', String(!mobileCtaVisible));
+                            mobileFixedCta.tabIndex = mobileCtaVisible ? 0 : -1;
+                            lastMobileCtaVisible = mobileCtaVisible;
+                        }
+                    }
                 };
-                setHeaderState();
-                window.addEventListener('scroll', setHeaderState, { passive: true });
+                window.__spaceGleamRequestViewportUpdate = function () {
+                    if (viewportFrame) return;
+                    viewportFrame = window.requestAnimationFrame(updateViewportState);
+                };
+                updateViewportState();
+                window.addEventListener('scroll', window.__spaceGleamRequestViewportUpdate, { passive: true });
+                window.addEventListener('resize', window.__spaceGleamRequestViewportUpdate, { passive: true });
                 if (navToggle && nav) {
                     navToggle.addEventListener('click', function () {
                         const isOpen = nav.classList.toggle('is-open');
@@ -2471,6 +2525,32 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
                         document.body.classList.toggle('nav-open', isOpen);
                     });
                 }
+                const prefetchedMenuPages = new Set();
+                const warmMenuDestination = function (target) {
+                    const link = target && target.closest ? target.closest('.nav a[href]') : null;
+                    if (!link || link.target === '_blank') return;
+                    let url;
+                    try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+                    if (url.origin !== window.location.origin || url.href === window.location.href || prefetchedMenuPages.has(url.href)) return;
+                    prefetchedMenuPages.add(url.href);
+                    fetch(url.href, { credentials: 'same-origin', cache: 'force-cache', priority: 'low' }).catch(function () {});
+                };
+                nav?.addEventListener('pointerover', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('focusin', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('touchstart', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('pointerdown', function (event) {
+                    const link = event.target.closest('.nav a[href]');
+                    if (link) link.classList.add('is-activating');
+                }, { passive: true });
+                window.addEventListener('load', function () {
+                    const warmAllMenuPages = function () {
+                        nav?.querySelectorAll('a[href]').forEach(function (link, index) {
+                            setTimeout(function () { warmMenuDestination(link); }, index * 120);
+                        });
+                    };
+                    if ('requestIdleCallback' in window) requestIdleCallback(warmAllMenuPages, { timeout: 2200 });
+                    else setTimeout(warmAllMenuPages, 800);
+                }, { once: true });
                 document.addEventListener('click', function (event) {
                     const dismiss = event.target.closest('#diagDismiss');
                     if (!dismiss) return;
@@ -2517,7 +2597,10 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
                 });
             };
 
+            let interactiveScriptLoaded = false;
             const loadInteractiveScripts = function () {
+                if (interactiveScriptLoaded) return;
+                interactiveScriptLoaded = true;
                 const diagScript = document.createElement('script');
                 diagScript.src = "diagnosis.js?v=mobile-perf-20261108-v23";
                 diagScript.async = true;
@@ -2559,69 +2642,45 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
             };
             const scheduleAfterFirstPaint = function () {
                 try { initializeCriticalInteractions(); } catch (e) {}
-                if ('requestAnimationFrame' in window) {
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            loadInteractiveScripts();
-                            loadFullMobileExperience();
-                        });
-                    });
-                } else {
+                const warmDiagnosis = function (event) {
+                    if (event.target.closest('a[href="#diagnosis"],#diagnosis,.home-diag-showcase')) loadInteractiveScripts();
+                };
+                document.addEventListener('pointerover', warmDiagnosis, { passive: true });
+                document.addEventListener('focusin', warmDiagnosis, { passive: true });
+                document.addEventListener('touchstart', warmDiagnosis, { passive: true });
+                const scheduleIdle = function (callback, delay, timeout) {
                     setTimeout(function () {
-                        loadInteractiveScripts();
-                        loadFullMobileExperience();
-                    }, 0);
-                }
+                        if ('requestIdleCallback' in window) requestIdleCallback(callback, { timeout: timeout });
+                        else callback();
+                    }, delay);
+                };
+                scheduleIdle(loadInteractiveScripts, 650, 900);
+                scheduleIdle(loadFullMobileExperience, 1500, 900);
             };
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', scheduleAfterFirstPaint, { once: true });
             } else {
                 scheduleAfterFirstPaint();
             }
-            // 独立した保険: 上のスケジューリング内で何が起きても
-            // (エラーで途中停止しても) このタイマーだけは必ず動く
-            setTimeout(loadFullMobileExperience, 300);
+            // 初回描画やメニュー操作と重ならないタイミングで保険ロードする。
+            setTimeout(loadFullMobileExperience, 2400);
         })();
     </script>
 <script>
 (function(){
+  document.querySelectorAll('#hero .p-space .satg').forEach(function(node){ node.remove(); });
   var ts=document.querySelector('.hero-tech-stack'); if(!ts||ts.classList.contains('p-marq')) return;
-  var CDN='https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/';
-  // [label, simple-icons slug | null, mono letters]
-  var AI=[['ChatGPT','LOCAL'],['Claude','claude'],['Gemini','googlegemini'],['Perplexity','perplexity'],['LangChain','langchain'],['Hugging Face','huggingface'],['Mistral AI','mistralai'],['Ollama','ollama'],['n8n','n8n'],['Zapier','zapier']];
-  var DEV=[['Next.js','nextdotjs'],['React','react'],['Vue.js','vuedotjs'],['Nuxt','nuxt'],['Svelte','svelte'],['TypeScript','typescript'],['JavaScript','javascript'],['Node.js','nodedotjs'],['Python','python'],['PHP','php'],['Laravel','laravel'],['Ruby','ruby'],['Rails','rubyonrails'],['Go','go'],['Rust','rust'],['Swift','swift'],['Kotlin','kotlin'],['Flutter','flutter'],['Tailwind CSS','tailwindcss'],['WordPress','wordpress'],['Shopify','shopify']];
-  var INFRA=[['Supabase','supabase'],['Firebase','firebase'],['PostgreSQL','postgresql'],['MySQL','mysql'],['MongoDB','mongodb'],['Redis','redis'],['Docker','docker'],['Kubernetes','kubernetes'],['GitHub','github'],['GitLab','gitlab'],['AWS','amazonaws'],['Google Cloud','googlecloud'],['Azure','microsoftazure'],['Cloudflare','cloudflare'],['Vercel','vercel'],['Netlify','netlify'],['Stripe','stripe'],['Twilio','twilio'],['SendGrid','sendgrid']];
-  var BIZ=[['Slack','slack'],['Notion','notion'],['LINE','line'],['Teams','microsoftteams'],['Salesforce','salesforce'],['HubSpot','hubspot'],['Airtable','airtable'],['Figma','figma'],['Jira','jira'],['Trello','trello'],['Asana','asana'],['Zoom','zoom'],['Google Sheets','googlesheets'],['Excel','microsoftexcel'],['kintone',null,'ki'],['Chatwork',null,'Cw'],['freee',null,'fr'],['Money Forward',null,'MF'],['Google Workspace',null,'G']];
-  var groups=[AI,DEV,INFRA,BIZ], list=[], i=0, more=true;
-  while(more){ more=false; groups.forEach(function(g){ if(g[i]){ list.push(g[i]); more=true; } }); i++; }
-  function item(d){
-    var el=document.createElement('div'); el.className='tech-item';
-    var icon;
-    if(d[1]==='LOCAL'){ icon=document.createElement('img'); icon.src='chatgpt.svg'; }
-    else if(d[1]){ icon=document.createElement('img'); icon.src=CDN+d[1]+'.svg'; }
-    else { icon=document.createElement('span'); icon.className='tech-mono'; icon.textContent=d[2]; }
-    if(icon.tagName==='IMG'){ icon.alt=''; icon.className='tech-icon'; icon.loading='lazy'; icon.onerror=function(){ el.style.display='none'; }; }
-    var lb=document.createElement('span'); lb.className='tech-label'; lb.textContent=d[0];
-    el.appendChild(icon); el.appendChild(lb); return el;
-  }
+  var items=[].slice.call(ts.querySelectorAll('.tech-item'));
+  if(!items.length) return;
+  items.forEach(function(item){var icon=item.querySelector('img');if(icon){icon.width=22;icon.height=22;icon.decoding='async';icon.fetchPriority='low';}});
   var track=document.createElement('div'); track.className='p-track';
-  var els=list.map(item);
-  var more=document.createElement('div'); more.className='tech-item tech-more'; more.innerHTML='<span class="tech-mono">+</span><span class="tech-label">AND MORE</span>';
-  els.push(more);
-  els.concat(els.map(function(n){return n.cloneNode(true)})).forEach(function(n){track.appendChild(n)});
+  var group=document.createElement('div'); group.className='p-track-group';
+  items.forEach(function(item){group.appendChild(item)});
+  var duplicate=group.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
+  track.appendChild(group); track.appendChild(duplicate);
   ts.innerHTML=''; ts.classList.add('p-marq'); ts.appendChild(track);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(entries){track.style.animationPlayState=entries[0].isIntersecting?'running':'paused';},{rootMargin:'100px 0px'}).observe(ts)}
 })();
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var G='0123456789ABCDEF', nodes=[].slice.call(document.querySelectorAll('.k-scr'));
-  if(!nodes.length) return;
-  setInterval(function(){ nodes.forEach(function(n){
-    if(Math.random()<.55) return; var t=n.textContent.split(''), k=1+((Math.random()*2)|0);
-    while(k--){ var i=(Math.random()*t.length)|0; if(/[0-9A-F]/.test(t[i])) t[i]=G[(Math.random()*16)|0]; }
-    n.textContent=t.join('');
-  }); }, 140);
-})();
-
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   var els=[].slice.call(document.querySelectorAll('[data-to]'));
   function run(){els.forEach(function(el){
@@ -2629,7 +2688,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
     function step(t){t0=t0||t;var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,3);el.textContent=pre+Math.round(to*e);if(p<1)requestAnimationFrame(step)}
     requestAnimationFrame(step);
   })}
-  setTimeout(run,1000); setInterval(run,9000);
+  setTimeout(run,1000);
 }
 </script>
 </body>

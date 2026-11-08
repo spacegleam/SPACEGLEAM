@@ -269,12 +269,18 @@ select {
     color: #0f172a;
     font-size: .92rem;
     font-weight: 700;
-    transition: color .2s ease, opacity .2s ease;
+    transition: color .08s linear, opacity .08s linear;
 }
 
 .nav a:hover {
     color: #2563eb;
     opacity: 0.85;
+}
+
+.nav a:active,
+.nav a.is-activating {
+    color: #2563eb;
+    opacity: .72;
 }
 
 .header-cta,
@@ -6807,7 +6813,7 @@ body.blog-page-body #lightning-container {
     display: none !important;
 }
 
-body.blog-page-body .header {
+body.blog-page-body .header:not(.is-scrolled) {
     background: rgba(255, 255, 255, 0.82) !important;
     backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
@@ -15329,7 +15335,9 @@ body.blog-page-body .footer {
     }
 
     .header.header-concept-a.is-scrolled {
-        background: rgb(254, 253, 253);
+        background: #ffffff;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
     }
 
     .header.header-concept-a .header-inner {
@@ -15339,7 +15347,7 @@ body.blog-page-body .footer {
         gap: clamp(20px, 2.4vw, 40px);
         min-height: 124px;
         padding: 0 clamp(28px, 3vw, 52px);
-        transition: min-height .24s ease;
+        transition: none;
     }
 
     .header.header-concept-a .brand {
@@ -15417,7 +15425,7 @@ body.blog-page-body .footer {
         height: 124px;
         margin-left: 0;
         margin-right: calc(clamp(28px, 3vw, 52px) * -1);
-        transition: height .24s ease;
+        transition: none;
     }
 
     .header.header-concept-a .header-cta {
@@ -15435,7 +15443,7 @@ body.blog-page-body .footer {
         font-size: 1.06rem;
         letter-spacing: .025em;
         white-space: nowrap;
-        transition: height .24s ease, min-height .24s ease, background .2s ease;
+        transition: background .2s ease;
     }
 
     .header.header-concept-a .header-cta .arrow { color: #fff; font-size: 1.8rem; line-height: 1; }
@@ -15544,6 +15552,11 @@ body.blog-page-body .footer {
     .header.header-concept-a,
     .header.header-concept-a.is-scrolled {
         background: #ffffff;
+    }
+
+    .header.header-concept-a.is-scrolled {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
     }
 
     .header.header-concept-a .header-inner {
