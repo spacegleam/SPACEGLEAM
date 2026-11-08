@@ -158,8 +158,8 @@ html, body { overflow-x: hidden !important; }
 @media (max-width: 880px){.header .nav { left: 16px !important; right: 16px !important; grid-template-columns: minmax(0px, 1fr) !important; transform: translateY(-12px) !important; }}
 
     </style>
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4" media="(min-width: 901px)">
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4" media="(max-width: 900px)">
+    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v6" media="(min-width: 901px)">
+    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v6" media="(max-width: 900px)">
     <style data-home-diagnosis>
 /* ============================================================
    Home AI diagnosis showcase — reference-led redesign (local)
@@ -313,6 +313,7 @@ html.diag-enabled .hero-interactive-wrapper {
     padding: 13px 15px;
     background: #ffffff !important;
     border: 1px solid rgba(203, 213, 225, 0.8) !important;
+    border-radius: 16px;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05), inset 0 1px 0 #ffffff;
 }
 
@@ -351,11 +352,18 @@ html.diag-enabled .hero-interactive-wrapper {
 }
 
 .home-diag-download-callout__copy strong {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: .3em;
     color: #0f172a;
-    font-size: clamp(1rem, 1.65vw, 1.32rem);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
     font-weight: 900;
     line-height: 1.35;
     letter-spacing: .01em;
+}
+
+.home-diag-download-callout__copy strong span {
+    white-space: nowrap;
 }
 
 .home-diag-download-callout__copy > span {
@@ -454,7 +462,7 @@ html.diag-enabled .hero-interactive-wrapper {
 
 .hero .home-diag-showcase .diag-card__features {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 0 !important;
     margin: 0 0 17px !important;
 }
@@ -752,12 +760,16 @@ html.diag-enabled .hero-interactive-wrapper {
 
     .home-diag-report {
         display: flex !important;
-        position: absolute !important;
-        top: 14px !important;
-        right: 12px !important;
-        width: 165px !important;
-        max-width: 165px !important;
-        margin: 0 !important;
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        order: -1;
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        justify-self: center;
+        width: min(100%, 240px) !important;
+        max-width: 240px !important;
+        margin: 0 auto !important;
         padding-top: 0 !important;
         transform: none !important;
         z-index: 1 !important;
@@ -876,7 +888,7 @@ html.diag-enabled .hero-interactive-wrapper {
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" media="print" fetchpriority="low" data-mobile-deferred-fonts onload="this.onload=null;if(!matchMedia('(max-width: 900px)').matches)this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+    <noscript><link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v6"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=logo13-20260702">
     <link rel="canonical" href="https://spacegleam.co.jp/">
 
@@ -1086,7 +1098,7 @@ html body #hero .p-space .planet{animation:p-float2 9s ease-in-out infinite}
 
 html body #hero{background:#f4f6fa!important}
 html body header.header.header-concept-a{background:rgba(255,255,255,.58)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6)!important;backdrop-filter:blur(20px) saturate(1.6)!important;border-bottom:1px solid rgba(255,255,255,.75)!important;box-shadow:0 1px 0 rgba(17,17,17,.06),0 12px 30px rgba(15,23,42,.05)!important}
-html body header.header nav{background:rgba(255,255,255,.72)!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:0 2px 10px rgba(15,23,42,.06)!important}
+@media(min-width:901px){html body header.header nav{background:transparent!important;border:0!important;box-shadow:none!important}}
 html body #hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(17,17,17,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.05) 1px,transparent 1px)!important;background-size:80px 80px!important;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important}
 html body #hero .p-space{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 html body #hero .p-space .k-plus{fill:none;stroke:rgba(17,17,17,.28);stroke-width:1}
@@ -1253,7 +1265,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                             </header>
                             <div class="home-diag-download-callout">
                                 <span class="home-diag-download-callout__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 3h11l6 6v20H8z"></path><path d="M19 3v7h6M12 18h8M12 22h8"></path></svg></span>
-                                <span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong>診断結果をPDFで無料ダウンロード</strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>
+                                <span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong><span>診断結果をPDFで</span><span>無料ダウンロード</span></strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>
                                 <span class="home-diag-download-callout__badge">無料</span>
                             </div>
                             <div class="home-diag-showcase__body">
@@ -1263,15 +1275,13 @@ html body #hero .hero-copy>h1{animation:none!important}
                                     <div class="diag-card__features" aria-label="診断でわかること">
                                         <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="9"></circle><circle cx="16" cy="16" r="3"></circle><path d="M16 3v4M16 25v4M3 16h4M25 16h4"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">開発タイプ</strong><span class="diag-card__feature-sub">最適なプラン</span></span></div>
                                         <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="8" ry="4"></ellipse><path d="M8 8v8c0 2.2 3.6 4 8 4s8-1.8 8-4V8M8 16v8c0 2.2 3.6 4 8 4s8-1.8 8-4v-8"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">概算費用</strong><span class="diag-card__feature-sub">開発予算の目安</span></span></div>
-                                        <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26V7M5 26h22M9 21l5-6 4 3 7-9"></path><path d="M21 9h4v4"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">導入効果</strong><span class="diag-card__feature-sub">期待できる効果</span></span></div>
-                                        <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h20v14H15l-6 5v-5H6z"></path><path d="M11 13h10M11 17h7"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">個別アドバイス</strong><span class="diag-card__feature-sub">おすすめの進め方</span></span></div>
                                     </div>
                                     <button type="button" class="diag-card__btn diag-btn-primary" id="diagStart"><span class="diag-card__btn-sparkle" aria-hidden="true">✦</span>無料で診断をはじめる<span class="arrow" aria-hidden="true">→</span></button>
                                     <p class="diag-card__note"><span class="diag-card__note-ico" aria-hidden="true">✓</span>入力不要・30秒で結果表示</p>
                                 </div>
                                 <aside class="home-diag-report" aria-label="診断結果PDFのサンプル">
                                     <div class="home-diag-report__badge">PDF<br>無料取得</div>
-                                    <div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="lazy" decoding="async"></div>
+                                    <div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="eager" fetchpriority="high" decoding="async"></div>
                                 </aside>
                             </div>
                         </section>
@@ -1332,7 +1342,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                 <div class="proof-strip__cards reveal" aria-label="自社開発・運用実績">
                     <a class="proof-card" href="mcp/" aria-label="Remote MCPのページを見る">
                         <div class="proof-card__brand"><img src="chatgpt.svg" alt="" width="28" height="28"><h3>Remote MCP</h3></div>
-                        <p>AIから診断・サービス検索を呼び出せる連携基盤</p><span class="proof-card__meta"><span class="proof-card__status">本番運用中</span><span aria-hidden="true">→</span></span>
+                        <p>AIから診断・サービス検索を呼び出す基盤</p><span class="proof-card__meta"><span class="proof-card__status">本番運用中</span><span aria-hidden="true">→</span></span>
                     </a>
                     <a class="proof-card" href="https://diffsense.spacegleam.co.jp/" target="_blank" rel="noopener noreferrer" aria-label="DIFFsenseのサービスLPを見る（新しいタブ）">
                         <div class="proof-card__brand"><img src="assets/diffsense-logo-128.png" alt="" width="28" height="28"><h3>DIFFsense</h3></div>
@@ -2457,6 +2467,30 @@ html body #hero .hero-copy>h1{animation:none!important}
                     });
                 }
                 document.addEventListener('click', function (event) {
+                    const dismiss = event.target.closest('#diagDismiss');
+                    if (!dismiss) return;
+                    const showcase = dismiss.closest('.home-diag-showcase');
+                    if (!showcase) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    showcase.classList.add('is-collapsed');
+                    try { localStorage.setItem('diag_card_hidden', '1'); } catch (_) {}
+                    let restore = document.getElementById('diagRestore');
+                    if (!restore) {
+                        restore = document.createElement('button');
+                        restore.type = 'button';
+                        restore.className = 'diag-sidetab';
+                        restore.id = 'diagRestore';
+                        restore.innerHTML = '<span class="diag-sidetab__ico" aria-hidden="true">✦</span>AI開発診断';
+                        document.body.appendChild(restore);
+                    }
+                    restore.addEventListener('click', function () {
+                        showcase.classList.remove('is-collapsed');
+                        restore.remove();
+                        try { localStorage.setItem('diag_card_hidden', '0'); } catch (_) {}
+                    }, { once: true });
+                }, true);
+                document.addEventListener('click', function (event) {
                     const link = event.target.closest('a.header-cta,a.mobile-fixed-cta,a[href$="contact.html"],a[href*="contact.html#"],a[href$="#contact"]');
                     if (!link || typeof window.gtag !== 'function') return;
                     let location = 'content';
@@ -2480,7 +2514,7 @@ html body #hero .hero-copy>h1{animation:none!important}
 
             const loadInteractiveScripts = function () {
                 const diagScript = document.createElement('script');
-                diagScript.src = "diagnosis.js?v=mobile-perf-20260831-v22";
+                diagScript.src = "diagnosis.js?v=mobile-perf-20261108-v23";
                 diagScript.async = true;
                 document.body.appendChild(diagScript);
             };
