@@ -16045,29 +16045,22 @@ body.blog-page-body .footer {
     .proof-card__brand { margin-top: 14px; }
 }
 
-/* Proof strip refinement: clearer hierarchy on desktop, compact swipe cards on mobile. */
+/* Proof strip refinement: editorial product list rather than generic feature cards. */
 .proof-strip {
     overflow: hidden;
-    padding: 50px 0;
-    background:
-        radial-gradient(circle at 84% -30%, rgba(57, 98, 220, .18), transparent 38%),
-        linear-gradient(135deg, #0d121d 0%, #090c14 100%);
+    padding: 56px 0;
+    background: #0b101a;
 }
 
 .proof-strip::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(90deg, transparent, #000 35%, #000 75%, transparent);
+    content: none;
 }
 
 .proof-strip__inner {
     position: relative;
-    grid-template-columns: minmax(320px, .82fr) minmax(0, 1.75fr);
-    gap: clamp(40px, 5vw, 72px);
+    grid-template-columns: minmax(300px, .78fr) minmax(0, 1.72fr);
+    gap: clamp(48px, 6vw, 88px);
+    align-items: start;
 }
 
 .proof-strip__intro h2 {
@@ -16087,86 +16080,80 @@ body.blog-page-body .footer {
 }
 
 .proof-strip__link {
-    padding-bottom: 4px;
-    border-bottom: 1px solid rgba(111, 146, 255, .55);
+    gap: 12px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, .32);
 }
 
-.proof-strip__link:hover { color: #9db6ff; }
+.proof-strip__link span { color: inherit; }
+.proof-strip__link:hover { border-color: #fff; }
 
 .proof-strip__cards {
-    gap: 12px;
-    border: 0;
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    border-bottom: 1px solid rgba(255, 255, 255, .18);
     background: transparent;
 }
 
 .proof-card {
     position: relative;
-    min-height: 174px;
-    padding: 24px 22px 22px;
-    overflow: hidden;
-    background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
-    border: 1px solid rgba(255, 255, 255, .12);
-    border-radius: 12px;
+    display: flex;
+    min-height: 214px;
+    padding: 30px 26px 26px;
+    flex-direction: column;
+    background: transparent;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 0;
     color: inherit;
     text-decoration: none;
-    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    transition: background-color .2s ease;
 }
 
-.proof-card:last-child { border-right: 1px solid rgba(255, 255, 255, .12); }
+.proof-card:last-child { border-right: 0; }
 
 .proof-card::before {
     content: none;
 }
 
 .proof-card:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035));
-    border-color: rgba(116, 151, 255, .38);
+    transform: none;
+    background: rgba(255, 255, 255, .035);
 }
 
-.proof-card__top { align-items: center; }
-
-.proof-card__index {
-    color: #66738b;
-    font-size: .66rem;
-    letter-spacing: .08em;
-}
+.proof-card__top { justify-content: flex-start; }
 
 .proof-card__status {
-    position: relative;
-    padding: 0 0 0 12px;
-    color: #c7d1e6;
+    padding: 0;
+    color: #8994a8;
     background: none;
     border: 0;
-    font-size: .66rem;
+    font-size: .68rem;
+    font-weight: 500;
+    letter-spacing: .04em;
 }
 
-.proof-card__status::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #5d87ff;
-    box-shadow: 0 0 0 4px rgba(93, 135, 255, .11);
-    transform: translateY(-50%);
-}
+.proof-card__status::before { content: none; }
 
-.proof-card__brand { margin-top: 30px; }
-.proof-card__brand img { width: 30px; height: 30px; }
-.proof-card h3 { font-size: 1.04rem; }
-.proof-card > p { margin-top: 12px; color: #a8b3c6; }
+.proof-card__brand { margin-top: 22px; }
+.proof-card__brand img { width: 32px; height: 32px; }
+.proof-card h3 { font-size: 1.06rem; }
+.proof-card > p {
+    margin: 14px 0 0 42px;
+    color: #a8b0bf;
+    font-size: .75rem;
+    line-height: 1.75;
+}
 
 .proof-card__visit {
     display: inline-flex;
     gap: 7px;
     align-items: center;
-    margin: 18px 0 0 40px;
-    color: #8eabff;
+    margin: auto 0 0 42px;
+    padding-top: 24px;
+    color: #f2f4f7;
     font-size: .68rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .proof-card__visit > span { transition: transform .2s ease; }
@@ -16175,8 +16162,10 @@ body.blog-page-body .footer {
 @media (max-width: 1100px) and (min-width: 901px) {
     .proof-strip__inner { grid-template-columns: 280px minmax(0, 1fr); gap: 30px; }
     .proof-strip__intro h2 { font-size: 1.55rem; }
-    .proof-card { padding-inline: 17px; }
+    .proof-card { padding-inline: 18px; }
     .proof-card h3 { font-size: .92rem; }
+    .proof-card > p,
+    .proof-card__visit { margin-left: 0; }
 }
 
 @media (max-width: 900px) {
@@ -16189,29 +16178,24 @@ body.blog-page-body .footer {
 
 @media (max-width: 640px) {
     .proof-strip__cards {
-        display: flex;
-        gap: 12px;
-        margin-right: calc(50% - 50vw);
-        padding-right: 24px;
-        overflow-x: auto;
-        overscroll-behavior-inline: contain;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-right: 0;
+        padding-right: 0;
+        overflow: visible;
     }
-
-    .proof-strip__cards::-webkit-scrollbar { display: none; }
 
     .proof-card {
-        flex: 0 0 min(78vw, 292px);
-        min-height: 184px;
-        padding: 20px;
-        border: 1px solid rgba(255, 255, 255, .12);
-        scroll-snap-align: start;
+        min-height: 0;
+        padding: 24px 4px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .14);
     }
 
-    .proof-card:last-child { border-bottom: 1px solid rgba(255, 255, 255, .12); }
-    .proof-card__brand { margin-top: 24px; }
-    .proof-card__visit { margin-top: 16px; }
+    .proof-card:last-child { border-bottom: 0; }
+    .proof-card__brand { margin-top: 16px; }
+    .proof-card > p { margin: 10px 0 0 42px; }
+    .proof-card__visit { margin: 18px 0 0 42px; padding-top: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
