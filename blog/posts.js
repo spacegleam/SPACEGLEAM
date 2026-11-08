@@ -1,5 +1,17 @@
 window.SPACEGLEAM_BLOG_POSTS = [
     {
+        slug: 'internal-ai-data-governance',
+        title: '社内データをAIに接続する前に決めること。権限・履歴・削除の設計',
+        date: '2026-11-09',
+        publishAt: '2026-11-09T09:00:00+09:00',
+        status: 'scheduled',
+        category: 'AI',
+        description: '国内の情報管理事例を踏まえ、生成AIを禁止するだけでなく安全に活用するための権限・履歴・削除を、DIFFsenseの知見から解説します。',
+        excerpt: '国内企業の生成AI利用と情報漏えい事例から、禁止だけでは防げない理由を整理。DIFFsenseの開発経験をもとに、安全な社内AIの作り方を提案します。',
+        url: 'https://spacegleam.co.jp/blog/internal-ai-data-governance/',
+        thumbnail: '/blog/internal-ai-data-governance/ogp.webp?v=20261108-v2'
+    },
+    {
         slug: 'php2shell-emergency-response-2026',
         title: 'PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止――企業が今すぐ確認すべきこと',
         date: '2026-10-26',

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>社内データをAIに接続する前に決めること。権限・履歴・削除の設計 | SPACE GLEAM</title>
+    <meta name="description" content="国内の情報管理事例を踏まえ、生成AIを禁止するだけでなく安全に活用するための権限・履歴・削除を、DIFFsenseの知見から解説します。">
+    <link rel="canonical" href="https://spacegleam.co.jp/blog/internal-ai-data-governance/">
+    <link rel="icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../style.css">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="社内データをAIに接続する前に決めること。権限・履歴・削除の設計">
+    <meta property="og:description" content="AIの精度を考える前に、誰が見られるか、何を記録するか、いつ消すかを決める。DIFFsenseの開発から得た実践知。">
+    <meta property="og:url" content="https://spacegleam.co.jp/blog/internal-ai-data-governance/">
+    <meta property="og:site_name" content="SPACE GLEAM">
+    <meta property="og:image" content="https://spacegleam.co.jp/blog/internal-ai-data-governance/ogp.png?v=20261108-v2">
+    <meta property="og:image:secure_url" content="https://spacegleam.co.jp/blog/internal-ai-data-governance/ogp.png?v=20261108-v2">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="社内AI導入の前に、権限・履歴・削除を決めていますか？SPACE GLEAM株式会社の記事アイキャッチ。">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="社内データをAIに接続する前に決めること。権限・履歴・削除の設計">
+    <meta name="twitter:description" content="AIの精度を考える前に、誰が見られるか、何を記録するか、いつ消すかを決める。DIFFsenseの開発から得た実践知。">
+    <meta name="twitter:image" content="https://spacegleam.co.jp/blog/internal-ai-data-governance/ogp.png?v=20261108-v2">
+    <meta name="twitter:image:alt" content="社内AI導入の前に、権限・履歴・削除を決めていますか？SPACE GLEAM株式会社の記事アイキャッチ。">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"社内データをAIに接続する前に決めること。権限・履歴・削除の設計","description":"国内の情報管理事例を踏まえ、生成AIを禁止するだけでなく安全に活用するための権限・履歴・削除を、DIFFsenseの知見から解説します。","datePublished":"2026-11-09","dateModified":"2026-11-09","author":{"@type":"Organization","name":"SPACE GLEAM"},"publisher":{"@type":"Organization","name":"SPACE GLEAM","logo":{"@type":"ImageObject","url":"https://spacegleam.co.jp/favicon.png"}},"mainEntityOfPage":"https://spacegleam.co.jp/blog/internal-ai-data-governance/","image":"https://spacegleam.co.jp/blog/internal-ai-data-governance/ogp.png?v=20261108-v2","articleSection":"AI"}</script>
+    <style>
+        .data-governance-hero { margin: 34px 0 64px; }
+        .data-governance-hero img { display: block; width: 100%; height: auto; }
+        .data-governance-hero figcaption { margin-top: 11px; color: #737373; font-size: .78rem; }
+        .governance-gates { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); margin: 38px 0 68px; border-top: 1px solid #111; border-bottom: 1px solid #111; }
+        .governance-gate { min-height: 0; padding: 28px 24px 30px 0; }
+        .governance-gate + .governance-gate { padding-left: 24px; border-left: 1px solid #d8d8d8; }
+        .governance-gate small { color: #777; font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
+        .governance-gate strong { display: block; margin: 8px 0 9px; color: #111; font-size: 1.28rem; }
+        .governance-gate p { margin: 0 !important; color: #555; font-size: .92rem; line-height: 1.75; }
+        .incident-grid { margin: 32px 0 42px; border-top: 2px solid #111; }
+        .incident-card { display: grid; grid-template-columns: 142px minmax(0,1fr); column-gap: 24px; padding: 26px 0; border-bottom: 1px solid #d8d8d8; }
+        .incident-card small { grid-row: 1 / 4; color: #666; font-size: .72rem; font-weight: 700; letter-spacing: .08em; }
+        .incident-card strong { display: block; margin: 0 0 8px; color: #111; font-size: 1.1rem; line-height: 1.55; }
+        .incident-card p { margin: 0 0 11px !important; color: #555; font-size: .92rem; line-height: 1.85; }
+        .incident-card a { color: #111; font-size: .8rem; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+        .incident-takeaway { display: grid; grid-template-columns: minmax(180px,230px) minmax(0,1fr); gap: 28px; align-items: center; margin: 46px 0 70px; padding: 24px 0; border-top: 1px solid #d8d8d8; border-bottom: 1px solid #d8d8d8; }
+        .incident-takeaway img { display: block; width: 100%; height: 138px; object-fit: cover; object-position: right center; border: 1px solid #e2e2e2; }
+        .incident-takeaway strong { display: block; margin-bottom: 8px; color: #111; font-size: 1.08rem; line-height: 1.6; }
+        .incident-takeaway p { margin: 0 !important; color: #555; font-size: .92rem; line-height: 1.85; }
+        .editorial-photo { margin: 58px 0 72px; }
+        .article-content h2 + .editorial-photo { margin-top: 20px; }
+        .editorial-photo img { display: block; width: 100%; height: clamp(280px,46vw,520px); object-fit: cover; }
+        .editorial-photo.is-product-screen img { height: auto; max-height: none; object-fit: contain; border: 1px solid #e2e2e2; }
+        .editorial-photo figcaption { display: flex; justify-content: space-between; gap: 24px; margin-top: 11px; color: #737373; font-size: .75rem; line-height: 1.65; }
+        .editorial-photo figcaption a { flex: none; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+        .diffsense-feature { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(260px,.95fr); gap: 30px; align-items: center; margin: 34px 0 58px; }
+        .diffsense-feature.is-reverse { grid-template-columns: minmax(260px,.95fr) minmax(0,1.05fr); }
+        .diffsense-feature.is-reverse .diffsense-feature__visual { order: 2; }
+        .diffsense-feature__visual { overflow: hidden; border: 1px solid #ddd; background: #fff; }
+        .diffsense-feature__visual img { display: block; width: 100%; height: auto; }
+        .diffsense-feature > h2 { grid-column: 1 / -1; order: -1; margin: 0 0 -4px !important; }
+        .diffsense-feature__copy p:last-child { margin-bottom: 0; }
+        .data-lifecycle { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 32px 0 50px; border-top: 1px solid #111; border-bottom: 1px solid #111; color: #111; }
+        .data-lifecycle div { position: relative; padding: 24px 18px 25px 0; }
+        .data-lifecycle div + div { padding-left: 18px; border-left: 1px solid #d8d8d8; }
+        .data-lifecycle div:not(:last-child)::after { content: "→"; position: absolute; right: -7px; top: 50%; z-index: 2; transform: translateY(-50%); background: #fff; color: #777; font-weight: 700; }
+        .data-lifecycle small { display: block; color: #777; font-weight: 700; }
+        .data-lifecycle strong { display: block; margin-top: 5px; font-size: .96rem; }
+        .governance-checklist { margin: 30px 0 54px !important; padding: 0 !important; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 34px; border-top: 1px solid #111; list-style: none; }
+        .governance-checklist li { margin: 0 !important; padding: 19px 0; border-bottom: 1px solid #d8d8d8; }
+        .consultation-entry { margin: 46px 0 56px; padding: 34px 0 30px; border-top: 2px solid #111; border-bottom: 1px solid #d8d8d8; }
+        .consultation-entry h3 { margin: 0 0 17px; color: #111; font-size: clamp(1.25rem,2.4vw,1.65rem); line-height: 1.5; }
+        .consultation-entry ul { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; margin: 24px 0 0 !important; padding: 0 !important; border-top: 1px solid #d8d8d8; list-style: none; }
+        .consultation-entry li { margin: 0 !important; padding: 20px 20px 20px 0; border-bottom: 1px solid #d8d8d8; color: #333; font-size: .9rem; line-height: 1.75; }
+        .consultation-entry li + li { padding-left: 20px; border-left: 1px solid #d8d8d8; }
+        @media (max-width: 720px) {
+            .governance-gates, .diffsense-feature, .diffsense-feature.is-reverse, .data-lifecycle, .governance-checklist { grid-template-columns: minmax(0,1fr); }
+            .governance-gate { padding: 21px 0; }
+            .governance-gate + .governance-gate { padding-left: 0; border-top: 1px solid #d8d8d8; border-left: 0; }
+            .incident-card { grid-template-columns: minmax(0,1fr); row-gap: 8px; }
+            .incident-card small { grid-row: auto; }
+            .incident-takeaway { grid-template-columns: minmax(0,1fr); gap: 18px; margin-bottom: 54px; }
+            .incident-takeaway img { width: min(78%,260px); height: 128px; }
+            .editorial-photo { margin: 44px 0 54px; }
+            .article-content h2 + .editorial-photo { margin-top: 16px; }
+            .editorial-photo figcaption { display: block; }
+            .editorial-photo figcaption a { display: inline-block; margin-top: 4px; }
+            .diffsense-feature { gap: 20px; margin-bottom: 48px; }
+            .diffsense-feature.is-reverse .diffsense-feature__visual { order: 0; }
+            .diffsense-feature > h2 { font-size: 1.28rem; line-height: 1.45; }
+            .data-lifecycle div { padding: 20px 0; }
+            .data-lifecycle div + div { padding-left: 0; border-top: 1px solid #d8d8d8; border-left: 0; }
+            .data-lifecycle div:not(:last-child)::after { content: none; }
+            .consultation-entry ul { grid-template-columns: minmax(0,1fr); }
+            .consultation-entry li { padding: 17px 0; }
+            .consultation-entry li + li { padding-left: 0; border-left: 0; }
+        }
+    </style>
+</head>
+<body class="blog-page-body" data-article-slug="internal-ai-data-governance">
+    <div class="site-bg" aria-hidden="true"></div>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="../../index.html" class="brand" aria-label="SPACE GLEAM ホーム"><span class="brand-name">SPACE GLEAM</span></a>
+            <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-controls="global-nav" aria-expanded="false"><span></span><span></span><span></span></button>
+            <nav id="global-nav" class="nav" aria-label="グローバルナビゲーション">
+                <ul class="nav-list">
+                    <li><a href="../../services.html">AI業務システム開発</a></li>
+                    <li><a href="../../pricing.html">料金</a></li>
+                    <li><a href="../../works.html">実績</a></li>
+                    <li><a href="../../faq.html">FAQ</a></li>
+                    <li><a href="../../partner.html">パートナー制度</a></li>
+                    <li><a href="../index.html" aria-current="page">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="header-ctas"><a href="../../contact.html" class="header-cta">AI開発について無料で相談する<span class="arrow">→</span></a></div>
+        </div>
+    </header>
+
+    <main class="blog-main">
+        <div class="container">
+            <article>
+                <header class="article-header">
+                    <div class="article-meta"><time datetime="2026-11-09">2026年11月9日</time><span class="article-category">AI</span></div>
+                    <h1>社内データをAIに接続する前に決めること。権限・履歴・削除の設計</h1>
+                    <p class="article-lead">社内データをAIに接続するとき、最初に精度や回答速度を確認したくなります。しかし、本番運用で先に問題になるのは、誰が何を見られるのか、操作を後から追えるのか、不要になったデータを消せるのかです。契約書を扱うDIFFsenseの開発を通じて、私たちが重要だと考える設計の順番を整理します。</p>
+                </header>
+
+                <div class="article-content">
+                    <figure class="data-governance-hero">
+                        <img src="../../images/diffsense-ui-contracts-latest.webp" alt="DIFFsenseの契約書・規約管理画面" width="1685" height="1050" loading="eager" decoding="async">
+                        <figcaption>機密データを一覧に集めるほど、「誰が、何を、どこまで扱えるか」の設計が重要になります。</figcaption>
+                    </figure>
+
+                    <p>社内規程、契約書、顧客情報をAIにつなげれば、検索や要約、比較は速くなります。</p>
+                    <p>ただし、AIが便利に答えるほど、情報は一つの画面へ集まります。<strong>AIへの接続は、新しい閲覧経路を作ること</strong>です。</p>
+                    <p>たとえば、法務だけが開いていた契約書をAI検索の対象にするとします。営業担当者が顧客名を質問しただけで、交渉中の価格や未公開の契約条件まで回答に混ざるかもしれません。</p>
+                    <p>元のフォルダでは守れていた権限が、AIの回答では抜け落ちる。これはAIの精度ではなく、接続方法の問題です。</p>
+                    <p>この記事では、導入後に慌てて制限を足すのではなく、<strong>最初から安全に使い続けるための順番</strong>をお伝えします。</p>
+
+                    <div class="governance-gates" aria-label="社内AIで先に決める3項目">
+                        <div class="governance-gate"><small>確認 01</small><strong>権限</strong><p>誰が、どのデータを、何の目的で扱えるか。</p></div>
+                        <div class="governance-gate"><small>確認 02</small><strong>履歴</strong><p>誰が、いつ、何を処理し、何が返ったか。</p></div>
+                        <div class="governance-gate"><small>確認 03</small><strong>削除</strong><p>原本と派生データを、いつ、どこまで消すか。</p></div>
+                    </div>
+
+                    <h2>国内ニュースから見えた「禁止だけでは止まらない」現実</h2>
+                    <figure class="editorial-photo">
+                        <img src="team-ai-work.webp" alt="モニターとマイクが設置された無人の会議室" width="1400" height="933" loading="lazy" decoding="async">
+                        <figcaption><span>ルールは資料の中だけでなく、現場が日々使える手順に落とし込むことが大切です。</span><a href="https://www.pexels.com/photo/black-monitors-on-wooden-table-in-a-conference-room-6949382/" target="_blank" rel="noopener noreferrer">Photo: Werner Pfennig / Pexels ↗</a></figcaption>
+                    </figure>
+                    <p>生成AIの利用ルールを作っただけで、情報管理が終わるわけではありません。国内の最近の公表事例を見ると、現場が便利さを求める一方で、会社が安全な使い方を用意できていないという共通点が見えます。</p>
+                    <div class="incident-grid">
+                        <article class="incident-card">
+                            <small>2026.10 / PANASONIC</small>
+                            <strong>利用禁止の外部生成AIへ、人事情報をアップロード</strong>
+                            <p>パナソニック グループ（パナソニック オペレーショナル エクセレンス）は、人事情報システムの導入プロジェクトのメンバーが、従業員、元従業員、ご家族の個人情報を、利用を禁止していた外部生成AIへアップロードしたと公表しました。生成AI事業者からは、削除したデータも30日間は事業者側に残るとの説明があったとされています。</p>
+                            <a href="https://holdings.panasonic/jp/information/topics/20261023.html" target="_blank" rel="noopener noreferrer">公式発表を見る ↗</a>
+                        </article>
+                        <article class="incident-card">
+                            <small>2026.11 / APPLYNOW</small>
+                            <strong>保管期限がなく、利用終了後のデータも残っていた</strong>
+                            <p>ApplyNowは、不正アクセスにより、ユーザー約39万7千人分をはじめとする個人情報が漏えいしたと公表しました。原因の一つとして、データの保管期間を定めず、利用終了企業のデータも削除されていなかったことを挙げています。</p>
+                            <a href="https://applynow.co.jp/news/20261104" target="_blank" rel="noopener noreferrer">公式調査結果を見る ↗</a>
+                        </article>
+                        <article class="incident-card">
+                            <small>2025 / IPA国内調査</small>
+                            <strong>国内企業の約半数は、生成AIの業務ルールが未整備</strong>
+                            <p>IPAの国内調査では、生成AIの業務利用について何らかのルールを定めている割合は52.0%でした。禁止と許可がほぼ半々で、安全に使える環境づくりはまだ途中です。</p>
+                            <a href="https://www.ipa.go.jp/pressrelease/2025/press20250829.html" target="_blank" rel="noopener noreferrer">IPAの調査を見る ↗</a>
+                        </article>
+                    </div>
+                    <div class="incident-takeaway">
+                        <img src="../../images/diffsense-site-one-step-analysis.webp" alt="契約書を取り込み、必要な情報を一括で確認するDIFFsenseの画面" width="1024" height="544" loading="lazy" decoding="async">
+                        <div>
+                            <strong>安全に使える選択肢を、日々の業務の中へ。</strong>
+                            <p>外部AIを一律に制限するだけでなく、利用者・対象データ・保存期間を決めた社内向けの環境を用意することで、現場の使いやすさと情報管理を両立しやすくなります。</p>
+                        </div>
+                    </div>
+
+                    <h2>DIFFsenseで見えた、AI精度より先の設計</h2>
+                    <figure class="editorial-photo">
+                        <img src="secure-data-infrastructure.webp" alt="社内データを保存・処理するサーバー機器" width="1400" height="933" loading="lazy" decoding="async">
+                        <figcaption><span>画面から見えない保存先や一時データまで含めて、情報の流れを把握します。</span><a href="https://www.pexels.com/photo/computer-server-in-data-center-room-17489156/" target="_blank" rel="noopener noreferrer">Photo: panumas nikhomkhai / Pexels ↗</a></figcaption>
+                    </figure>
+                    <p>私たちは、契約書の差分比較、要約、リスク整理を行うDIFFsenseを自社で開発・運営しています。</p>
+                    <p>契約書には、価格、個人情報、交渉中の条件が含まれます。比較結果が正しくても、見てはいけない人へ表示されればシステムとしては失敗です。</p>
+                    <p>開発当初は、二つの契約書から変更箇所を正確に見つけることへ意識が向きます。しかし実際に運用を考えると、「誰がこの文書を登録したのか」「過去に何を解析したのか」「もう不要な文書をどう扱うのか」が、同じくらい重要になります。</p>
+                    <p>ここで私たちの視点は、AIの回答を作る機能から、<strong>機密データを預かる業務システム</strong>へ変わりました。権限・履歴・削除は、その転換から見えてきた三つの土台です。</p>
+
+                    <section class="diffsense-feature">
+                        <h2>権限はAIに判断させない</h2>
+                        <div class="diffsense-feature__visual"><img src="../../images/diffsense-ui-diff-latest.webp" alt="DIFFsenseで2つの契約書の差分を確認する画面" width="1685" height="1050" loading="lazy" decoding="async"></div>
+                        <div class="diffsense-feature__copy">
+                            <p>利用者、対象データ、操作の三軸で範囲を決めます。</p>
+                            <p>契約書を閲覧できても、共有や出力は別の許可にできます。<strong>システム側で範囲を決め、その中だけをAIへ渡す</strong>のが基本です。</p>
+                            <p>この順番なら、AIが想定外の回答をしても、そもそも権限外の情報は材料に入りません。利用部門が増えたときも、部署や案件ごとに安全に範囲を広げられます。</p>
+                        </div>
+                    </section>
+
+                    <section class="diffsense-feature is-reverse">
+                        <h2>履歴は説明と改善のために残す</h2>
+                        <div class="diffsense-feature__visual"><img src="../../images/diffsense-ui-history-latest.webp" alt="DIFFsenseの解析ログ・監査履歴画面" width="1685" height="1050" loading="lazy" decoding="async"></div>
+                        <div class="diffsense-feature__copy">
+                            <p>AIの回答は、利用するサービスや社内資料の更新で変わります。</p>
+                            <p>利用者、日時、対象、処理結果、人の修正を記録します。ただし機密文書を丸ごと複製せず、いつ・誰が・何を処理したかだけで追える部分と分けます。</p>
+                            <p>履歴があれば、誤った結果が出たときに、データ・設定・操作のどこを直すべきかを切り分けられます。利用者を監視するためではなく、<strong>説明できる運用へ変えるため</strong>に残します。</p>
+                        </div>
+                    </section>
+
+                    <h2>削除はデータの流れで考える</h2>
+                    <figure class="editorial-photo">
+                        <img src="data-retention-review.webp" alt="机に置かれた業務書類、眼鏡、筆記具" width="1400" height="933" loading="lazy" decoding="async">
+                        <figcaption><span>保存期間や削除の責任者まで決めると、運用開始後の迷いを減らせます。</span><a href="https://www.pexels.com/photo/documents-and-eyeglasses-on-desk-8085254/" target="_blank" rel="noopener noreferrer">Photo: Ron Lach / Pexels ↗</a></figcaption>
+                    </figure>
+                    <p>AIへ渡したデータは、元のファイルだけに存在するとは限りません。AIが探すために作ったデータ、一時保存、利用履歴、バックアップなど、複数の場所に残ります。</p>
+                    <div class="data-lifecycle" aria-label="AIに接続したデータの流れ">
+                        <div><small>01</small><strong>原本を登録</strong></div>
+                        <div><small>02</small><strong>AI処理へ受け渡す</strong></div>
+                        <div><small>03</small><strong>履歴・索引を保存</strong></div>
+                        <div><small>04</small><strong>期限後に削除</strong></div>
+                    </div>
+                    <p>原本を消したとき、検索用データも消えるか。バックアップから消えるまで何日か。保存義務がある記録は何か。<strong>削除ボタンより先に、保存期間と責任者を決めます。</strong></p>
+                    <p>ここは見落とされやすい転換点です。安全のために履歴を増やしすぎると、消すべき機密情報の複製も増えます。反対に、何も残さなければ問題が起きたときに原因を説明できません。</p>
+                    <p>だからこそ、本文そのものを残すのか、文書IDと処理結果だけを残すのかを分けます。<strong>追跡できることと、持ちすぎないことの両立</strong>が必要です。</p>
+
+                    <h2>導入前に確認する6項目</h2>
+                    <figure class="editorial-photo">
+                        <img src="ai-plan-review.webp" alt="ノートパソコン、業務書類、拡大鏡を並べたデスク" width="1400" height="933" loading="lazy" decoding="async">
+                        <figcaption><span>対象業務を一つ選び、利用者・履歴・保存期間を具体的な計画へ落とし込みます。</span><a href="https://www.pexels.com/photo/documents-beside-a-laptop-8112204/" target="_blank" rel="noopener noreferrer">Photo: Pavel Danilyuk / Pexels ↗</a></figcaption>
+                    </figure>
+                    <p>実務では、次の6項目を一枚にまとめるだけでも、開発会社との認識違いを減らせます。</p>
+                    <ul class="governance-checklist">
+                        <li><strong>データ</strong><br>何をAIへ接続するか</li>
+                        <li><strong>責任者</strong><br>利用目的を誰が決めるか</li>
+                        <li><strong>利用者</strong><br>閲覧・解析・共有を誰に許すか</li>
+                        <li><strong>処理目的</strong><br>検索・要約・比較のどれか</li>
+                        <li><strong>履歴</strong><br>何を残し、誰が確認するか</li>
+                        <li><strong>保存期間</strong><br>原本と派生データをいつ消すか</li>
+                    </ul>
+                    <p>この表を作るメリットは、セキュリティ担当者だけにありません。経営者は導入範囲を判断しやすくなり、現場は「何をAIへ入れてよいか」で迷わなくなります。開発側も、必要な画面・権限・ログを見積もりへ反映できます。</p>
+                    <p>最初から全社のデータを整理する必要はありません。まずは契約書や議事録など一種類を選び、利用者と保存期間を決めます。その設計を型として、対象を広げていく方が現実的です。</p>
+
+                    <h2>安全な社内AIを、3段階でご提案します</h2>
+                    <figure class="editorial-photo">
+                        <img src="empty-workspace-planning.webp" alt="ノートパソコン、手帳、ノートを並べた無人のワークスペース" width="1400" height="933" loading="lazy" decoding="async">
+                        <figcaption><span>AIを使う場面と、扱う資料の範囲を業務単位で整理します。</span><a href="https://www.pexels.com/photo/close-up-of-a-work-setup-on-a-glass-table-5710667/" target="_blank" rel="noopener noreferrer">Photo: Arina Krasnikova / Pexels ↗</a></figcaption>
+                    </figure>
+                    <div class="governance-gates" aria-label="SPACE GLEAMの社内AI導入支援">
+                        <div class="governance-gate"><small>導入 01</small><strong>現状を整理</strong><p>資料の保存場所、利用者、困っている作業を一緒に確認します。</p></div>
+                        <div class="governance-gate"><small>導入 02</small><strong>使える範囲を設計</strong><p>誰が何を扱えるか、何を履歴へ残すか、いつ消すかを決めます。</p></div>
+                        <div class="governance-gate"><small>導入 03</small><strong>業務へ導入</strong><p>一つの業務から始め、利用状況を見ながら対象を広げます。</p></div>
+                    </div>
+                    <p>単に外部AIの利用を止めるのではなく、現場が安心して使える選択肢を会社側で用意する。これが、便利さを失わずに情報を守る方法です。</p>
+
+                    <h2>DIFFsenseの知見を、御社の社内AIへ</h2>
+                    <figure class="editorial-photo is-product-screen">
+                        <img src="../../images/diffsense-ui-revision-latest.png" alt="契約書のリスクと修正文案を確認できるDIFFsenseの修正案画面" width="1070" height="832" loading="lazy" decoding="async">
+                        <figcaption><span>DIFFsenseでは、AIが検出したリスクと修正文案を、理由とともに確認できる業務画面へ整理しています。</span></figcaption>
+                    </figure>
+                    <p>DIFFsenseで契約書の差分と履歴を扱ってきた経験は、契約業務だけのものではありません。</p>
+                    <p>権限を先に決めれば、情報を見せすぎる事故を防げます。履歴を設計すれば、結果の根拠と改善点を追えます。削除範囲を決めれば、不要なデータを持ち続けるリスクを減らせます。</p>
+                    <p>この三つが揃うと、社内AIは一度の実験ではなく、部署や業務をまたいで育てられる仕組みになります。読者の皆さまが導入前に持ち帰るべき結論は、<strong>AIへ何をさせるかと同時に、何をさせないかを決める</strong>ことです。</p>
+                    <p>SPACE GLEAMでは、AI機能に加えて、権限、履歴、削除、承認を一つの運用として設計します。「どのAIを選べばよいか」が決まっていなくても構いません。現在の保存場所と業務フローを確認し、情報を守りながら効果が出やすい業務からご提案します。</p>
+
+                    <section class="consultation-entry" aria-labelledby="consultation-entry-title">
+                        <h3 id="consultation-entry-title">こんな段階からご相談いただけます</h3>
+                        <p>要件定義書は不要です。対象業務と資料を確認し、着手しやすい範囲を一緒に整理します。</p>
+                        <ul>
+                            <li>社内資料を安全にAI検索したい</li>
+                            <li>外部AIに代わる環境が必要</li>
+                            <li>費用と進め方を知りたい</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+
+            <div class="article-cta">
+                <div><strong>社内データを安全にAIへつなぐ設計を相談する</strong><p>DIFFsenseの開発・運営で得た知見をもとに、権限・履歴・削除を含む業務システムをご提案します。</p></div>
+                <a href="../../contact.html">社内AIの進め方を無料で相談する</a>
+            </div>
+            <section class="related-section"><h2>関連記事</h2><div class="related-grid" data-related-posts></div></section>
+            <div class="article-nav"><a href="../index.html" class="article-nav-back">一覧に戻る</a></div>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="container footer-bottom"><p class="copyright">&copy; 2026 SPACE GLEAM. All rights reserved.</p></div></footer>
+    <script src="../../script.js"></script>
+    <script src="../posts.js"></script>
+    <script src="../blog.js"></script>
+</body>
+</html>
