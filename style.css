@@ -16069,7 +16069,7 @@ body.blog-page-body .footer {
 }
 
 .proof-strip__intro h2 {
-    font-size: clamp(1.65rem, 2.1vw, 2.1rem);
+    font-size: clamp(1.82rem, 2.35vw, 2.35rem);
     line-height: 1.42;
 }
 
@@ -16082,12 +16082,15 @@ body.blog-page-body .footer {
     max-width: 33em;
     margin: 16px 0 20px;
     color: #aeb7c9;
+    font-size: .94rem;
+    line-height: 1.8;
 }
 
 .proof-strip__link {
     gap: 12px;
     padding-bottom: 3px;
     border-bottom: 1px solid rgba(255, 255, 255, .32);
+    font-size: .9rem;
 }
 
 .proof-strip__link span { color: inherit; }
@@ -16108,8 +16111,8 @@ body.blog-page-body .footer {
     display: grid;
     grid-template-columns: minmax(180px, .78fr) minmax(220px, 1.25fr) auto;
     grid-template-areas: "brand description meta";
-    min-height: 96px;
-    padding: 19px 4px;
+    min-height: 108px;
+    padding: 22px 4px;
     column-gap: clamp(22px, 3vw, 44px);
     align-items: center;
     background: transparent;
@@ -16138,7 +16141,7 @@ body.blog-page-body .footer {
     color: #8994a8;
     background: none;
     border: 0;
-    font-size: .68rem;
+    font-size: .77rem;
     font-weight: 500;
     letter-spacing: .04em;
 }
@@ -16150,12 +16153,12 @@ body.blog-page-body .footer {
     margin-top: 0;
 }
 .proof-card__brand img { width: 32px; height: 32px; }
-.proof-card h3 { font-size: 1.02rem; }
+.proof-card h3 { font-size: 1.15rem; }
 .proof-card > p {
     grid-area: description;
     margin: 0;
     color: #a8b0bf;
-    font-size: .75rem;
+    font-size: .86rem;
     line-height: 1.75;
 }
 
@@ -16175,13 +16178,14 @@ body.blog-page-body .footer {
 
 @media (max-width: 1100px) and (min-width: 901px) {
     .proof-strip__inner { grid-template-columns: 280px minmax(0, 1fr); gap: 30px; }
-    .proof-strip__intro h2 { font-size: 1.55rem; }
+    .proof-strip__intro h2 { font-size: 1.72rem; }
     .proof-card {
         grid-template-columns: minmax(150px, .8fr) minmax(180px, 1.15fr) auto;
         padding-inline: 2px;
         column-gap: 18px;
     }
-    .proof-card h3 { font-size: .92rem; }
+    .proof-card h3 { font-size: 1.02rem; }
+    .proof-card > p { font-size: .78rem; }
 }
 
 @media (max-width: 900px) {
@@ -16191,7 +16195,7 @@ body.blog-page-body .footer {
         gap: 26px;
         width: min(100% - 28px, 1120px);
     }
-    .proof-strip__intro h2 { font-size: clamp(1.55rem, 6vw, 1.95rem); }
+    .proof-strip__intro h2 { font-size: clamp(1.72rem, 7vw, 2.08rem); }
     .proof-strip__intro h2 span { white-space: normal; }
     .proof-strip__intro > p:not(.proof-strip__eyebrow) { margin: 12px 0 16px; }
 
@@ -16230,7 +16234,9 @@ body.blog-page-body .footer {
     .proof-card__brand { margin-top: 0; }
     .proof-card > p { margin: 0 0 0 42px; }
     .proof-card__meta { gap: 12px; }
-    .proof-card__status { font-size: .64rem; }
+    .proof-card h3 { font-size: 1.05rem; }
+    .proof-card > p { font-size: .82rem; line-height: 1.7; }
+    .proof-card__status { font-size: .7rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
