@@ -2233,9 +2233,11 @@ select {
         color: #374151 !important;
     }
 
-    /* スマホヒーロー: セカンダリボタン非表示、プライマリをダーク化 */
+    /* スマホヒーロー: 2つのCTAを縦並びにしてタップ領域を確保 */
     .hero-actions .btn-secondary {
-        display: none !important;
+        display: inline-flex !important;
+        width: 100% !important;
+        justify-content: center !important;
     }
     .hero-actions .btn-primary {
         background: #111827 !important;
@@ -10939,7 +10941,9 @@ br.sp-only {
     }
 
     .hero-actions .btn-secondary {
-        display: none !important;
+        display: inline-flex !important;
+        width: 100% !important;
+        justify-content: center !important;
     }
 
     .mobile-fixed-cta {
