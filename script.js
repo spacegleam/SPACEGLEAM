@@ -111,26 +111,37 @@ const initializeSpaceGleamSite = () => {
         document.head.appendChild(recaptchaScript);
     }
 
-    const setHeaderState = () => {
-        if (!header) return;
-        header.classList.toggle('is-scrolled', window.scrollY > 12);
-    };
-
-    const setMobileFixedCtaState = () => {
-        if (!mobileFixedCta) return;
-        const visible = window.scrollY > Math.min(520, window.innerHeight * .72);
-        mobileFixedCta.classList.toggle('is-visible', visible);
-        mobileFixedCta.setAttribute('aria-hidden', String(!visible));
-        mobileFixedCta.tabIndex = visible ? 0 : -1;
-    };
-
-    if (!window.__spaceGleamCriticalReady) {
-        setHeaderState();
-        window.addEventListener('scroll', setHeaderState, { passive: true });
+    if (!window.__spaceGleamRequestViewportUpdate) {
+        let viewportFrame = 0;
+        let lastHeaderScrolled = null;
+        let lastMobileCtaVisible = null;
+        const updateViewportState = () => {
+            viewportFrame = 0;
+            const headerScrolled = window.scrollY > 12;
+            if (header && headerScrolled !== lastHeaderScrolled) {
+                header.classList.toggle('is-scrolled', headerScrolled);
+                lastHeaderScrolled = headerScrolled;
+            }
+            if (mobileFixedCta) {
+                const mobileCtaVisible = window.scrollY > Math.min(520, window.innerHeight * .72);
+                if (mobileCtaVisible !== lastMobileCtaVisible) {
+                    mobileFixedCta.classList.toggle('is-visible', mobileCtaVisible);
+                    mobileFixedCta.setAttribute('aria-hidden', String(!mobileCtaVisible));
+                    mobileFixedCta.tabIndex = mobileCtaVisible ? 0 : -1;
+                    lastMobileCtaVisible = mobileCtaVisible;
+                }
+            }
+        };
+        window.__spaceGleamRequestViewportUpdate = () => {
+            if (viewportFrame) return;
+            viewportFrame = window.requestAnimationFrame(updateViewportState);
+        };
+        updateViewportState();
+        window.addEventListener('scroll', window.__spaceGleamRequestViewportUpdate, { passive: true });
+        window.addEventListener('resize', window.__spaceGleamRequestViewportUpdate, { passive: true });
+    } else {
+        window.__spaceGleamRequestViewportUpdate();
     }
-    setMobileFixedCtaState();
-    window.addEventListener('scroll', setMobileFixedCtaState, { passive: true });
-    window.addEventListener('resize', setMobileFixedCtaState, { passive: true });
 
     if (navToggle && nav && !window.__spaceGleamCriticalReady) {
         navToggle.addEventListener('click', () => {
@@ -139,6 +150,31 @@ const initializeSpaceGleamSite = () => {
             navToggle.setAttribute('aria-expanded', String(isOpen));
             document.body.classList.toggle('nav-open', isOpen);
         });
+    }
+
+    if (nav && !nav.dataset.prefetchReady) {
+        nav.dataset.prefetchReady = 'true';
+        const prefetchedMenuPages = new Set();
+        const warmMenuDestination = (target) => {
+            const link = target?.closest?.('.nav a[href]');
+            if (!link || link.target === '_blank') return;
+            let url;
+            try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+            url.hash = '';
+            if (url.origin !== window.location.origin || url.href === window.location.href || prefetchedMenuPages.has(url.href)) return;
+            prefetchedMenuPages.add(url.href);
+            fetch(url.href, { credentials: 'same-origin', cache: 'force-cache', priority: 'low' }).catch(() => {});
+        };
+        nav.addEventListener('pointerover', (event) => warmMenuDestination(event.target), { passive: true });
+        nav.addEventListener('focusin', (event) => warmMenuDestination(event.target), { passive: true });
+        nav.addEventListener('touchstart', (event) => warmMenuDestination(event.target), { passive: true });
+        window.addEventListener('load', () => {
+            const warmAllMenuPages = () => nav.querySelectorAll('a[href]').forEach((link, index) => {
+                setTimeout(() => warmMenuDestination(link), index * 120);
+            });
+            if ('requestIdleCallback' in window) requestIdleCallback(warmAllMenuPages, { timeout: 2200 });
+            else setTimeout(warmAllMenuPages, 800);
+        }, { once: true });
     }
 
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -397,7 +433,13 @@ const initializeSpaceGleamSite = () => {
             { baseAngle: Math.PI * 0.5,   angleWidth: 0.38, maxAlpha: 0.04, speed: 0.18, phase: 2.5,  pulseSpeed: 0.25, pulsePhase: 3.5 }  // Wide ambient glow
         ];
 
+        let animationFrame = 0;
+        let isVisible = false;
         const animate = () => {
+            if (!isVisible) {
+                animationFrame = 0;
+                return;
+            }
             ctx.clearRect(0, 0, width, height);
 
             // Light source origin coordinates aligned to the doorway in the background image
@@ -434,10 +476,14 @@ const initializeSpaceGleamSite = () => {
                 ctx.fill();
             });
 
-            requestAnimationFrame(animate);
+            animationFrame = requestAnimationFrame(animate);
         };
 
-        animate();
+        const visibilityObserver = new IntersectionObserver((entries) => {
+            isVisible = entries[0]?.isIntersecting === true;
+            if (isVisible && !animationFrame) animationFrame = requestAnimationFrame(animate);
+        }, { rootMargin: '120px 0px' });
+        visibilityObserver.observe(canvas);
     };
 
     initLightShafts('hero-light-shafts');

@@ -58,7 +58,7 @@ function page() {
     <meta name="robots" content="noindex,nofollow">
     <title>Blog Admin | SPACE GLEAM</title>
     <link rel="icon" href="https://spacegleam.co.jp/favicon.png">
-    <link rel="stylesheet" href="https://spacegleam.co.jp/style.css?v=blog-editor-20260602-admin">
+    <link rel="stylesheet" href="https://spacegleam.co.jp/style.css?v=compact-header-all-pages-20261110-v11">
     <style>
         :root {
             --admin-bg: #f5f3ef;
@@ -402,7 +402,7 @@ function page() {
     </style>
 </head>
 <body class="blog-page-body blog-admin-body">
-    <header class="header">
+    <header class="header header-concept-a">
         <div class="container header-inner">
                 <a href="https://spacegleam.co.jp/" class="brand" aria-label="SPACE GLEAM ホーム">
                 <span class="brand-name">SPACE GLEAM</span>

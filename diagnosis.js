@@ -506,7 +506,7 @@
         '</header>' +
         '<div class="home-diag-download-callout">' +
           '<span class="home-diag-download-callout__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 3h11l6 6v20H8z"></path><path d="M19 3v7h6M12 18h8M12 22h8"></path></svg></span>' +
-          '<span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong>診断結果をPDFで無料ダウンロード</strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>' +
+          '<span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong><span>診断結果をPDFで</span><span>無料ダウンロード</span></strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>' +
           '<span class="home-diag-download-callout__badge">無料</span>' +
         '</div>' +
         '<div class="home-diag-showcase__body">' +
@@ -522,14 +522,6 @@
                 '<span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="8" ry="4"></ellipse><path d="M8 8v8c0 2.2 3.6 4 8 4s8-1.8 8-4V8M8 16v8c0 2.2 3.6 4 8 4s8-1.8 8-4v-8"></path></svg></span>' +
                 '<span class="diag-card__feature-copy"><strong class="diag-card__feature-title">概算費用</strong><span class="diag-card__feature-sub">開発予算の目安</span></span>' +
               '</div>' +
-              '<div class="diag-card__feature">' +
-                '<span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26V7M5 26h22M9 21l5-6 4 3 7-9"></path><path d="M21 9h4v4"></path></svg></span>' +
-                '<span class="diag-card__feature-copy"><strong class="diag-card__feature-title">導入効果</strong><span class="diag-card__feature-sub">期待できる効果</span></span>' +
-              '</div>' +
-              '<div class="diag-card__feature">' +
-                '<span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h20v14H15l-6 5v-5H6z"></path><path d="M11 13h10M11 17h7"></path></svg></span>' +
-                '<span class="diag-card__feature-copy"><strong class="diag-card__feature-title">個別アドバイス</strong><span class="diag-card__feature-sub">おすすめの進め方</span></span>' +
-              '</div>' +
             '</div>' +
             '<button type="button" class="diag-card__btn diag-btn-primary" id="diagStart"><span class="diag-card__btn-sparkle" aria-hidden="true">✦</span>' + (hasProgress ? '診断を再開する' : '無料で診断をはじめる') + '<span class="arrow" aria-hidden="true">→</span></button>' +
             (hasProgress ? '<button type="button" class="diag-card__restart" id="diagRestart">最初からやり直す</button>' : '') +
@@ -537,7 +529,7 @@
           '</div>' +
           '<aside class="home-diag-report" aria-label="診断結果PDFのサンプル">' +
             '<div class="home-diag-report__badge">PDF<br>無料取得</div>' +
-            '<div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="lazy" decoding="async"></div>' +
+            '<div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="eager" fetchpriority="high" decoding="async"></div>' +
           '</aside>' +
         '</div>' +
       '</section>';

@@ -4,12 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T9HP3BLMP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-1T9HP3BLMP');
+        (function () {
+            let loaded = false;
+            const loadAnalytics = function () {
+                if (loaded) return;
+                loaded = true;
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1T9HP3BLMP';
+                document.head.appendChild(script);
+            };
+            ['pointerdown', 'keydown', 'touchstart'].forEach(function (type) {
+                window.addEventListener(type, loadAnalytics, { once: true, passive: true });
+            });
+            window.addEventListener('load', function () {
+                if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
+                else setTimeout(loadAnalytics, 2500);
+            }, { once: true });
+        })();
     </script>
     <title>AI開発・SaaS開発・業務自動化システム開発ならSPACE GLEAM株式会社</title>
     <meta name="description" content="AI開発、生成AI開発、SaaS開発、業務自動化システム開発を企画・設計・開発・運用まで一貫支援。初期リリースから商用サービス開発まで対応するSPACE GLEAM株式会社。">
@@ -34,8 +51,9 @@ button, input, textarea, select { font: inherit; }
 .nav-list > li { margin: 0px; padding: 0px; }
 @media (max-width: 880px){.nav { grid-template-columns: minmax(0px, 1fr); transform: translateY(-12px) !important; }
 .nav-list { width: 100%; flex-direction: column; align-items: stretch; gap: inherit; }}
-.nav a { color: rgb(15, 23, 42); font-size: 0.92rem; font-weight: 700; transition: color 0.2s, opacity 0.2s; }
+.nav a { color: rgb(15, 23, 42); font-size: 0.92rem; font-weight: 700; transition: color 0.08s linear, opacity 0.08s linear; }
 .nav a:hover { color: rgb(37, 99, 235); opacity: 0.85; }
+.nav a:active, .nav a.is-activating { color: rgb(37, 99, 235); opacity: 0.72; }
 .header-cta, .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0px 22px; border-radius: 4px; border: 1px solid transparent; font-size: 0.95rem; font-weight: 800; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s, border-color 0.25s, color 0.25s, opacity 0.25s; }
 .header-cta, .btn-primary { background: rgb(255, 255, 255); color: rgb(5, 5, 9); box-shadow: rgba(255, 255, 255, 0.12) 0px 14px 40px; }
 .header-cta:hover, .btn-primary:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.9); }
@@ -94,7 +112,7 @@ button, input, textarea, select { font: inherit; }
 .hero-sub-keywords { color: rgb(30, 41, 59) !important; }
 .hero-lead { color: rgb(55, 65, 81) !important; }
 .hero-actions .btn-primary { background: rgb(17, 24, 39) !important; color: rgb(255, 255, 255) !important; width: 100% !important; justify-content: center !important; box-shadow: rgba(0, 0, 0, 0.22) 0px 4px 20px !important; }
-.hero-actions .btn-secondary { display: none !important; }
+.hero-actions .btn-secondary { display: inline-flex !important; width: 100% !important; justify-content: center !important; }
 .hero-actions .btn-primary:hover { background: rgb(30, 41, 59) !important; }
 .mobile-fixed-cta { position: fixed; left: 14px; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 999; display: inline-flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 4px; background: rgb(17, 17, 17); color: rgb(255, 255, 255); font-weight: 800; box-shadow: rgba(0, 0, 0, 0.46) 0px 18px 60px; }}
 @media (max-width: 620px){.hero { padding-bottom: 40px !important; }
@@ -158,8 +176,8 @@ html, body { overflow-x: hidden !important; }
 @media (max-width: 880px){.header .nav { left: 16px !important; right: 16px !important; grid-template-columns: minmax(0px, 1fr) !important; transform: translateY(-12px) !important; }}
 
     </style>
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4" media="(min-width: 901px)">
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4" media="(max-width: 900px)">
+    <link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11" media="(min-width: 901px)">
+    <link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11" media="(max-width: 900px)">
     <style data-home-diagnosis>
 /* ============================================================
    Home AI diagnosis showcase — reference-led redesign (local)
@@ -313,6 +331,7 @@ html.diag-enabled .hero-interactive-wrapper {
     padding: 13px 15px;
     background: #ffffff !important;
     border: 1px solid rgba(203, 213, 225, 0.8) !important;
+    border-radius: 16px;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05), inset 0 1px 0 #ffffff;
 }
 
@@ -351,11 +370,18 @@ html.diag-enabled .hero-interactive-wrapper {
 }
 
 .home-diag-download-callout__copy strong {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: .3em;
     color: #0f172a;
-    font-size: clamp(1rem, 1.65vw, 1.32rem);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
     font-weight: 900;
     line-height: 1.35;
     letter-spacing: .01em;
+}
+
+.home-diag-download-callout__copy strong span {
+    white-space: nowrap;
 }
 
 .home-diag-download-callout__copy > span {
@@ -454,7 +480,7 @@ html.diag-enabled .hero-interactive-wrapper {
 
 .hero .home-diag-showcase .diag-card__features {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 0 !important;
     margin: 0 0 17px !important;
 }
@@ -752,12 +778,16 @@ html.diag-enabled .hero-interactive-wrapper {
 
     .home-diag-report {
         display: flex !important;
-        position: absolute !important;
-        top: 14px !important;
-        right: 12px !important;
-        width: 165px !important;
-        max-width: 165px !important;
-        margin: 0 !important;
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        order: -1;
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        justify-self: center;
+        width: min(100%, 240px) !important;
+        max-width: 240px !important;
+        margin: 0 auto !important;
         padding-top: 0 !important;
         transform: none !important;
         z-index: 1 !important;
@@ -876,7 +906,7 @@ html.diag-enabled .hero-interactive-wrapper {
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" media="print" fetchpriority="low" data-mobile-deferred-fonts onload="this.onload=null;if(!matchMedia('(max-width: 900px)').matches)this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v4"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+    <noscript><link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=logo13-20260702">
     <link rel="canonical" href="https://spacegleam.co.jp/">
 
@@ -1030,11 +1060,12 @@ html body #hero .tech-icon{filter:none!important;opacity:.6}
 html body header.header.header-concept-a{background:rgba(244,244,241,.84)!important;border-bottom:1px solid rgba(0,0,0,.07)!important;box-shadow:none!important}
 
 html body #hero .hero-tech-stack.p-marq{display:block!important;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-html body #hero .p-track{display:flex;align-items:center;gap:44px;width:max-content;animation:p-marq 230s linear infinite}
+html body #hero .p-track{display:flex;align-items:center;gap:0;width:max-content;animation:p-marq 42s linear infinite;transform:translate3d(0,0,0);will-change:transform;backface-visibility:hidden;contain:layout paint}
+html body #hero .p-track-group{display:flex;align-items:center;gap:44px;flex:none;padding-right:44px}
 html body #hero .p-track .tech-item{flex:none;display:flex;align-items:center;gap:10px}
 html body #hero .p-track .tech-mono{width:22px;height:22px;display:grid;place-items:center;border:1.5px solid currentColor;border-radius:3px;font:800 11px ui-monospace,Menlo,Consolas,monospace;opacity:.7}
 html body #hero .p-track .tech-more .tech-label{letter-spacing:.14em}
-@keyframes p-marq{to{transform:translateX(-50%)}}
+@keyframes p-marq{to{transform:translate3d(-50%,0,0)}}
 
 html body #hero .p-mark::after{animation:p-barloop 7s .9s var(--p-ease) infinite}
 @keyframes p-barloop{0%{transform:scaleX(0);opacity:.5}14%,78%{transform:scaleX(1);opacity:.5}92%,100%{transform:scaleX(1);opacity:0}}
@@ -1086,7 +1117,8 @@ html body #hero .p-space .planet{animation:p-float2 9s ease-in-out infinite}
 
 html body #hero{background:#f4f6fa!important}
 html body header.header.header-concept-a{background:rgba(255,255,255,.58)!important;-webkit-backdrop-filter:blur(20px) saturate(1.6)!important;backdrop-filter:blur(20px) saturate(1.6)!important;border-bottom:1px solid rgba(255,255,255,.75)!important;box-shadow:0 1px 0 rgba(17,17,17,.06),0 12px 30px rgba(15,23,42,.05)!important}
-html body header.header nav{background:rgba(255,255,255,.72)!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:0 2px 10px rgba(15,23,42,.06)!important}
+html body header.header.header-concept-a.is-scrolled{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+@media(min-width:901px){html body header.header nav{background:transparent!important;border:0!important;box-shadow:none!important}}
 html body #hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(17,17,17,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.05) 1px,transparent 1px)!important;background-size:80px 80px!important;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0%,#000 65%,transparent 100%)!important}
 html body #hero .p-space{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 html body #hero .p-space .k-plus{fill:none;stroke:rgba(17,17,17,.28);stroke-width:1}
@@ -1125,8 +1157,6 @@ html body #hero .p-stats>div>span{font-family:ui-monospace,SFMono-Regular,Menlo,
 @media(prefers-reduced-motion:reduce){html body #hero .p-space .satg{display:none}}
 
 html body #hero{background:#f3f4f6!important}
-html body header.header nav{border-radius:3px!important}
-html body header.header .header-cta{border-radius:3px!important}
 html body header.header .nav-toggle{border-radius:3px!important}
 html body #hero .prtimes-banner-link{border-radius:3px!important;border:1px solid rgba(17,17,17,.22)!important;background:rgba(255,255,255,.72)!important}
 html body #hero .p-hud{position:absolute;z-index:1;width:26px;height:26px;border:0 solid rgba(17,17,17,.8);pointer-events:none}
@@ -1161,6 +1191,28 @@ html body #hero .p-stats>div>span{margin-top:0!important}
 }
 
 html body #hero .hero-copy>h1{animation:none!important}
+/* Performance: keep the technical hero artwork, but stop continuous SVG/3D repainting. */
+html body #hero .p-space .k-st,
+html body #hero .p-space .k-sx,
+html body #hero .p-space .k-sp,
+html body #hero .p-space .k-con,
+html body #hero .p-space .k-cn,
+html body #hero .p-space .k-planet,
+html body #hero .p-space .k-shoot{animation:none!important}
+html body #hero .p-space .satg{display:none!important}
+html body #hero .p-cube .cb{animation:none!important}
+html body #hero .p-mark::after{animation:p-bar 1s .35s var(--p-ease) both!important}
+@media(min-width:1600px){
+html body #hero .hero-container{width:min(1680px,calc(100% - 96px))!important}
+html body #hero .hero-grid{grid-template-columns:minmax(620px,1fr) minmax(560px,620px)!important;gap:clamp(56px,4vw,88px)!important}
+html body #hero .hero-copy{max-width:720px!important}
+html body #hero .hero-lead{max-width:660px!important}
+html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px!important;max-width:100%!important}
+@media(min-width:1480px){
+html body #hero .hero-container{width:min(1480px,calc(100% - 96px))!important}
+html body #hero .hero-grid{grid-template-columns:minmax(620px,720px) 620px!important;gap:64px!important;justify-content:center!important}
+}
+}
 </style>
 </head>
 
@@ -1235,7 +1287,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                         <h1><span class="nowrap">現場の手作業を、</span><br class="pc-only"><span class="nowrap"><span class="p-mark">AIで減らす。</span></span></h1>
                         <p class="hero-sub-keywords" style="font-size: 1.05rem; font-weight: 800; color: #ffffff; margin-top: 18px; margin-bottom: -10px; letter-spacing: 0.04em;">AI開発 ｜ 業務自動化 ｜ 社内システム開発</p>
                         <p class="hero-lead">Excel管理・問い合わせ対応・書類確認・社内ナレッジ検索など、属人化した業務をAIシステム化。<br><br><span style="font-size: 0.9em; opacity: 0.9; display: inline-block; margin-top: 10px;">要件整理から設計・開発・運用改善まで一貫対応。<br>現場で使えるAI業務システムを、2〜8週間で小さく始められます。</span></p>
-                        <div class="hero-actions"><a href="#diagnosis" class="btn btn-primary">30秒で無料診断<span class="arrow">→</span></a><a href="contact.html" class="btn btn-secondary">担当者に相談する</a></div>
+                        <div class="hero-actions"><a href="#diagnosis" class="btn btn-primary">30秒で無料診断<span class="arrow">→</span></a><a href="contact.html" class="btn btn-secondary">担当者に相談する<span class="arrow">→</span></a></div>
                         <div class="p-stats">
                           <div><b><span>2〜8</span>週間</b><span>小さく始める初期リリース</span></div>
                           <div><b><span>25</span>万円〜</b><span>AI業務システム開発</span></div>
@@ -1253,7 +1305,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                             </header>
                             <div class="home-diag-download-callout">
                                 <span class="home-diag-download-callout__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 3h11l6 6v20H8z"></path><path d="M19 3v7h6M12 18h8M12 22h8"></path></svg></span>
-                                <span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong>診断結果をPDFで無料ダウンロード</strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>
+                                <span class="home-diag-download-callout__copy"><small>診断完了後、追加料金なし</small><strong><span>診断結果をPDFで</span><span>無料ダウンロード</span></strong><span>回答内容に合ったAI開発レポートを、その場で取得できます</span></span>
                                 <span class="home-diag-download-callout__badge">無料</span>
                             </div>
                             <div class="home-diag-showcase__body">
@@ -1263,15 +1315,13 @@ html body #hero .hero-copy>h1{animation:none!important}
                                     <div class="diag-card__features" aria-label="診断でわかること">
                                         <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="9"></circle><circle cx="16" cy="16" r="3"></circle><path d="M16 3v4M16 25v4M3 16h4M25 16h4"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">開発タイプ</strong><span class="diag-card__feature-sub">最適なプラン</span></span></div>
                                         <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="8" ry="4"></ellipse><path d="M8 8v8c0 2.2 3.6 4 8 4s8-1.8 8-4V8M8 16v8c0 2.2 3.6 4 8 4s8-1.8 8-4v-8"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">概算費用</strong><span class="diag-card__feature-sub">開発予算の目安</span></span></div>
-                                        <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26V7M5 26h22M9 21l5-6 4 3 7-9"></path><path d="M21 9h4v4"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">導入効果</strong><span class="diag-card__feature-sub">期待できる効果</span></span></div>
-                                        <div class="diag-card__feature"><span class="diag-card__feature-ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 7h20v14H15l-6 5v-5H6z"></path><path d="M11 13h10M11 17h7"></path></svg></span><span class="diag-card__feature-copy"><strong class="diag-card__feature-title">個別アドバイス</strong><span class="diag-card__feature-sub">おすすめの進め方</span></span></div>
                                     </div>
                                     <button type="button" class="diag-card__btn diag-btn-primary" id="diagStart"><span class="diag-card__btn-sparkle" aria-hidden="true">✦</span>無料で診断をはじめる<span class="arrow" aria-hidden="true">→</span></button>
                                     <p class="diag-card__note"><span class="diag-card__note-ico" aria-hidden="true">✓</span>入力不要・30秒で結果表示</p>
                                 </div>
                                 <aside class="home-diag-report" aria-label="診断結果PDFのサンプル">
                                     <div class="home-diag-report__badge">PDF<br>無料取得</div>
-                                    <div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="lazy" decoding="async"></div>
+                                    <div class="home-diag-report__paper"><img src="/blog/assets/diagnosis-covers/p3.webp" alt="実際にダウンロードできるAI開発診断PDFの表紙" width="900" height="507" loading="eager" fetchpriority="high" decoding="async"></div>
                                 </aside>
                             </div>
                         </section>
@@ -1332,7 +1382,7 @@ html body #hero .hero-copy>h1{animation:none!important}
                 <div class="proof-strip__cards reveal" aria-label="自社開発・運用実績">
                     <a class="proof-card" href="mcp/" aria-label="Remote MCPのページを見る">
                         <div class="proof-card__brand"><img src="chatgpt.svg" alt="" width="28" height="28"><h3>Remote MCP</h3></div>
-                        <p>AIから診断・サービス検索を呼び出せる連携基盤</p><span class="proof-card__meta"><span class="proof-card__status">本番運用中</span><span aria-hidden="true">→</span></span>
+                        <p>AIから診断・サービス検索を呼び出す基盤</p><span class="proof-card__meta"><span class="proof-card__status">本番運用中</span><span aria-hidden="true">→</span></span>
                     </a>
                     <a class="proof-card" href="https://diffsense.spacegleam.co.jp/" target="_blank" rel="noopener noreferrer" aria-label="DIFFsenseのサービスLPを見る（新しいタブ）">
                         <div class="proof-card__brand"><img src="assets/diffsense-logo-128.png" alt="" width="28" height="28"><h3>DIFFsense</h3></div>
@@ -2443,11 +2493,34 @@ html body #hero .hero-copy>h1{animation:none!important}
                 const header = document.querySelector('.header');
                 const navToggle = document.querySelector('.nav-toggle');
                 const nav = document.querySelector('.nav');
-                const setHeaderState = function () {
-                    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+                const mobileFixedCta = document.querySelector('.mobile-fixed-cta');
+                let viewportFrame = 0;
+                let lastHeaderScrolled = null;
+                let lastMobileCtaVisible = null;
+                const updateViewportState = function () {
+                    viewportFrame = 0;
+                    const headerScrolled = window.scrollY > 12;
+                    if (header && headerScrolled !== lastHeaderScrolled) {
+                        header.classList.toggle('is-scrolled', headerScrolled);
+                        lastHeaderScrolled = headerScrolled;
+                    }
+                    if (mobileFixedCta) {
+                        const mobileCtaVisible = window.scrollY > Math.min(520, window.innerHeight * .72);
+                        if (mobileCtaVisible !== lastMobileCtaVisible) {
+                            mobileFixedCta.classList.toggle('is-visible', mobileCtaVisible);
+                            mobileFixedCta.setAttribute('aria-hidden', String(!mobileCtaVisible));
+                            mobileFixedCta.tabIndex = mobileCtaVisible ? 0 : -1;
+                            lastMobileCtaVisible = mobileCtaVisible;
+                        }
+                    }
                 };
-                setHeaderState();
-                window.addEventListener('scroll', setHeaderState, { passive: true });
+                window.__spaceGleamRequestViewportUpdate = function () {
+                    if (viewportFrame) return;
+                    viewportFrame = window.requestAnimationFrame(updateViewportState);
+                };
+                updateViewportState();
+                window.addEventListener('scroll', window.__spaceGleamRequestViewportUpdate, { passive: true });
+                window.addEventListener('resize', window.__spaceGleamRequestViewportUpdate, { passive: true });
                 if (navToggle && nav) {
                     navToggle.addEventListener('click', function () {
                         const isOpen = nav.classList.toggle('is-open');
@@ -2456,6 +2529,56 @@ html body #hero .hero-copy>h1{animation:none!important}
                         document.body.classList.toggle('nav-open', isOpen);
                     });
                 }
+                const prefetchedMenuPages = new Set();
+                const warmMenuDestination = function (target) {
+                    const link = target && target.closest ? target.closest('.nav a[href]') : null;
+                    if (!link || link.target === '_blank') return;
+                    let url;
+                    try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+                    if (url.origin !== window.location.origin || url.href === window.location.href || prefetchedMenuPages.has(url.href)) return;
+                    prefetchedMenuPages.add(url.href);
+                    fetch(url.href, { credentials: 'same-origin', cache: 'force-cache', priority: 'low' }).catch(function () {});
+                };
+                nav?.addEventListener('pointerover', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('focusin', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('touchstart', function (event) { warmMenuDestination(event.target); }, { passive: true });
+                nav?.addEventListener('pointerdown', function (event) {
+                    const link = event.target.closest('.nav a[href]');
+                    if (link) link.classList.add('is-activating');
+                }, { passive: true });
+                window.addEventListener('load', function () {
+                    const warmAllMenuPages = function () {
+                        nav?.querySelectorAll('a[href]').forEach(function (link, index) {
+                            setTimeout(function () { warmMenuDestination(link); }, index * 120);
+                        });
+                    };
+                    if ('requestIdleCallback' in window) requestIdleCallback(warmAllMenuPages, { timeout: 2200 });
+                    else setTimeout(warmAllMenuPages, 800);
+                }, { once: true });
+                document.addEventListener('click', function (event) {
+                    const dismiss = event.target.closest('#diagDismiss');
+                    if (!dismiss) return;
+                    const showcase = dismiss.closest('.home-diag-showcase');
+                    if (!showcase) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    showcase.classList.add('is-collapsed');
+                    try { localStorage.setItem('diag_card_hidden', '1'); } catch (_) {}
+                    let restore = document.getElementById('diagRestore');
+                    if (!restore) {
+                        restore = document.createElement('button');
+                        restore.type = 'button';
+                        restore.className = 'diag-sidetab';
+                        restore.id = 'diagRestore';
+                        restore.innerHTML = '<span class="diag-sidetab__ico" aria-hidden="true">✦</span>AI開発診断';
+                        document.body.appendChild(restore);
+                    }
+                    restore.addEventListener('click', function () {
+                        showcase.classList.remove('is-collapsed');
+                        restore.remove();
+                        try { localStorage.setItem('diag_card_hidden', '0'); } catch (_) {}
+                    }, { once: true });
+                }, true);
                 document.addEventListener('click', function (event) {
                     const link = event.target.closest('a.header-cta,a.mobile-fixed-cta,a[href$="contact.html"],a[href*="contact.html#"],a[href$="#contact"]');
                     if (!link || typeof window.gtag !== 'function') return;
@@ -2478,13 +2601,16 @@ html body #hero .hero-copy>h1{animation:none!important}
                 });
             };
 
+            let interactiveScriptLoaded = false;
             const loadInteractiveScripts = function () {
+                if (interactiveScriptLoaded) return;
+                interactiveScriptLoaded = true;
                 const diagScript = document.createElement('script');
-                diagScript.src = "diagnosis.js?v=mobile-perf-20260831-v22";
+                diagScript.src = "diagnosis.js?v=mobile-perf-20261108-v23";
                 diagScript.async = true;
                 document.body.appendChild(diagScript);
             };
-            // works.html loads script.js / works-page.js as plain, immediate <script>
+            // works.html loads script.js?v=navigation-prefetch-20261110-v12 / works-page.js as plain, immediate <script>
             // tags, so their tab-switching listeners exist before a visitor can ever
             // tap a tab. Gating this behind scroll/pointerdown on the home page meant
             // the tabs' first tap only triggered the load and did nothing visible —
@@ -2501,16 +2627,16 @@ html body #hero .hero-copy>h1{animation:none!important}
                 }
                 const deferredFonts = document.querySelector('[data-mobile-deferred-fonts]');
                 if (deferredFonts) deferredFonts.media = 'all';
-                // works.html loads these as plain <script> tags, so script.js always
+                // works.html loads these as plain <script> tags, so script.js?v=navigation-prefetch-20261110-v12 always
                 // finishes running before works-page.js starts (strict document order).
-                // works-page.js attaches its own click listeners on top of script.js's
+                // works-page.js attaches its own click listeners on top of script.js?v=navigation-prefetch-20261110-v12's
                 // and depends on running second to "win". Both were async here, so
                 // whichever happened to finish downloading first ran first — on a
-                // fast connection works-page.js could beat script.js, and script.js's
+                // fast connection works-page.js could beat script.js?v=navigation-prefetch-20261110-v12, and script.js?v=navigation-prefetch-20261110-v12's
                 // plainer product data would then overwrite it on tab click. Load them
                 // in the same fixed order works.html uses instead of racing them.
                 const siteScript = document.createElement('script');
-                siteScript.src = "script.js?v=works-ui-restore-20260629-v1";
+                siteScript.src = "script.js?v=navigation-prefetch-20261110-v12";
                 siteScript.onload = function () {
                     const worksPageScript = document.createElement('script');
                     worksPageScript.src = "works-page.js?v=20260809-mcp-v1";
@@ -2520,69 +2646,45 @@ html body #hero .hero-copy>h1{animation:none!important}
             };
             const scheduleAfterFirstPaint = function () {
                 try { initializeCriticalInteractions(); } catch (e) {}
-                if ('requestAnimationFrame' in window) {
-                    requestAnimationFrame(function () {
-                        requestAnimationFrame(function () {
-                            loadInteractiveScripts();
-                            loadFullMobileExperience();
-                        });
-                    });
-                } else {
+                const warmDiagnosis = function (event) {
+                    if (event.target.closest('a[href="#diagnosis"],#diagnosis,.home-diag-showcase')) loadInteractiveScripts();
+                };
+                document.addEventListener('pointerover', warmDiagnosis, { passive: true });
+                document.addEventListener('focusin', warmDiagnosis, { passive: true });
+                document.addEventListener('touchstart', warmDiagnosis, { passive: true });
+                const scheduleIdle = function (callback, delay, timeout) {
                     setTimeout(function () {
-                        loadInteractiveScripts();
-                        loadFullMobileExperience();
-                    }, 0);
-                }
+                        if ('requestIdleCallback' in window) requestIdleCallback(callback, { timeout: timeout });
+                        else callback();
+                    }, delay);
+                };
+                scheduleIdle(loadInteractiveScripts, 650, 900);
+                scheduleIdle(loadFullMobileExperience, 1500, 900);
             };
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', scheduleAfterFirstPaint, { once: true });
             } else {
                 scheduleAfterFirstPaint();
             }
-            // 独立した保険: 上のスケジューリング内で何が起きても
-            // (エラーで途中停止しても) このタイマーだけは必ず動く
-            setTimeout(loadFullMobileExperience, 300);
+            // 初回描画やメニュー操作と重ならないタイミングで保険ロードする。
+            setTimeout(loadFullMobileExperience, 2400);
         })();
     </script>
 <script>
 (function(){
+  document.querySelectorAll('#hero .p-space .satg').forEach(function(node){ node.remove(); });
   var ts=document.querySelector('.hero-tech-stack'); if(!ts||ts.classList.contains('p-marq')) return;
-  var CDN='https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/';
-  // [label, simple-icons slug | null, mono letters]
-  var AI=[['ChatGPT','LOCAL'],['Claude','claude'],['Gemini','googlegemini'],['Perplexity','perplexity'],['LangChain','langchain'],['Hugging Face','huggingface'],['Mistral AI','mistralai'],['Ollama','ollama'],['n8n','n8n'],['Zapier','zapier']];
-  var DEV=[['Next.js','nextdotjs'],['React','react'],['Vue.js','vuedotjs'],['Nuxt','nuxt'],['Svelte','svelte'],['TypeScript','typescript'],['JavaScript','javascript'],['Node.js','nodedotjs'],['Python','python'],['PHP','php'],['Laravel','laravel'],['Ruby','ruby'],['Rails','rubyonrails'],['Go','go'],['Rust','rust'],['Swift','swift'],['Kotlin','kotlin'],['Flutter','flutter'],['Tailwind CSS','tailwindcss'],['WordPress','wordpress'],['Shopify','shopify']];
-  var INFRA=[['Supabase','supabase'],['Firebase','firebase'],['PostgreSQL','postgresql'],['MySQL','mysql'],['MongoDB','mongodb'],['Redis','redis'],['Docker','docker'],['Kubernetes','kubernetes'],['GitHub','github'],['GitLab','gitlab'],['AWS','amazonaws'],['Google Cloud','googlecloud'],['Azure','microsoftazure'],['Cloudflare','cloudflare'],['Vercel','vercel'],['Netlify','netlify'],['Stripe','stripe'],['Twilio','twilio'],['SendGrid','sendgrid']];
-  var BIZ=[['Slack','slack'],['Notion','notion'],['LINE','line'],['Teams','microsoftteams'],['Salesforce','salesforce'],['HubSpot','hubspot'],['Airtable','airtable'],['Figma','figma'],['Jira','jira'],['Trello','trello'],['Asana','asana'],['Zoom','zoom'],['Google Sheets','googlesheets'],['Excel','microsoftexcel'],['kintone',null,'ki'],['Chatwork',null,'Cw'],['freee',null,'fr'],['Money Forward',null,'MF'],['Google Workspace',null,'G']];
-  var groups=[AI,DEV,INFRA,BIZ], list=[], i=0, more=true;
-  while(more){ more=false; groups.forEach(function(g){ if(g[i]){ list.push(g[i]); more=true; } }); i++; }
-  function item(d){
-    var el=document.createElement('div'); el.className='tech-item';
-    var icon;
-    if(d[1]==='LOCAL'){ icon=document.createElement('img'); icon.src='chatgpt.svg'; }
-    else if(d[1]){ icon=document.createElement('img'); icon.src=CDN+d[1]+'.svg'; }
-    else { icon=document.createElement('span'); icon.className='tech-mono'; icon.textContent=d[2]; }
-    if(icon.tagName==='IMG'){ icon.alt=''; icon.className='tech-icon'; icon.loading='lazy'; icon.onerror=function(){ el.style.display='none'; }; }
-    var lb=document.createElement('span'); lb.className='tech-label'; lb.textContent=d[0];
-    el.appendChild(icon); el.appendChild(lb); return el;
-  }
+  var items=[].slice.call(ts.querySelectorAll('.tech-item'));
+  if(!items.length) return;
+  items.forEach(function(item){var icon=item.querySelector('img');if(icon){icon.width=22;icon.height=22;icon.decoding='async';icon.fetchPriority='low';}});
   var track=document.createElement('div'); track.className='p-track';
-  var els=list.map(item);
-  var more=document.createElement('div'); more.className='tech-item tech-more'; more.innerHTML='<span class="tech-mono">+</span><span class="tech-label">AND MORE</span>';
-  els.push(more);
-  els.concat(els.map(function(n){return n.cloneNode(true)})).forEach(function(n){track.appendChild(n)});
+  var group=document.createElement('div'); group.className='p-track-group';
+  items.forEach(function(item){group.appendChild(item)});
+  var duplicate=group.cloneNode(true); duplicate.setAttribute('aria-hidden','true');
+  track.appendChild(group); track.appendChild(duplicate);
   ts.innerHTML=''; ts.classList.add('p-marq'); ts.appendChild(track);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(entries){track.style.animationPlayState=entries[0].isIntersecting?'running':'paused';},{rootMargin:'100px 0px'}).observe(ts)}
 })();
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var G='0123456789ABCDEF', nodes=[].slice.call(document.querySelectorAll('.k-scr'));
-  if(!nodes.length) return;
-  setInterval(function(){ nodes.forEach(function(n){
-    if(Math.random()<.55) return; var t=n.textContent.split(''), k=1+((Math.random()*2)|0);
-    while(k--){ var i=(Math.random()*t.length)|0; if(/[0-9A-F]/.test(t[i])) t[i]=G[(Math.random()*16)|0]; }
-    n.textContent=t.join('');
-  }); }, 140);
-})();
-
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   var els=[].slice.call(document.querySelectorAll('[data-to]'));
   function run(){els.forEach(function(el){
@@ -2590,7 +2692,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
     function step(t){t0=t0||t;var p=Math.min((t-t0)/1400,1),e=1-Math.pow(1-p,3);el.textContent=pre+Math.round(to*e);if(p<1)requestAnimationFrame(step)}
     requestAnimationFrame(step);
   })}
-  setTimeout(run,1000); setInterval(run,9000);
+  setTimeout(run,1000);
 }
 </script>
 </body>

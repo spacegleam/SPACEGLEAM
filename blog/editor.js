@@ -198,7 +198,7 @@
     <meta name="description" content="${escapeHtml(data.description)}">
     <link rel="canonical" href="https://spacegleam.co.jp/blog/${data.slug}/">
     <link rel="icon" href="/favicon.png">
-    <link rel="stylesheet" href="/style.css?v=blog-20260602">
+    <link rel="stylesheet" href="/style.css?v=compact-header-all-pages-20261110-v11">
     <meta property="og:type" content="article">
     <meta property="og:title" content="${escapeHtml(data.title)}">
     <meta property="og:description" content="${escapeHtml(data.description)}">
@@ -216,7 +216,7 @@
 <body class="blog-page-body" data-article-slug="${data.slug}">
     <div class="site-bg" aria-hidden="true"></div>
 
-    <header class="header">
+    <header class="header header-concept-a">
         <div class="container header-inner">
             <a href="/index.html" class="brand" aria-label="SPACE GLEAM ホーム">
                 <span class="brand-name">SPACE GLEAM</span>
@@ -256,7 +256,7 @@ ${bodyHtml}
         <div class="article-cta article-diagnosis-cta"><div><span class="article-cta-kicker">無料・登録不要・約30秒</span><strong>あなたのアイデア、AIでどう実現する？</strong><p>簡単な質問に答えるだけで、開発の方向性・必要な機能・費用の目安をその場で整理できます。</p></div><a href="/blog/free-ai-development-diagnosis/">無料で診断する <span aria-hidden="true">→</span></a></div>
         <section class="related-section"><h2>関連記事</h2><div class="related-grid" data-related-posts></div></section>
     </div></main>
-    <script src="/script.js"></script><script src="/blog/posts.js"></script><script src="/blog/blog.js?v=20260602-subscribe-fix"></script>
+    <script src="/script.js?v=header-scroll-all-pages-20261110-v11"></script><script src="/blog/posts.js"></script><script src="/blog/blog.js?v=20260602-subscribe-fix"></script>
 </body>
 </html>`;
 
