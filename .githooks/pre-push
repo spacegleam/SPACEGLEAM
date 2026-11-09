@@ -1,0 +1,23 @@
+#!/bin/sh
+set -eu
+
+protected_ref='refs/heads/main'
+zero='0000000000000000000000000000000000000000'
+
+while read -r local_ref local_sha remote_ref remote_sha
+do
+  [ "$remote_ref" = "$protected_ref" ] || continue
+
+  if [ "$local_sha" = "$zero" ]; then
+    echo 'BLOCKED: deleting the production main branch is not allowed.' >&2
+    exit 1
+  fi
+
+  if [ "$remote_sha" != "$zero" ] && ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+    echo 'BLOCKED: this push would overwrite or rewind production main.' >&2
+    echo 'Fetch main and merge/rebase it before pushing. Do not force-push.' >&2
+    exit 1
+  fi
+
+  node tools/guard-production-baseline.js
+done
