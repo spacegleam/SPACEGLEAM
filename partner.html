@@ -28,7 +28,7 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="assets/partner_hero_bg_nobooks-opt.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/partner-hero-pexels-13181674.jpg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=menu-page-offset-20261108-v1">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -55,6 +55,48 @@
             }
         }, true);
     </script>
+    <style data-partner-hero>
+        /* Partner hero (2026-11). Scoped to .partner-hero-v3 so nothing else on the page or site changes. */
+        .partner-hero-v3 {min-height:0 !important;align-items:flex-start !important;padding-top:48px !important;padding-bottom:72px !important}
+        .partner-hero-v3 .partner-hero-v3-bg-img{width:100% !important;height:100% !important;object-fit:cover;object-position:center 66% !important;opacity:1 !important;filter:contrast(1.15) saturate(1.05)}
+        .partner-hero-v3 .partner-hero-v3-overlay{background:linear-gradient(90deg,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 54%,rgba(255,255,255,.78) 64%,rgba(255,255,255,.28) 78%,rgba(255,255,255,0) 92%) !important}
+        .partner-hero-v3 .partner-eyebrow{display:block;line-height:1.6}
+        .partner-hero-v3 .partner-eyebrow__label{display:inline;color:#0f172a;font-size:.95rem;font-weight:800;letter-spacing:.04em}
+        .partner-hero-v3 .partner-eyebrow__text{display:inline;padding:0 0 0 1.4em;font-size:.95rem;font-weight:500;color:#475569}
+        .partner-hero-v3 .partner-hero-features-row{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 !important;width:min(100%,720px) !important;background:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;border:0 !important;border-top:1px solid #cfd6df !important;border-bottom:1px solid #cfd6df !important;border-radius:0 !important;box-shadow:none !important;padding:0 !important;margin-bottom:36px !important}
+        .partner-hero-v3 .feature-vertical-divider,.partner-hero-v3 .feature-icon-circle{display:none !important}
+        .partner-hero-v3 .partner-feature-col{display:block !important;padding:18px 24px 18px 0}
+        .partner-hero-v3 .partner-feature-col ~ .partner-feature-col{border-left:1px solid #cfd6df;padding-left:24px}
+        .partner-hero-v3 .feature-title{font-size:.8rem !important;font-weight:700 !important;color:#475569 !important;letter-spacing:.02em}
+        .partner-hero-v3 .feature-val{font-size:2.1rem !important;font-weight:800 !important;color:#0f172a !important;line-height:1.15 !important;margin:4px 0 6px !important}
+        .partner-hero-v3 .val-unit{font-size:1rem !important;font-weight:700 !important;margin-left:2px}
+        .partner-hero-v3 .feature-desc{font-size:.8rem !important;color:#475569 !important;line-height:1.55 !important;word-break:auto-phrase;line-break:strict}
+        .partner-hero-v3 .partner-hero-cta-row{gap:0 !important;flex-wrap:wrap;align-items:center}
+        .partner-hero-v3 .partner-hero-cta-btn{border-radius:2px !important;box-shadow:none !important;min-height:56px;padding:0 32px !important;font-size:1rem !important;background:#0f172a !important}
+        .partner-hero-v3 .partner-hero-cta-btn:hover{transform:none !important;box-shadow:none !important;background:#000 !important}
+        .partner-hero-v3 .partner-hero-cta-btn .arrow{margin-left:12px}
+        .partner-hero-v3 .partner-cta-note{flex-basis:100%;margin-top:14px;font-size:.85rem !important;font-weight:500 !important;color:#475569 !important}
+        @media (max-width:860px){
+            .partner-hero-v3 .partner-hero-v3-overlay{background:rgba(255,255,255,.86) !important}
+            .partner-hero-v3 .partner-hero-cta-btn{width:100%}
+            .partner-hero-v3 .partner-hero-v3-content{display:flex;flex-direction:column}
+            .partner-hero-v3 .partner-hero-v3-content>*{order:1}
+            .partner-hero-v3 .partner-hero-v3-content>.partner-hero-features-row{order:2;margin-top:22px}
+            .partner-hero-v3 .partner-hero-cta-row{margin-top:20px}
+        }
+        @media (max-width:640px){
+            .partner-hero-v3 {padding-top:24px !important;padding-bottom:48px !important}
+            .partner-hero-v3 .partner-eyebrow__label,.partner-hero-v3 .partner-eyebrow__text{display:block;padding:0}
+            .partner-hero-v3 .partner-eyebrow__text{margin-top:2px;font-size:.8rem;white-space:nowrap}
+            .partner-hero-v3 .partner-hero-features-row{grid-template-columns:1fr !important}
+            .partner-hero-v3 .partner-feature-col{padding:12px 0 !important}
+            .partner-hero-v3 .partner-feature-col ~ .partner-feature-col{border-left:0;padding-left:0;border-top:1px solid #cfd6df}
+            .partner-hero-v3 .feature-body{display:grid !important;grid-template-columns:1fr auto;column-gap:12px;align-items:center}
+            .partner-hero-v3 .feature-title{grid-column:1;grid-row:1}
+            .partner-hero-v3 .feature-desc{grid-column:1;grid-row:2}
+            .partner-hero-v3 .feature-val{grid-column:2;grid-row:1 / span 2;margin:0 !important;font-size:1.7rem !important}
+        }
+    </style>
 </head>
 
 <body class="partner-page-body standalone-menu-page">
@@ -94,29 +136,26 @@
         <!-- Section 1: Hero Section -->
         <section class="hero partner-hero-v3">
             <div class="partner-hero-v3-bg">
-                <img src="assets/partner_hero_bg_nobooks-opt.jpg" data-fallback-src="assets/partner_hero_bg_nobooks.png" alt="植物のある明るいワークスペース" class="partner-hero-v3-bg-img" width="1024" height="1024" fetchpriority="high" decoding="async">
+                <img src="assets/partner-hero-pexels-13181674.jpg" alt="白い壁と黒い窓枠が印象的な、明るいオフィスの階段まわり" class="partner-hero-v3-bg-img" width="1920" height="1280" fetchpriority="high" decoding="async">
                 <div class="partner-hero-v3-overlay"></div>
             </div>
             <div class="container partner-hero-v3-container">
                 <div class="partner-hero-v3-content">
                     <!-- Top Tagline Row -->
                     <div class="partner-top-tag-row reveal">
-                        <span class="partner-badge-pill">AI開発パートナー制度</span>
-                        <span class="tag-divider">|</span>
-                        <span class="partner-tag-sub">Web制作会社・広告代理店・コンサルティング会社向け</span>
+                        <span class="partner-eyebrow"><span class="partner-eyebrow__label">AI開発パートナー制度</span><span class="partner-eyebrow__text">Web制作会社・広告代理店・コンサル会社の方へ</span></span>
                     </div>
 
                     <!-- Main Headline -->
                     <h1 class="partner-hero-title-v3 reveal">
-                        <span class="hero-line-phrase">AIエンジニアを採用せず、</span><br class="pc-only">
-                        <span class="hero-line-phrase">自社の提案メニューに</span><br class="pc-only">
-                        <span class="hero-line-phrase">「<span class="text-blue">AI開発</span>」を追加。</span>
+                        <span class="hero-line-phrase">AI案件を、採用なしで受けられる。</span><br class="pc-only">
+                        <span class="hero-line-phrase">紹介だけでも、<span class="text-blue">手数料</span>が入る。</span>
                     </h1>
 
                     <!-- Sub Headline -->
                     <p class="partner-hero-subtext reveal">
-                        <span class="hero-line-phrase">要件整理から開発・納品まで、</span><br class="pc-only">
-                        <span class="hero-line-phrase">外部開発チームとしてワンストップで支援します。</span>
+                        <span class="hero-line-phrase">Web制作会社・広告代理店・コンサルティング会社の</span><br class="pc-only">
+                        <span class="hero-line-phrase">外部AI開発チームとして、要件整理から納品まで支援します。</span>
                     </p>
 
                     <!-- 3 Feature Columns Row -->
@@ -128,7 +167,7 @@
                             <div class="feature-body">
                                 <div class="feature-title">加盟金・月額費用</div>
                                 <div class="feature-val">0<span class="val-unit">円</span></div>
-                                <div class="feature-desc">はじめる費用は一切かかりません</div>
+                                <div class="feature-desc">初期費用もかかりません</div>
                             </div>
                         </div>
 
@@ -145,7 +184,7 @@
                             <div class="feature-body">
                                 <div class="feature-title">案件ノルマ</div>
                                 <div class="feature-val">なし</div>
-                                <div class="feature-desc">ご自身のペースでご提案いただけます</div>
+                                <div class="feature-desc">自分のペースで提案できます</div>
                             </div>
                         </div>
 
@@ -159,19 +198,19 @@
                                 </svg>
                             </div>
                             <div class="feature-body">
-                                <div class="feature-title">情報セキュリティ</div>
-                                <div class="feature-val">万全</div>
-                                <div class="feature-desc">厳格なセキュリティ体制で対応</div>
+                                <div class="feature-title">直接営業</div>
+                                <div class="feature-val">なし</div>
+                                <div class="feature-desc">NDAにも対応します</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- CTA Row (Instantly opens contact page) -->
                     <div class="partner-hero-cta-row reveal">
-                        <a href="contact.html" class="partner-hero-cta-btn">
-                            パートナー制度について相談する <span class="arrow">→</span>
+                        <a href="contact.html?from=partner&amp;cta=hero" class="partner-hero-cta-btn">
+                            30分で相談する（無料） <span class="arrow">→</span>
                         </a>
-                        <span class="partner-cta-note">無理な営業は一切ありません。お気軽にご相談ください。</span>
+                        <span class="partner-cta-note">1〜2営業日以内にご連絡します。具体的な案件がなくてもご相談いただけます。</span>
                     </div>
                 </div>
             </div>
