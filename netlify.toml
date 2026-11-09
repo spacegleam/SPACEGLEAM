@@ -17,6 +17,36 @@
 
 # Blog performance: cache static assets while keeping HTML and post data fresh.
 [[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
+    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
+    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
+
+[[headers]]
+  for = "/blog/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
+    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
+
+[[headers]]
+  for = "/services/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
+    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
+
+[[headers]]
+  for = "/mcp/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
+    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
+
+[[headers]]
   for = "/style.css"
   [headers.values]
     Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
@@ -28,6 +58,11 @@
 
 [[headers]]
   for = "/script.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/site-shell.js"
   [headers.values]
     Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 

@@ -176,8 +176,8 @@ html, body { overflow-x: hidden !important; }
 @media (max-width: 880px){.header .nav { left: 16px !important; right: 16px !important; grid-template-columns: minmax(0px, 1fr) !important; transform: translateY(-12px) !important; }}
 
     </style>
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v7" media="(min-width: 901px)">
-    <link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v7" media="(max-width: 900px)">
+    <link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11" media="(min-width: 901px)">
+    <link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11" media="(max-width: 900px)">
     <style data-home-diagnosis>
 /* ============================================================
    Home AI diagnosis showcase — reference-led redesign (local)
@@ -906,7 +906,7 @@ html.diag-enabled .hero-interactive-wrapper {
     </style>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" media="print" fetchpriority="low" data-mobile-deferred-fonts onload="this.onload=null;if(!matchMedia('(max-width: 900px)').matches)this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=proof-editorial-20261108-v7"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
+    <noscript><link rel="stylesheet" href="style.css?v=compact-header-all-pages-20261110-v11"><link rel="stylesheet" href="home-diagnosis.css?v=20260831-v12"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=logo13-20260702">
     <link rel="canonical" href="https://spacegleam.co.jp/">
 
@@ -1208,6 +1208,10 @@ html body #hero .hero-grid{grid-template-columns:minmax(620px,1fr) minmax(560px,
 html body #hero .hero-copy{max-width:720px!important}
 html body #hero .hero-lead{max-width:660px!important}
 html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px!important;max-width:100%!important}
+@media(min-width:1480px){
+html body #hero .hero-container{width:min(1480px,calc(100% - 96px))!important}
+html body #hero .hero-grid{grid-template-columns:minmax(620px,720px) 620px!important;gap:64px!important;justify-content:center!important}
+}
 }
 </style>
 </head>
@@ -2606,7 +2610,7 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
                 diagScript.async = true;
                 document.body.appendChild(diagScript);
             };
-            // works.html loads script.js / works-page.js as plain, immediate <script>
+            // works.html loads script.js?v=navigation-prefetch-20261110-v12 / works-page.js as plain, immediate <script>
             // tags, so their tab-switching listeners exist before a visitor can ever
             // tap a tab. Gating this behind scroll/pointerdown on the home page meant
             // the tabs' first tap only triggered the load and did nothing visible —
@@ -2623,16 +2627,16 @@ html body #hero .hero-interactive-wrapper{justify-self:end!important;width:620px
                 }
                 const deferredFonts = document.querySelector('[data-mobile-deferred-fonts]');
                 if (deferredFonts) deferredFonts.media = 'all';
-                // works.html loads these as plain <script> tags, so script.js always
+                // works.html loads these as plain <script> tags, so script.js?v=navigation-prefetch-20261110-v12 always
                 // finishes running before works-page.js starts (strict document order).
-                // works-page.js attaches its own click listeners on top of script.js's
+                // works-page.js attaches its own click listeners on top of script.js?v=navigation-prefetch-20261110-v12's
                 // and depends on running second to "win". Both were async here, so
                 // whichever happened to finish downloading first ran first — on a
-                // fast connection works-page.js could beat script.js, and script.js's
+                // fast connection works-page.js could beat script.js?v=navigation-prefetch-20261110-v12, and script.js?v=navigation-prefetch-20261110-v12's
                 // plainer product data would then overwrite it on tab click. Load them
                 // in the same fixed order works.html uses instead of racing them.
                 const siteScript = document.createElement('script');
-                siteScript.src = "script.js?v=works-ui-restore-20260629-v1";
+                siteScript.src = "script.js?v=navigation-prefetch-20261110-v12";
                 siteScript.onload = function () {
                     const worksPageScript = document.createElement('script');
                     worksPageScript.src = "works-page.js?v=20260809-mcp-v1";

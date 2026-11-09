@@ -15347,7 +15347,7 @@ body.blog-page-body .footer {
         gap: clamp(20px, 2.4vw, 40px);
         min-height: 124px;
         padding: 0 clamp(28px, 3vw, 52px);
-        transition: none;
+        transition: min-height .24s ease, padding .24s ease;
     }
 
     .header.header-concept-a .brand {
@@ -15450,13 +15450,23 @@ body.blog-page-body .footer {
     .header.header-concept-a .header-cta:hover { background: #1a1a1a; }
     .header.header-concept-a .header-cta:hover .arrow { transform: translateX(4px); }
 
-    .header.header-concept-a.is-scrolled .header-inner { min-height: 84px; }
-    .header.header-concept-a.is-scrolled .brand { grid-template-columns: 52px auto; gap: 14px; }
-    .header.header-concept-a.is-scrolled .brand::before { width: 52px; height: 52px; flex-basis: 52px; }
-    .header.header-concept-a.is-scrolled .brand-name { font-size: 2rem; }
-    .header.header-concept-a.is-scrolled .brand-copy { gap: 5px; }
+    .header.header-concept-a.is-scrolled .header-inner { min-height: 68px; }
+    .header.header-concept-a.is-scrolled .brand { grid-template-columns: 40px auto; gap: 11px; }
+    .header.header-concept-a.is-scrolled .brand::before { width: 40px; height: 40px; flex-basis: 40px; }
+    .header.header-concept-a.is-scrolled .brand-name { font-size: 1.5rem; }
+    .header.header-concept-a.is-scrolled .brand-copy { gap: 3px; }
     .header.header-concept-a.is-scrolled .header-ctas,
-    .header.header-concept-a.is-scrolled .header-cta { height: 84px; min-height: 84px; }
+    .header.header-concept-a.is-scrolled .header-cta { height: 68px; min-height: 68px; }
+
+    .header.header-concept-a .brand,
+    .header.header-concept-a .brand::before,
+    .header.header-concept-a .brand-name,
+    .header.header-concept-a .brand-copy,
+    .header.header-concept-a .header-ctas,
+    .header.header-concept-a .header-cta {
+        transition: width .24s ease, height .24s ease, min-height .24s ease,
+            flex-basis .24s ease, font-size .24s ease, gap .24s ease;
+    }
 }
 
 @media (min-width: 881px) and (max-width: 1240px) {
@@ -15514,12 +15524,12 @@ body.blog-page-body .footer {
     }
 
     .header.header-concept-a .header-cta .arrow { font-size: 1.45rem; }
-    .header.header-concept-a.is-scrolled .header-inner { min-height: 76px; }
-    .header.header-concept-a.is-scrolled .brand { grid-template-columns: 44px auto; gap: 10px; }
-    .header.header-concept-a.is-scrolled .brand::before { width: 44px; height: 44px; flex-basis: 44px; }
-    .header.header-concept-a.is-scrolled .brand-name { font-size: 1.38rem; }
+    .header.header-concept-a.is-scrolled .header-inner { min-height: 64px; }
+    .header.header-concept-a.is-scrolled .brand { grid-template-columns: 36px auto; gap: 9px; }
+    .header.header-concept-a.is-scrolled .brand::before { width: 36px; height: 36px; flex-basis: 36px; }
+    .header.header-concept-a.is-scrolled .brand-name { font-size: 1.25rem; }
     .header.header-concept-a.is-scrolled .header-ctas,
-    .header.header-concept-a.is-scrolled .header-cta { height: 76px; min-height: 76px; }
+    .header.header-concept-a.is-scrolled .header-cta { height: 64px; min-height: 64px; }
 }
 
 @media (min-width: 881px) and (max-width: 1050px) {
@@ -16732,4 +16742,26 @@ body.blog-page-body .footer {
 
 @media (max-width: 880px) {
     .standalone-menu-page main { padding-top: 60px; }
+}
+
+/* Header: between 901px and 1279px the centered nav overlapped the logo. Put the nav in the flow and tighten sizes. */
+@media (min-width: 901px) and (max-width: 1279px) {
+    .header-inner { padding: 0 24px; }
+    .header-inner .nav { position: static; transform: none; gap: 16px; margin: 0 16px; }
+    .header-inner .brand-name { font-size: 1.3rem; }
+    .header-inner .nav a { font-size: .86rem; white-space: nowrap; }
+    .header-inner .header-ctas { margin-left: 0; }
+}
+
+/* Keep the hero columns visually connected on ultra-wide displays. */
+@media (min-width: 1480px) {
+    #hero .hero-container {
+        width: min(1480px, calc(100% - 96px)) !important;
+    }
+
+    #hero .hero-grid {
+        grid-template-columns: minmax(620px, 720px) 620px !important;
+        justify-content: center !important;
+        gap: 64px !important;
+    }
 }
