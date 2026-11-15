@@ -1,51 +1,17 @@
 [build]
   publish = "."
-  command = "npm run deploy:guard && npm run build"
+  command = ""
   functions = "netlify/functions"
 
 [functions]
-  included_files = ["netlify/functions/blog-admin.template.html", "blog/posts.js"]
+  included_files = ["netlify/functions/blog-admin.template.html"]
 
 # 定期ヘルスモニター: 毎日 00:00 UTC (= 09:00 JST) に本番サイトを自動チェック
 # 異常検知時は contact@spacegleam.co.jp へ即時アラートメールを送信
 [functions."site-health-monitor"]
   schedule = "0 0 * * *"
 
-# Newsletter archive drip: check daily at 09:05 JST and send only when 48 hours elapsed.
-[functions."blog-newsletter-drip"]
-  schedule = "5 0 * * *"
-
 # Blog performance: cache static assets while keeping HTML and post data fresh.
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
-    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
-
-[[headers]]
-  for = "/"
-  [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
-    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
-
-[[headers]]
-  for = "/blog/*"
-  [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
-    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
-
-[[headers]]
-  for = "/services/*"
-  [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
-    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
-
-[[headers]]
-  for = "/mcp/*"
-  [headers.values]
-    Cache-Control = "public, max-age=300, stale-while-revalidate=600"
-    Netlify-CDN-Cache-Control = "public, s-maxage=300, stale-while-revalidate=600"
-
 [[headers]]
   for = "/style.css"
   [headers.values]
@@ -58,11 +24,6 @@
 
 [[headers]]
   for = "/script.js"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
-
-[[headers]]
-  for = "/site-shell.js"
   [headers.values]
     Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
@@ -154,6 +115,59 @@
 [[redirects]]
   from = "/api/mcp"
   to = "/.netlify/functions/mcp"
+  status = 200
+
+[[redirects]]
+  from = "/api/mcp/*"
+  to = "/.netlify/functions/mcp"
+  status = 200
+
+[[redirects]]
+  from = "https://admin.spacegleam.co.jp/*"
+  to = "/.netlify/functions/blog-admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "http://admin.spacegleam.co.jp/*"
+  to = "/.netlify/functions/blog-admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog/editor.html"
+  to = "/.netlify/functions/blog-admin"
+  status = 200
+
+# Clean URL rewrites (extensionless URLs serve .html files)
+[[redirects]]
+  from = "/company"
+  to = "/company.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/pricing"
+  to = "/pricing.html"
+  status = 200
+
+[[redirects]]
+  from = "/works"
+  to = "/works.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
   status = 200
 
 [[redirects]]
