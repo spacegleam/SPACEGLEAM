@@ -1,17 +1,5 @@
 window.SPACEGLEAM_BLOG_POSTS = [
     {
-        slug: 'internal-ai-data-governance',
-        title: '社内データをAIに接続する前に決めること。権限・履歴・削除の設計',
-        date: '2026-11-09',
-        publishAt: '2026-11-09T09:00:00+09:00',
-        status: 'scheduled',
-        category: 'AI',
-        description: '国内の情報管理事例を踏まえ、生成AIを禁止するだけでなく安全に活用するための権限・履歴・削除を、DIFFsenseの知見から解説します。',
-        excerpt: '国内企業の生成AI利用と情報漏えい事例から、禁止だけでは防げない理由を整理。DIFFsenseの開発経験をもとに、安全な社内AIの作り方を提案します。',
-        url: 'https://spacegleam.co.jp/blog/internal-ai-data-governance/',
-        thumbnail: '/blog/internal-ai-data-governance/ogp.webp?v=20261108-v2'
-    },
-    {
         slug: 'php2shell-emergency-response-2026',
         title: 'PHP重大脆弱性「PHP2Shell」で国内サービスが相次ぎ停止――企業が今すぐ確認すべきこと',
         date: '2026-10-26',
@@ -21,7 +9,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'PHP2Shellで国内サービスが相次ぎ停止。影響確認と復旧に加え、AIで脆弱性情報と自社システムを照合し、次の対応を早める仕組みまで解説します。',
         excerpt: '国内企業・自治体で予防的なサービス停止が相次ぎました。安全な復旧だけでなく、AIで脆弱性情報と自社資産を照合し、次の初動を早める方法を解説します。',
         url: 'https://spacegleam.co.jp/blog/php2shell-emergency-response-2026/',
-        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.webp?v=20261108-card-opt'
+        thumbnail: '/blog/php2shell-emergency-response-2026/ogp.png?v=20261026-v2'
     },
     {
         slug: 'ai-agent-development-cost',
@@ -33,7 +21,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIエージェント開発の費用相場を規模・機能別に解説。生成AIやRPAとの違い、導入手順、セキュリティ対策、費用を抑える方法を、実運用の知見から紹介します。',
         excerpt: 'AIエージェント開発は、何を実行させ、どこで人が承認するかによって費用が変わります。規模別の相場と、本番運用まで見据えた導入手順を整理しました。',
         url: 'https://spacegleam.co.jp/blog/ai-agent-development-cost/',
-        thumbnail: '/blog/ai-agent-development-cost/ogp.webp?v=20261108-card-opt'
+        thumbnail: '/blog/ai-agent-development-cost/ogp.png?v=20261001-v4'
     },
     {
         slug: 'ai-agent-production-gap',
@@ -45,7 +33,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIエージェントのパイロット導入は広がっても、本番運用まで進む企業はまだ多くありません。DIFFsenseと御御御付（おみおつけ）を自社運営するSPACE GLEAMが、モデル固定・多段階パース・承認設計といった実装レベルの工夫から、パイロットで止まる理由と越え方を解説します。',
         excerpt: 'パイロットは8割を超えても、本番運用まで進んだのは1割未満という報告も。自社SaaSの実装知見をもとに、パイロットで止まる5つの壁と、越えるために最初に決めるべきたった1つの問いを整理しました。',
         url: 'https://spacegleam.co.jp/blog/ai-agent-production-gap/',
-        thumbnail: '/blog/ai-agent-production-gap/ogp.webp?v=20261108-card-opt'
+        thumbnail: '/blog/ai-agent-production-gap/ogp.png'
     },
     {
         slug: 'omiotsuke-android-app-release',
@@ -57,7 +45,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '冷蔵庫の食材から今日の味噌汁を提案するAIレシピアプリ「御御御付（おみおつけ）」のAndroidネイティブアプリを、Google Playにて公開しました。主な機能とダウンロード方法を紹介します。',
         excerpt: 'Web版で提供してきた「御御御付」が、Androidのネイティブアプリとして登場。作る予定のローカル通知や、Web版と共通のアカウント・ランキングに対応しています。',
         url: 'https://spacegleam.co.jp/blog/omiotsuke-android-app-release/',
-        thumbnail: '/blog/omiotsuke-android-app-release/ogp.webp?v=20261108-card-opt'
+        thumbnail: '/blog/omiotsuke-android-app-release/ogp.png'
     },
     {
         slug: 'omiotsuke-for-brands',
@@ -69,7 +57,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '食品ECの商品を、家にある食材に合うレシピとして提案。食品メーカー向けAIレシピ接客「御御御付 for Brands」の仕組み、活用方法、料金を紹介します。',
         excerpt: '商品を知ってもらうだけでなく、「今日使ってみたい」まで届ける。家にある食材から商品を使う理由をつくるAIレシピ接客を紹介します。',
         url: 'https://spacegleam.co.jp/blog/omiotsuke-for-brands/',
-        thumbnail: '/blog/omiotsuke-for-brands/ogp.webp?v=20261108-card-opt'
+        thumbnail: '/blog/omiotsuke-for-brands/ogp.png?v=20261116-v1'
     },
     {
         slug: 'website-mcp-chatgpt-integration',
@@ -81,7 +69,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '自社WebサイトやWebサービスをChatGPTなどのAIエージェントから利用できるようにするMCP対応について解説。できること、APIとの違い、導入方法、開発費用、向いている企業を、Remote MCPを本番運用するSPACE GLEAMが紹介します。',
         excerpt: '自社WebサイトやWebサービスをChatGPTなどのAIエージェントから利用できるようにするMCP対応について解説。できること、APIとの違い、導入方法、開発費用を詳しく紹介します。',
         url: 'https://spacegleam.co.jp/blog/website-mcp-chatgpt-integration/',
-        thumbnail: '/blog/website-mcp-chatgpt-integration/card.webp?v=20261108-card-opt'
+        thumbnail: '/blog/website-mcp-chatgpt-integration/card.png?v=20260809-v3'
     },
     {
         slug: 'chatgpt-remote-mcp-web-agent',
@@ -93,7 +81,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'SPACE GLEAMはコーポレートサイトにRemote MCP Serverを実装。ChatGPTからサービス検索、AI開発診断、案件要件の整理まで直接実行できることを実機検証しました。MCPの仕組み、ChatGPTへの登録方法、実際の使い方まで解説します。',
         excerpt: 'SPACE GLEAMはコーポレートサイトにRemote MCP Serverを実装。ChatGPTからサービス検索、AI開発診断、案件要件の整理まで直接実行できることを実機検証しました。',
         url: 'https://spacegleam.co.jp/blog/chatgpt-remote-mcp-web-agent/',
-        thumbnail: '/blog/chatgpt-remote-mcp-web-agent/card.webp?v=20261108-card-opt'
+        thumbnail: '/blog/chatgpt-remote-mcp-web-agent/card.png'
     },
     {
         slug: 'ai-model-update-resilience',
@@ -113,7 +101,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIシステム開発の費用相場を、開発規模・機能・期間別に解説します。業務自動化、社内システム、生成AIの組み込みなど、予算別に実現できる内容や費用を抑える方法も紹介します。',
         excerpt: 'AIシステム開発の費用相場を、開発規模・機能・期間別に解説します。業務自動化、社内システム、生成AIの組み込みなど、予算別に実現できる内容や費用を抑える方法も紹介します。',
         url: 'https://spacegleam.co.jp/blog/ai-system-development-cost/',
-        thumbnail: '/blog/assets/diagnosis-covers/p3.webp?v=20261108-card-opt'
+        thumbnail: '/blog/assets/diagnosis-covers/p3.png'
     },
     {
         slug: 'omiotsuke-development-insights',
@@ -121,7 +109,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         date: '2026-07-22', publishAt: '2026-07-22T00:00:00+09:00', status: 'published', category: 'Development',
         description: '冷蔵庫の残り物写真をGemini APIで解析し、400種の具材から最適な味噌汁を提案する「御御御付（おみおつけ）」。実用に耐えうる画像認識、400種を1つの鍋で仕上げる時間差レシピ構築、そして遊び心あふれる命名アルゴリズムの裏側の実践知を公開します。',
         excerpt: '冷蔵庫の残り物写真をGemini APIで解析し、最適な味噌汁を提案する「御御御付（おみおつけ）」。画像認識のゆらぎ吸収、400種を1鍋で煮る時間差レシピ、遊び心あふれる命名アルゴリズムの設計といった、実運用から得た開発の裏側を解説します。',
-        url: 'https://spacegleam.co.jp/blog/omiotsuke-development-insights/', thumbnail: '/blog/omiotsuke-development-insights/card.webp?v=20261108-card-opt'
+        url: 'https://spacegleam.co.jp/blog/omiotsuke-development-insights/', thumbnail: '/blog/omiotsuke-development-insights/card.png'
     },
     {
         slug: 'human-review-ai-workflow',
@@ -189,7 +177,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIツールを導入したものの、社内で活用が進まない企業は少なくありません。定着を阻む「3つの壁」と、それを乗り越えて業務改善に繋げるための4つの実践的ステップについて解説します。',
         excerpt: 'AIツールを導入したものの、社内で活用が進まない企業は少なくありません。定着を阻む「3つの壁」と、それを乗り越えて業務改善に繋げるための4つの実践的ステップについて解説します。',
         url: 'https://spacegleam.co.jp/blog/ai-adoption-failed-fix/',
-        thumbnail: '/blog/ai-adoption-failed-fix/card.webp'
+        thumbnail: '/blog/ai-adoption-failed-fix/ogp.png?v=20261116-v1'
     },
     {
         slug: 'custom-crm-sfa-versus-saas',
@@ -201,7 +189,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '高額なSaaSを導入しても、結局Excelでの運用に戻ってしまう企業は多いです。汎用SaaSの限界と、生成AI時代に「自社専用の業務システム」をカスタム開発すべき判断基準を解説します。',
         excerpt: '高額なSaaSを導入しても、結局Excelでの運用に戻ってしまう企業は多いです。汎用SaaSの限界と、生成AI時代に「自社専用の業務システム」をカスタム開発すべき判断基準を解説します。',
         url: 'https://spacegleam.co.jp/blog/custom-crm-sfa-versus-saas/',
-        thumbnail: '/blog/custom-crm-sfa-versus-saas/card.webp'
+        thumbnail: '/blog/custom-crm-sfa-versus-saas/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-development-security-guide',
@@ -213,7 +201,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '「社内データや顧客情報が漏洩するのではないか」という不安からAI開発に踏み切れない企業向けに、ChatGPT等のAPI接続のデータ処理の真実と、安全なシステム設計手法を分かりやすく解説します。',
         excerpt: '「社内データや顧客情報が漏洩するのではないか」という不安からAI開発に踏み切れない企業向けに、API接続のデータ処理の真実と、安全なシステム設計手法を分かりやすく解説します。',
         url: 'https://spacegleam.co.jp/blog/ai-development-security-guide/',
-        thumbnail: '/blog/ai-development-security-guide/card.webp'
+        thumbnail: '/blog/ai-development-security-guide/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-product-mvp-value',
@@ -225,7 +213,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIブームの中で「AI搭載」を謳うも使われないサービスが増えています。新規事業を成功させるために、AIありきではなく顧客課題から逆算するMVP（最小限の製品）開発の正しいアプローチを解説します。',
         excerpt: 'AIブームの中で「AI搭載」を謳うも使われないサービスが増えています。新規事業を成功させるために、AIありきではなく顧客課題から逆算するMVP開発の正しいアプローチを解説します。',
         url: 'https://spacegleam.co.jp/blog/ai-product-mvp-value/',
-        thumbnail: '/blog/ai-product-mvp-value/card.webp'
+        thumbnail: '/blog/ai-product-mvp-value/ogp.png?v=20261116-v1'
     },
     {
         slug: 'how-to-write-ai-rfp',
@@ -237,7 +225,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIシステム外注の成否は「RFP（提案依頼書）」の書き方で決まります。精度やデータの定義などAI開発特有の書き方と、開発会社の提案・見積もりを比較する際の重要なチェックポイントを解説します。',
         excerpt: 'AIシステム外注の成否は「RFP（提案依頼書）」の書き方で決まります。精度やデータの定義などAI開発特有の書き方と、開発会社の提案・見積もりを比較する際の重要なチェックポイントを解説します。',
         url: 'https://spacegleam.co.jp/blog/how-to-write-ai-rfp/',
-        thumbnail: '/blog/how-to-write-ai-rfp/card.webp'
+        thumbnail: '/blog/how-to-write-ai-rfp/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-era-business-judgment',
@@ -249,7 +237,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIが情報収集や分析を担う時代、企業にとって本当に重要なのは「情報を持っているか」ではなく「判断できるか」です。本記事では、AI時代に企業が見落としがちな判断力の重要性と、それをどう守り育てるかについて解説します。',
         excerpt: 'AIが情報収集や分析を担う時代、企業にとって本当に重要なのは「情報を持っているか」ではなく「判断できるか」です。AI時代に企業が見落としがちな判断力の重要性について解説します。',
         url: 'https://spacegleam.co.jp/blog/ai-era-business-judgment/',
-        thumbnail: '/blog/ai-era-business-judgment/card.webp'
+        thumbnail: '/blog/ai-era-business-judgment/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-small-team-productivity',
@@ -261,7 +249,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '生成AIの活用によって、少人数でも企画・調査・資料作成・開発・情報整理を進めやすい時代になっています。本記事では、SPACE GLEAMが実際にClaude Code、Gemini、ChatGPTなどを活用しながら受託開発や自社サービス開発を進めている実例をもとに、AIが企業の仕事の進め方をどう変えているのかを解説します。',
         excerpt: '生成AIの活用によって、少人数でも企画・調査・資料作成・開発・情報整理を進めやすい時代に。SPACE GLEAMがClaude Code・Gemini・ChatGPTを活用しながら開発を進める実例から解説します。',
         url: 'https://spacegleam.co.jp/blog/ai-small-team-productivity/',
-        thumbnail: '/blog/ai-small-team-productivity/card.webp'
+        thumbnail: '/blog/ai-small-team-productivity/ogp.png?v=20261116-v1'
     },
     {
         slug: 'free-ai-development-diagnosis',
@@ -273,7 +261,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '「AIを活用したい」「業務を効率化したい」「サービスを作りたい」。そう考えたとき、多くの方が最初に悩むのは技術ではなく“何から始めるべきか”です。SPACE GLEAMでは、開発の方向性や予算感、進め方を整理できるAI開発診断を公開しました。本記事では、診断を作った背景と診断で分かることをご紹介します。',
         excerpt: 'SPACE GLEAMでは、開発の方向性や予算感、進め方を整理できるAI開発診断を公開しました。30秒で開発の方向性が見えてくる無料診断です。',
         url: 'https://spacegleam.co.jp/blog/free-ai-development-diagnosis/',
-        thumbnail: '/blog/free-ai-development-diagnosis/card.webp'
+        thumbnail: '/blog/free-ai-development-diagnosis/ogp.png?v=20261116-v1'
     },
     {
         slug: 'why-custom-business-systems-are-growing',
@@ -285,7 +273,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '以前は業務システムの開発といえば、大企業だけが取り組める高額な投資でした。しかし生成AIの登場によって、企業ごとの業務に合わせたシステムを、これまでよりも現実的なコストで構築できる時代になっています。本記事では、既製品のSaaSだけでは解決できない課題と、自社専用システムを持つメリット、そしてAI時代ならではの新しい開発の考え方について解説します。',
         excerpt: '以前は業務システムの開発といえば、大企業だけが取り組める高額な投資でした。しかし生成AIの登場によって、企業ごとの業務に合わせたシステムを、これまでよりも現実的なコストで構築できる時代になっています。',
         url: 'https://spacegleam.co.jp/blog/why-custom-business-systems-are-growing/',
-        thumbnail: '/blog/why-custom-business-systems-are-growing/card.webp'
+        thumbnail: '/blog/why-custom-business-systems-are-growing/ogp.png?v=20261116-v1'
     },
     {
         slug: 'why-business-systems-fail-and-how-ai-solves-it',
@@ -297,7 +285,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: '多くの企業が業務システムを導入しても、数か月後にはExcelやチャットでの運用に戻ってしまいます。問題はシステムの性能ではなく、業務とのズレにあります。本記事では、なぜ業務システムが定着しないのか、その原因とAI開発による解決方法について解説します。',
         excerpt: '多くの企業が業務システムを導入しても、数か月後にはExcelやチャットでの運用に戻ってしまいます。問題はシステムの性能ではなく、業務とのズレにあります。本記事では、なぜ業務システムが定着しないのか、その原因とAI開発による解決方法について解説します。',
         url: 'https://spacegleam.co.jp/blog/why-business-systems-fail-and-how-ai-solves-it/',
-        thumbnail: '/blog/why-business-systems-fail-and-how-ai-solves-it/card.webp'
+        thumbnail: '/blog/why-business-systems-fail-and-how-ai-solves-it/ogp.png?v=20261116-v1'
     },
     {
         slug: 'is-ai-generated-software-secure',
@@ -309,7 +297,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'ChatGPTやClaudeなどの生成AIの進化によって、システム開発のスピードは飛躍的に向上しました。しかし「AIで作ったから安全」と考えるのは危険です。npmハックやサプライチェーン攻撃の実例を交えながら、AI開発時代に求められるセキュリティと運用品質を解説します。',
         excerpt: 'ChatGPTやClaudeなどの生成AIの進化によって、システム開発のスピードは飛躍的に向上しました。しかし「AIで作ったから安全」「AIが書いたコードだから品質が高い」と考えるのは危険です。npmハックやサプライチェーン攻撃の実例を交えながら、AI開発時代に求められる運用品質を解説します。',
         url: 'https://spacegleam.co.jp/blog/is-ai-generated-software-secure/',
-        thumbnail: '/blog/is-ai-generated-software-secure/card.webp'
+        thumbnail: '/blog/is-ai-generated-software-secure/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-adoption-gap',
@@ -333,7 +321,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'OpenAI、Anthropic、Google Geminiなど、現在の生成AI市場を牽引する企業は今後も存在し続けるのでしょうか。実際のところ、それは誰にも分かりません。しかしAI活用そのものは今後さらに広がる可能性が高いと考えられます。本記事では、AI企業の将来ではなく「AIを活用する企業になること」が重要な理由について解説します。',
         excerpt: 'OpenAI、Anthropic、Google Geminiなど、現在の生成AI市場を牽引する企業は今後も存在し続けるのでしょうか。実際のところ、それは誰にも分かりません。しかしAI活用そのものは今後さらに広がる可能性が高いと考えられます。本記事では、AI企業の将来ではなく「AIを活用する企業になること」が重要な理由について解説します。',
         url: 'https://spacegleam.co.jp/blog/will-todays-ai-companies-survive/',
-        thumbnail: '/blog/will-todays-ai-companies-survive/card.webp'
+        thumbnail: '/blog/will-todays-ai-companies-survive/ogp.png?v=20261116-v1'
     },
     {
         slug: 'diffsense-three-days',
@@ -345,7 +333,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'DIFFsenseは、契約書や利用規約の変更をAIで比較・管理するサービスです。現在では、AI差分比較、AI要約、URL監視、電子署名、通知機能など複数の機能を提供しています。しかし最初からこの形だったわけではありません。実はDIFFsen...',
         excerpt: 'DIFFsenseは、契約書や利用規約の変更をAIで比較・管理するサービスです。現在では、AI差分比較、AI要約、URL監視、電子署名、通知機能など複数の機能を提供しています。しかし最初からこの形だったわけではありません。実はDIFFsen...',
         url: 'https://spacegleam.co.jp/blog/diffsense-three-days/',
-        thumbnail: '/blog/assets/n2585507fcce6_card.webp'
+        thumbnail: '/blog/diffsense-three-days/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-development-outsourcing',
@@ -357,7 +345,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIの活用が広がる中で、「AIを使った業務効率化を進めたい」「自社サービスにAI機能を組み込みたい」と考える企業が増えています。その一方で、「社内で開発するべきか、それとも外注するべきか」という悩みを抱えるケースも少なくありません。結論から...',
         excerpt: 'AIの活用が広がる中で、「AIを使った業務効率化を進めたい」「自社サービスにAI機能を組み込みたい」と考える企業が増えています。その一方で、「社内で開発するべきか、それとも外注するべきか」という悩みを抱えるケースも少なくありません。結論から...',
         url: 'https://spacegleam.co.jp/blog/ai-development-outsourcing/',
-        thumbnail: '/blog/assets/n4de10aef1158_card.webp'
+        thumbnail: '/blog/ai-development-outsourcing/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-development-real-bottleneck',
@@ -369,7 +357,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'AIサービスを作っていると言うと、よく聞かれることがあります。「やっぱりAIの部分が一番大変なんですか？」実は違います。もちろんAIにも難しさはあります。しかし、複数のAIサービスを企画・開発・運営してきた中で感じるのは、AIは意外と早く動...',
         excerpt: 'AIサービスを作っていると言うと、よく聞かれることがあります。「やっぱりAIの部分が一番大変なんですか？」実は違います。もちろんAIにも難しさはあります。しかし、複数のAIサービスを企画・開発・運営してきた中で感じるのは、AIは意外と早く動...',
         url: 'https://spacegleam.co.jp/blog/ai-development-real-bottleneck/',
-        thumbnail: '/blog/assets/n6050e37f96fa_card.webp'
+        thumbnail: '/blog/ai-development-real-bottleneck/ogp.png?v=20261116-v1'
     },
     {
         slug: 'no-more-throwaway-mvp',
@@ -381,7 +369,7 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'これまでの開発では、まず安く小さく試作し、後から作り直すのが常識でした。AIによってこの前提は変わります。最初から本番品質で作れる時代の、新しい開発の進め方をお伝えします。',
         excerpt: 'これまでの開発では、まず安く小さく試作し、後から作り直すのが常識でした。AIによってこの前提は変わります。最初から本番品質で作れる時代の、新しい開発の進め方をお伝えします。',
         url: 'https://spacegleam.co.jp/blog/no-more-throwaway-mvp/',
-        thumbnail: '/blog/assets/n52ecb67c16f3_card.webp'
+        thumbnail: '/blog/no-more-throwaway-mvp/ogp.png?v=20261116-v1'
     },
     {
         slug: 'ai-mvp-first-decisions',
@@ -405,6 +393,6 @@ window.SPACEGLEAM_BLOG_POSTS = [
         description: 'SPACE GLEAMが自社サービスを作り続ける理由と、運営から得られる知見、AI時代のプロダクトづくりへの考え方を紹介します。',
         excerpt: 'SPACE GLEAMは単なる開発会社ではなく、自社サービスを企画・開発・運営しながら、作る、運営する、改善するサイクルを続けています。',
         url: 'https://spacegleam.co.jp/blog/why-space-gleam-builds-own-services/',
-        thumbnail: '/blog/assets/nce9566eed6ea_card.webp'
+        thumbnail: '/blog/why-space-gleam-builds-own-services/ogp.png?v=20261116-v1'
     }
 ];
